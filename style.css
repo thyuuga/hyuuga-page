@@ -426,10 +426,21 @@ html:lang(ja) .section-kicker {
 
 .back-link:hover,
 .back-link:focus-visible,
+.quiet-link:hover,
+.quiet-link:focus-visible,
 .site-footer a:hover,
 .site-footer a:focus-visible {
   color: var(--cyan);
   text-shadow: 0 0 16px rgba(139, 233, 255, 0.14);
+}
+
+.quiet-link {
+  width: fit-content;
+  color: rgba(241, 244, 248, 0.82);
+  font-size: 0.9rem;
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
 }
 
 .project-copy {

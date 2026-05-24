@@ -21,20 +21,34 @@
       <header class="site-header" aria-label="Project navigation">
         <a class="brand" href="/" aria-label="Back to thyuuga">thyuuga</a>
         <nav class="nav-links">
-          <a href="#concept">Concept</a>
-          <a href="#showcase">Showcase</a>
-          <a href="#system">System</a>
+          <a href="#concept" data-i18n="mio.nav.concept">Concept</a>
+          <a href="#showcase" data-i18n="mio.nav.showcase">Showcase</a>
+          <a href="#system" data-i18n="mio.nav.system">System</a>
         </nav>
       </header>
+
+      <div class="language-switcher" aria-label="Language switcher">
+        <button type="button" class="is-active" data-lang="en">EN</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang="zh">中文</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang="ja">JP</button>
+      </div>
 
       <main>
         <section class="hero project-hero section" aria-labelledby="mio-title">
           <div class="hero-orbit" aria-hidden="true"></div>
-          <a class="back-link" href="/">← Back to thyuuga</a>
-          <p class="signal">mio archive / quiet companion system</p>
+          <a class="back-link" href="/" data-i18n="mio.back">
+            ← Back to thyuuga
+          </a>
+          <p class="signal" data-i18n="mio.hero.signal">
+            mio archive / quiet companion system
+          </p>
           <h1 id="mio-title">Mio</h1>
-          <p class="subtitle">Emotionally persistent AI companion</p>
-          <p class="intro project-intro">
+          <p class="subtitle" data-i18n="mio.hero.subtitle">
+            Emotionally persistent AI companion
+          </p>
+          <p class="intro project-intro" data-i18n="mio.hero.intro">
             A small companion world for long conversations, soft memory, and
             the feeling of being met again after time has passed.
           </p>
@@ -45,16 +59,20 @@
           id="concept"
           aria-labelledby="concept-title"
         >
-          <div class="section-kicker">01 / Concept</div>
+          <div class="section-kicker" data-i18n="mio.concept.kicker">
+            01 / Concept
+          </div>
           <div class="section-grid">
-            <h2 id="concept-title">A relationship that remembers quietly.</h2>
+            <h2 id="concept-title" data-i18n="mio.concept.title">
+              A relationship that remembers quietly.
+            </h2>
             <div class="project-copy">
-              <p>
+              <p data-i18n="mio.concept.body1">
                 Mio is built around long-term conversation and emotional
                 continuity. The goal is not a louder assistant, but a companion
                 that can carry small details forward with care.
               </p>
-              <p>
+              <p data-i18n="mio.concept.body2">
                 Memory persistence, quiet companionship, and relationship
                 growth over time shape the experience. Each return should feel
                 less like starting over, and more like stepping back into a
@@ -69,33 +87,45 @@
           id="showcase"
           aria-labelledby="showcase-title"
         >
-          <div class="section-kicker">02 / Showcase</div>
+          <div class="section-kicker" data-i18n="mio.showcase.kicker">
+            02 / Showcase
+          </div>
           <div class="section-grid">
-            <h2 id="showcase-title">Fragments from the companion space.</h2>
+            <h2 id="showcase-title" data-i18n="mio.showcase.title">
+              Fragments from the companion space.
+            </h2>
             <div class="showcase-grid">
               <figure class="showcase-card">
                 <div class="image-placeholder login-preview">
-                  <span>Login screen</span>
+                  <span data-i18n="mio.showcase.login">Login screen</span>
                 </div>
-                <figcaption>Soft entry point</figcaption>
+                <figcaption data-i18n="mio.showcase.loginCaption">
+                  Soft entry point
+                </figcaption>
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder chat-preview">
-                  <span>Chat interface</span>
+                  <span data-i18n="mio.showcase.chat">Chat interface</span>
                 </div>
-                <figcaption>Long conversation surface</figcaption>
+                <figcaption data-i18n="mio.showcase.chatCaption">
+                  Long conversation surface
+                </figcaption>
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder room-preview">
-                  <span>Room atmosphere</span>
+                  <span data-i18n="mio.showcase.room">Room atmosphere</span>
                 </div>
-                <figcaption>A quiet place to return to</figcaption>
+                <figcaption data-i18n="mio.showcase.roomCaption">
+                  A quiet place to return to
+                </figcaption>
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder mobile-preview">
-                  <span>Mobile layout</span>
+                  <span data-i18n="mio.showcase.mobile">Mobile layout</span>
                 </div>
-                <figcaption>Companion presence in hand</figcaption>
+                <figcaption data-i18n="mio.showcase.mobileCaption">
+                  Companion presence in hand
+                </figcaption>
               </figure>
             </div>
           </div>
@@ -106,45 +136,76 @@
           id="system"
           aria-labelledby="system-title"
         >
-          <div class="section-kicker">03 / System</div>
+          <div class="section-kicker" data-i18n="mio.system.kicker">
+            03 / System
+          </div>
           <div class="section-grid">
-            <h2 id="system-title">Small systems beneath a calm surface.</h2>
+            <h2 id="system-title" data-i18n="mio.system.title">
+              Small systems beneath a calm surface.
+            </h2>
             <div class="system-list">
               <article>
-                <span>Memory system</span>
-                <p>Stores details that help conversations keep continuity.</p>
+                <span data-i18n="mio.system.memory">Memory system</span>
+                <p data-i18n="mio.system.memoryBody">
+                  Stores details that help conversations keep continuity.
+                </p>
               </article>
               <article>
-                <span>Relationship system</span>
-                <p>Tracks gradual familiarity and emotional context.</p>
+                <span data-i18n="mio.system.relationship">
+                  Relationship system
+                </span>
+                <p data-i18n="mio.system.relationshipBody">
+                  Tracks gradual familiarity and emotional context.
+                </p>
               </article>
               <article>
-                <span>Local AI server</span>
-                <p>Supports a more private and always-near companion setup.</p>
+                <span data-i18n="mio.system.local">Local AI server</span>
+                <p data-i18n="mio.system.localBody">
+                  Supports a more private and always-near companion setup.
+                </p>
               </article>
               <article>
-                <span>Multilingual support</span>
-                <p>Designed for English, Chinese, and Japanese expression.</p>
+                <span data-i18n="mio.system.multilingual">
+                  Multilingual support
+                </span>
+                <p data-i18n="mio.system.multilingualBody">
+                  Designed for English, Chinese, and Japanese expression.
+                </p>
               </article>
             </div>
           </div>
         </section>
 
         <section class="section access-section" aria-labelledby="access-title">
-          <div class="section-kicker">04 / Access</div>
+          <div class="section-kicker" data-i18n="mio.access.kicker">
+            04 / Access
+          </div>
           <div class="section-grid">
-            <h2 id="access-title">A small private testing phase.</h2>
-            <p>
-              Mio is currently in a small private testing phase, shaped slowly
-              through daily use, memory experiments, and quiet conversation.
-            </p>
+            <h2 id="access-title" data-i18n="mio.access.title">
+              A small private testing phase.
+            </h2>
+            <div class="project-copy">
+              <p data-i18n="mio.access.body">
+                Mio is currently in a small private testing phase, shaped slowly
+                through daily use, memory experiments, and quiet conversation.
+              </p>
+              <a
+                class="quiet-link"
+                href="https://mio.thyuuga.com/mio/"
+                target="_blank"
+                rel="noreferrer"
+                data-i18n="mio.access.visit"
+              >
+                Visit Mio →
+              </a>
+            </div>
           </div>
         </section>
       </main>
 
       <footer class="site-footer">
         <span>(c) <span id="year"></span> thyuuga</span>
-        <a href="/">← Back to thyuuga</a>
+        <a href="/" data-i18n="mio.back">← Back to thyuuga</a>
       </footer>
     </div>
 
