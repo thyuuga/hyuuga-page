@@ -348,12 +348,26 @@ html:lang(ja) .section-kicker {
   border-top: 1px solid var(--line);
 }
 
-.project-item span {
+.project-item span,
+.project-item a {
   display: block;
   margin-bottom: 6px;
   color: var(--text);
   font-size: 1.05rem;
   font-weight: 600;
+}
+
+.project-item a {
+  width: fit-content;
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.project-item a:hover,
+.project-item a:focus-visible {
+  color: var(--cyan);
+  text-shadow: 0 0 18px rgba(139, 233, 255, 0.12);
 }
 
 .project-item p {
