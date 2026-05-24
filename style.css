@@ -456,6 +456,30 @@ html:lang(ja) .section-kicker {
   font-size: 1.04rem;
 }
 
+.project-page .project-section:not(.atmosphere-section) .section-grid,
+.project-page .access-section .section-grid {
+  grid-template-columns: minmax(360px, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(56px, 7vw, 84px);
+}
+
+.project-page .project-section:not(.atmosphere-section) h2,
+.project-page .access-section h2 {
+  max-width: 12.4em;
+  font-size: clamp(2.25rem, 3.75vw, 3.55rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+html:lang(zh) .project-page .project-section:not(.atmosphere-section) h2,
+html:lang(ja) .project-page .project-section:not(.atmosphere-section) h2,
+html:lang(zh) .project-page .access-section h2,
+html:lang(ja) .project-page .access-section h2 {
+  max-width: 13.5em;
+  font-size: clamp(2.05rem, 3.45vw, 3.25rem);
+  line-height: 1.32;
+  letter-spacing: 0.02em;
+}
+
 .atmosphere-section .section-grid {
   grid-template-columns: 1fr;
   gap: 32px;
@@ -505,8 +529,8 @@ html:lang(ja) .atmosphere-section h2 {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.66;
-  filter: saturate(0.72) contrast(0.9) brightness(0.62);
+  opacity: 0.74;
+  filter: saturate(0.78) contrast(0.92) brightness(0.72);
   transition: opacity 220ms ease;
 }
 
@@ -520,8 +544,8 @@ html:lang(ja) .atmosphere-section h2 {
   z-index: 1;
   content: "";
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, 0.02), rgba(7, 8, 13, 0.76)),
-    linear-gradient(90deg, rgba(7, 8, 13, 0.72), rgba(7, 8, 13, 0.18) 52%, rgba(7, 8, 13, 0.1)),
+    linear-gradient(180deg, rgba(7, 8, 13, 0.02), rgba(7, 8, 13, 0.64)),
+    linear-gradient(90deg, rgba(7, 8, 13, 0.64), rgba(7, 8, 13, 0.14) 52%, rgba(7, 8, 13, 0.08)),
     radial-gradient(circle at 78% 26%, rgba(139, 233, 255, 0.055), transparent 38%);
 }
 
@@ -814,6 +838,28 @@ html:lang(ja) .atmosphere-text p {
   html:lang(ja) .section-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .project-page .project-section:not(.atmosphere-section) .section-grid,
+  .project-page .access-section .section-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .project-page .project-section:not(.atmosphere-section) h2,
+  .project-page .access-section h2 {
+    max-width: 11.5em;
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.14;
+  }
+
+  html:lang(zh) .project-page .project-section:not(.atmosphere-section) h2,
+  html:lang(ja) .project-page .project-section:not(.atmosphere-section) h2,
+  html:lang(zh) .project-page .access-section h2,
+  html:lang(ja) .project-page .access-section h2 {
+    max-width: 13em;
+    font-size: clamp(1.85rem, 7vw, 2.7rem);
+    line-height: 1.32;
   }
 
   html:lang(zh) .atmosphere-section .section-grid,
