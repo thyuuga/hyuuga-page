@@ -456,31 +456,41 @@ html:lang(ja) .section-kicker {
   font-size: 1.04rem;
 }
 
-.atmosphere-fragment {
-  position: relative;
-  min-height: 280px;
-  aspect-ratio: 2.7 / 1;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background:
-    linear-gradient(90deg, rgba(7, 8, 13, 0.96), rgba(7, 8, 13, 0.66)),
-    radial-gradient(circle at 72% 34%, rgba(139, 233, 255, 0.12), transparent 34%),
-    radial-gradient(circle at 88% 70%, rgba(255, 155, 200, 0.07), transparent 28%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
-    rgba(255, 255, 255, 0.012);
-  box-shadow:
-    0 0 64px rgba(139, 233, 255, 0.03),
-    inset 0 0 90px rgba(255, 255, 255, 0.016);
-  backdrop-filter: blur(20px);
-}
-
 .atmosphere-section .section-grid {
   grid-template-columns: 1fr;
-  gap: 30px;
+  gap: 32px;
 }
 
 .atmosphere-section h2 {
   max-width: 720px;
+}
+
+.atmosphere-gallery {
+  display: grid;
+  gap: 18px;
+}
+
+.atmosphere-fragment {
+  position: relative;
+  min-height: 320px;
+  aspect-ratio: 2.85 / 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  background: rgba(255, 255, 255, 0.014);
+  box-shadow:
+    0 0 64px rgba(139, 233, 255, 0.035),
+    inset 0 0 90px rgba(255, 255, 255, 0.014);
+}
+
+.atmosphere-fragment img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.66;
+  filter: saturate(0.72) contrast(0.9) brightness(0.62);
 }
 
 .atmosphere-fragment::before {
@@ -489,11 +499,9 @@ html:lang(ja) .section-kicker {
   z-index: 1;
   content: "";
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.034) 1px, transparent 1px),
-    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px);
-  background-size: 88px 88px;
-  mask-image: linear-gradient(90deg, transparent, black 20%, black 78%, transparent);
-  opacity: 0.42;
+    linear-gradient(180deg, rgba(7, 8, 13, 0.02), rgba(7, 8, 13, 0.76)),
+    linear-gradient(90deg, rgba(7, 8, 13, 0.72), rgba(7, 8, 13, 0.18) 52%, rgba(7, 8, 13, 0.1)),
+    radial-gradient(circle at 78% 26%, rgba(139, 233, 255, 0.055), transparent 38%);
 }
 
 .atmosphere-fragment::after {
@@ -539,6 +547,41 @@ html:lang(ja) .atmosphere-text p {
     serif;
   font-weight: 400;
   line-height: 2;
+}
+
+.atmosphere-strip {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.atmosphere-strip figure {
+  margin: 0;
+}
+
+.atmosphere-strip img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.42 / 1;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  opacity: 0.54;
+  filter: saturate(0.62) contrast(0.9) brightness(0.58);
+  transition:
+    opacity 180ms ease,
+    filter 180ms ease;
+}
+
+.atmosphere-strip figure:hover img {
+  opacity: 0.78;
+  filter: saturate(0.78) contrast(0.94) brightness(0.68);
+}
+
+.atmosphere-strip figcaption {
+  margin-top: 7px;
+  color: rgba(103, 113, 132, 0.78);
+  font-size: 0.68rem;
+  line-height: 1.3;
 }
 
 .showcase-grid {
@@ -755,6 +798,15 @@ html:lang(ja) .atmosphere-text p {
   .atmosphere-fragment {
     aspect-ratio: 1.72 / 1;
     min-height: 250px;
+  }
+
+  .atmosphere-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .atmosphere-strip img {
+    aspect-ratio: 1.7 / 1;
   }
 
   .atmosphere-text {
