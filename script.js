@@ -60,13 +60,15 @@ const translations = {
     "mio.atmosphere.night": "Night / Spring",
     "mio.presence.kicker": "03 / Presence",
     "mio.presence.title": "Small shifts in expression.",
+    "mio.presence.aside":
+      "tiny emotional shifts that slowly become presence",
     "mio.presence.body":
       "Mio's presence is carried through small emotional changes: a quiet smile, a shy pause, a trace of sadness, a little pride.",
     "mio.presence.note": "Not a mode. Just a mood arriving softly.",
     "mio.presence.normal": "Calm",
-    "mio.presence.joy": "Joy",
+    "mio.presence.joy": "Quiet Joy",
     "mio.presence.shy": "Shy",
-    "mio.presence.proud": "Proud",
+    "mio.presence.proud": "Slight Pride",
     "mio.presence.sad": "Sad",
     "mio.presence.frustrated": "Frustrated",
     "mio.showcase.kicker": "04 / Showcase",
@@ -152,13 +154,14 @@ const translations = {
     "mio.atmosphere.night": "夜 / 春",
     "mio.presence.kicker": "03 / 存在感",
     "mio.presence.title": "细小变化里的情绪。",
+    "mio.presence.aside": "细微的情绪变化，慢慢成为存在感",
     "mio.presence.body":
       "Mio 的存在感来自细微的情绪变化：安静的微笑，害羞的停顿，一点难过，也有一点小小的得意。",
     "mio.presence.note": "不是模式。只是情绪轻轻抵达。",
     "mio.presence.normal": "平静",
-    "mio.presence.joy": "开心",
+    "mio.presence.joy": "安静的开心",
     "mio.presence.shy": "害羞",
-    "mio.presence.proud": "得意",
+    "mio.presence.proud": "小小得意",
     "mio.presence.sad": "难过",
     "mio.presence.frustrated": "闹别扭",
     "mio.showcase.kicker": "04 / 片段",
@@ -239,13 +242,14 @@ const translations = {
     "mio.atmosphere.night": "夜 / 春",
     "mio.presence.kicker": "03 / 気配",
     "mio.presence.title": "表情に宿る、小さな揺れ。",
+    "mio.presence.aside": "小さな感情の揺れが、少しずつ気配になる",
     "mio.presence.body":
       "Mio の気配は、小さな感情の変化に宿ります。静かな笑顔、照れた間、少しの寂しさ、ほんの少しの誇らしさ。",
     "mio.presence.note": "モードではなく、そっと訪れる気分のように。",
     "mio.presence.normal": "穏やか",
-    "mio.presence.joy": "嬉しい",
+    "mio.presence.joy": "静かな嬉しさ",
     "mio.presence.shy": "照れ",
-    "mio.presence.proud": "得意",
+    "mio.presence.proud": "少し得意",
     "mio.presence.sad": "寂しい",
     "mio.presence.frustrated": "拗ねる",
     "mio.showcase.kicker": "04 / 断片",
@@ -426,6 +430,8 @@ expressionButtons.forEach((button) => {
         "alt",
         button.dataset.expressionAlt || "Mio expression",
       );
+      expressionMainImage.style.objectPosition =
+        button.dataset.expressionPosition || "center top";
       expressionMainImage.classList.remove("is-fading");
     }, 140);
 
