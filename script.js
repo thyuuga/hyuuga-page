@@ -431,7 +431,7 @@ expressionButtons.forEach((button) => {
         button.dataset.expressionAlt || "Mio expression",
       );
       expressionMainImage.style.objectPosition =
-        button.dataset.expressionPosition || "center top";
+        button.dataset.expressionPosition || "52% 22%";
       expressionMainImage.classList.remove("is-fading");
     }, 140);
 
