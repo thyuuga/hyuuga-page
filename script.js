@@ -430,8 +430,18 @@ expressionButtons.forEach((button) => {
         "alt",
         button.dataset.expressionAlt || "Mio expression",
       );
-      expressionMainImage.style.objectPosition =
-        button.dataset.expressionPosition || "52% 22%";
+      expressionMainImage.style.setProperty(
+        "--expression-x",
+        button.dataset.expressionX || "0%",
+      );
+      expressionMainImage.style.setProperty(
+        "--expression-y",
+        button.dataset.expressionY || "0%",
+      );
+      expressionMainImage.style.setProperty(
+        "--expression-scale",
+        button.dataset.expressionScale || "1",
+      );
       expressionMainImage.classList.remove("is-fading");
     }, 140);
 
