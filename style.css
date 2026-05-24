@@ -87,21 +87,72 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 0;
-  backdrop-filter: blur(18px);
+  padding: 22px 0 18px;
+  backdrop-filter: blur(14px);
 }
 
 .brand {
   font-family: Newsreader, Georgia, serif;
-  font-size: 1.2rem;
+  font-size: 1.06rem;
   color: var(--text);
+  opacity: 0.82;
 }
 
 .nav-links {
   display: flex;
-  gap: 20px;
+  gap: clamp(14px, 2vw, 24px);
   color: var(--muted);
-  font-size: 0.84rem;
+  font-size: 0.8rem;
+}
+
+.language-switcher {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 50;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: rgba(103, 113, 132, 0.58);
+  font-size: 0.72rem;
+  opacity: 0.72;
+  transition: opacity 180ms ease;
+}
+
+.language-switcher:hover,
+.language-switcher:focus-within {
+  opacity: 1;
+}
+
+.language-switcher button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: rgba(155, 166, 181, 0.56);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.language-switcher button:hover,
+.language-switcher button:focus-visible {
+  color: var(--cyan);
+  outline: 0;
+  text-shadow: 0 0 16px rgba(139, 233, 255, 0.18);
+}
+
+.language-switcher button.is-active {
+  color: rgba(241, 244, 248, 0.84);
+  text-shadow: 0 0 18px rgba(139, 233, 255, 0.08);
+}
+
+@media (max-width: 1180px) {
+  .site-header {
+    padding-right: 112px;
+  }
 }
 
 .nav-links a,
@@ -199,6 +250,7 @@ h2 {
   font-size: clamp(2rem, 5vw, 4.2rem);
   font-weight: 500;
   line-height: 1.02;
+  max-width: 9.5em;
 }
 
 .subtitle {
@@ -222,6 +274,58 @@ h2 {
   grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.2fr);
   gap: 56px;
   align-items: start;
+}
+
+html:lang(zh) body,
+html:lang(ja) body {
+  font-family:
+    Inter,
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Noto Sans CJK JP",
+    "Noto Sans CJK SC",
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+}
+
+html:lang(zh) h2,
+html:lang(ja) h2 {
+  max-width: 12.5em;
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "Songti SC",
+    "Noto Serif CJK JP",
+    "Noto Serif CJK SC",
+    serif;
+  font-size: clamp(2rem, 4.3vw, 3.7rem);
+  line-height: 1.18;
+  letter-spacing: 0.03em;
+  text-wrap: balance;
+}
+
+html:lang(zh) .section-grid,
+html:lang(ja) .section-grid {
+  grid-template-columns: minmax(320px, 1fr) minmax(0, 1fr);
+  gap: 64px;
+}
+
+html:lang(zh) .intro,
+html:lang(ja) .intro,
+html:lang(zh) .section-grid > p,
+html:lang(ja) .section-grid > p,
+html:lang(zh) .project-item p,
+html:lang(ja) .project-item p {
+  line-height: 1.85;
+}
+
+html:lang(zh) .signal,
+html:lang(ja) .signal,
+html:lang(zh) .section-kicker,
+html:lang(ja) .section-kicker {
+  letter-spacing: 0.08em;
 }
 
 .section-grid > p {
@@ -296,12 +400,20 @@ h2 {
   }
 
   .site-header {
-    padding: 18px 0;
+    padding: 18px 96px 18px 0;
   }
 
   .nav-links {
     gap: 12px;
     font-size: 0.8rem;
+  }
+
+  .language-switcher {
+    top: 20px;
+    right: 14px;
+    gap: 6px;
+    font-size: 0.68rem;
+    white-space: nowrap;
   }
 
   .hero {
@@ -324,6 +436,19 @@ h2 {
     gap: 22px;
   }
 
+  html:lang(zh) h2,
+  html:lang(ja) h2 {
+    max-width: 15em;
+    font-size: clamp(1.9rem, 8vw, 3rem);
+    line-height: 1.22;
+  }
+
+  html:lang(zh) .section-grid,
+  html:lang(ja) .section-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .subtitle {
     width: auto;
   }
@@ -334,6 +459,16 @@ h2 {
 
   .site-footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 18px;
+    padding-right: 86px;
   }
 }
 

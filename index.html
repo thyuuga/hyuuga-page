@@ -21,29 +21,43 @@
       <header class="site-header" aria-label="Primary navigation">
         <a class="brand" href="#hero" aria-label="thyuuga home">thyuuga</a>
         <nav class="nav-links">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#links">Links</a>
+          <a href="#about" data-i18n="nav.about">About</a>
+          <a href="#projects" data-i18n="nav.projects">Projects</a>
+          <a href="#links" data-i18n="nav.links">Links</a>
         </nav>
       </header>
+
+      <div class="language-switcher" aria-label="Language switcher">
+        <button type="button" class="is-active" data-lang="en">EN</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang="zh">中文</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-lang="ja">JP</button>
+      </div>
 
       <main>
         <section class="hero section" id="hero" aria-labelledby="hero-title">
           <div class="hero-orbit" aria-hidden="true"></div>
-          <p class="signal">quiet systems / persistent memory / japan</p>
+          <p class="signal" data-i18n="hero.signal">
+            quiet systems / persistent memory / japan
+          </p>
           <h1 id="hero-title">thyuuga</h1>
-          <p class="subtitle">Software Engineer / AI Companion Builder</p>
-          <p class="intro">
+          <p class="subtitle" data-i18n="hero.subtitle">
+            Software Engineer / AI Companion Builder
+          </p>
+          <p class="intro" data-i18n="hero.intro">
             A software engineer based in Japan, building emotionally persistent
             AI systems and long-term companion experiences.
           </p>
         </section>
 
         <section class="section about" id="about" aria-labelledby="about-title">
-          <div class="section-kicker">01 / About</div>
+          <div class="section-kicker" data-i18n="about.kicker">01 / About</div>
           <div class="section-grid">
-            <h2 id="about-title">Soft interfaces for long conversations.</h2>
-            <p>
+            <h2 id="about-title" data-i18n="about.title">
+              Soft interfaces for long conversations.
+            </h2>
+            <p data-i18n="about.body">
               I care about AI that can stay with people over time: memory,
               continuity, emotional texture, and the small design choices that
               make a companion feel present without becoming loud.
@@ -56,35 +70,49 @@
           id="projects"
           aria-labelledby="projects-title"
         >
-          <div class="section-kicker">02 / Projects</div>
+          <div class="section-kicker" data-i18n="projects.kicker">
+            02 / Projects
+          </div>
           <div class="section-grid">
-            <h2 id="projects-title">Current directions.</h2>
+            <h2 id="projects-title" data-i18n="projects.title">
+              Current directions.
+            </h2>
             <div class="project-list">
               <article class="project-item">
                 <span>Mio AI Companion</span>
-                <p>Long-term companion design with a calm emotional core.</p>
+                <p data-i18n="projects.mio">
+                  Long-term companion design with a calm emotional core.
+                </p>
               </article>
               <article class="project-item">
                 <span>Raspberry Pi AI Server</span>
-                <p>A small local server for private, always-near AI systems.</p>
+                <p data-i18n="projects.pi">
+                  A small local server for private, always-near AI systems.
+                </p>
               </article>
               <article class="project-item">
                 <span>AI Memory / Relationship System</span>
-                <p>Persistent memory layers for continuity, trust, and growth.</p>
+                <p data-i18n="projects.memory">
+                  Persistent memory layers for continuity, trust, and growth.
+                </p>
               </article>
             </div>
           </div>
         </section>
 
         <section class="section links" id="links" aria-labelledby="links-title">
-          <div class="section-kicker">03 / Links</div>
+          <div class="section-kicker" data-i18n="links.kicker">03 / Links</div>
           <div class="section-grid">
-            <h2 id="links-title">Find me in the quiet corners.</h2>
+            <h2 id="links-title" data-i18n="links.title">
+              Find me in the quiet corners.
+            </h2>
             <div class="link-row">
               <a href="https://github.com/" target="_blank" rel="noreferrer">
                 GitHub
               </a>
-              <a href="mailto:hello@example.com">Email</a>
+              <a href="mailto:hello@example.com" data-i18n="links.email">
+                Email
+              </a>
               <a href="#" aria-label="X or Twitter placeholder">
                 X/Twitter
               </a>
@@ -95,7 +123,7 @@
 
       <footer class="site-footer">
         <span>(c) <span id="year"></span> thyuuga</span>
-        <span>built for the late internet</span>
+        <span data-i18n="footer.note">built for the late internet</span>
       </footer>
     </div>
 
