@@ -458,27 +458,29 @@ html:lang(ja) .section-kicker {
 
 .atmosphere-fragment {
   position: relative;
-  min-height: 420px;
+  min-height: 280px;
+  aspect-ratio: 2.7 / 1;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.07);
   background:
-    radial-gradient(circle at 22% 18%, rgba(139, 233, 255, 0.055), transparent 34%),
-    rgba(255, 255, 255, 0.014);
+    linear-gradient(90deg, rgba(7, 8, 13, 0.96), rgba(7, 8, 13, 0.66)),
+    radial-gradient(circle at 72% 34%, rgba(139, 233, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 88% 70%, rgba(255, 155, 200, 0.07), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 42%),
+    rgba(255, 255, 255, 0.012);
   box-shadow:
     0 0 64px rgba(139, 233, 255, 0.03),
     inset 0 0 90px rgba(255, 255, 255, 0.016);
   backdrop-filter: blur(20px);
 }
 
-.atmosphere-fragment img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.38;
-  filter: saturate(0.64) contrast(0.9) brightness(0.54) blur(1.2px);
-  transform: scale(1.01);
+.atmosphere-section .section-grid {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+.atmosphere-section h2 {
+  max-width: 720px;
 }
 
 .atmosphere-fragment::before {
@@ -487,8 +489,11 @@ html:lang(ja) .section-kicker {
   z-index: 1;
   content: "";
   background:
-    linear-gradient(90deg, rgba(7, 8, 13, 0.86), rgba(7, 8, 13, 0.44), rgba(7, 8, 13, 0.22)),
-    radial-gradient(circle at 72% 46%, rgba(255, 155, 200, 0.045), transparent 34%);
+    linear-gradient(90deg, rgba(255, 255, 255, 0.034) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: linear-gradient(90deg, transparent, black 20%, black 78%, transparent);
+  opacity: 0.42;
 }
 
 .atmosphere-fragment::after {
@@ -504,23 +509,23 @@ html:lang(ja) .section-kicker {
 }
 
 .atmosphere-text {
-  position: relative;
+  position: absolute;
+  left: clamp(24px, 4vw, 46px);
+  bottom: clamp(24px, 4vw, 42px);
   z-index: 2;
   display: grid;
-  max-width: 440px;
-  min-height: 420px;
-  padding: clamp(36px, 6vw, 70px);
-  align-content: center;
-  gap: 26px;
+  max-width: 390px;
+  padding: 0;
+  gap: 10px;
 }
 
 .atmosphere-text p {
   margin-bottom: 0;
-  color: rgba(241, 244, 248, 0.62);
+  color: rgba(241, 244, 248, 0.58);
   font-family: Newsreader, Georgia, serif;
-  font-size: clamp(1.2rem, 2.35vw, 2.05rem);
-  font-weight: 500;
-  line-height: 1.42;
+  font-size: clamp(0.92rem, 1.2vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.85;
 }
 
 html:lang(zh) .atmosphere-text p,
@@ -533,7 +538,7 @@ html:lang(ja) .atmosphere-text p {
     "Noto Serif CJK SC",
     serif;
   font-weight: 400;
-  line-height: 1.78;
+  line-height: 2;
 }
 
 .showcase-grid {
@@ -744,18 +749,25 @@ html:lang(ja) .atmosphere-text p {
 
   .atmosphere-fragment,
   .atmosphere-text {
-    min-height: 320px;
+    min-height: 0;
+  }
+
+  .atmosphere-fragment {
+    aspect-ratio: 1.72 / 1;
+    min-height: 250px;
   }
 
   .atmosphere-text {
     max-width: 100%;
-    padding: 34px 28px;
-    gap: 20px;
+    left: 24px;
+    right: 24px;
+    bottom: 24px;
+    gap: 8px;
   }
 
   .atmosphere-text p {
-    font-size: 1.18rem;
-    line-height: 1.58;
+    font-size: 0.96rem;
+    line-height: 1.75;
   }
 
   .site-footer {

@@ -49,7 +49,7 @@ const translations = {
     "mio.atmosphere.body1":
       "As time, weather, and seasons move slowly, the space around Mio changes with them.",
     "mio.atmosphere.body2":
-      "Sometimes it is an evening room. Sometimes the quiet after rain. Sometimes only a small lamp left on.",
+      "Sometimes an evening room. Sometimes the quiet after rain.",
     "mio.showcase.kicker": "03 / Showcase",
     "mio.showcase.title": "Fragments from the companion space.",
     "mio.showcase.login": "Login screen",
@@ -122,7 +122,7 @@ const translations = {
     "mio.atmosphere.body1":
       "随着时间、天气与季节缓慢变化，Mio 所在的空间也会悄悄改变。",
     "mio.atmosphere.body2":
-      "有时候是傍晚的房间，有时候是下雨后的夜色，也有时候，只是一盏还亮着的小灯。",
+      "有时候是傍晚的房间。有时候是下雨后的夜色。",
     "mio.showcase.kicker": "03 / 片段",
     "mio.showcase.title": "来自陪伴空间的几个片段。",
     "mio.showcase.login": "登录界面",
@@ -190,7 +190,7 @@ const translations = {
     "mio.atmosphere.body1":
       "時間、天気、季節がゆっくり移ろうたび、Mio のいる空間もそっと表情を変えていきます。",
     "mio.atmosphere.body2":
-      "夕方の部屋の日もあります。雨上がりの夜の日もあります。ただ小さな灯りだけが残っている日もあります。",
+      "夕方の部屋の日もあります。雨上がりの静けさの日もあります。",
     "mio.showcase.kicker": "03 / 断片",
     "mio.showcase.title": "コンパニオン空間の断片。",
     "mio.showcase.login": "ログイン画面",
