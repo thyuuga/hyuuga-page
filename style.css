@@ -398,6 +398,157 @@ html:lang(ja) .section-kicker {
   transform: translateY(-2px);
 }
 
+.project-page .site-header {
+  padding-right: 0;
+}
+
+.project-hero {
+  min-height: 70vh;
+}
+
+.project-hero h1 {
+  font-size: clamp(5.4rem, 14vw, 12rem);
+}
+
+.project-intro {
+  max-width: 700px;
+}
+
+.back-link {
+  width: fit-content;
+  margin-bottom: 28px;
+  color: var(--faint);
+  font-size: 0.82rem;
+  transition:
+    color 180ms ease,
+    text-shadow 180ms ease;
+}
+
+.back-link:hover,
+.back-link:focus-visible,
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--cyan);
+  text-shadow: 0 0 16px rgba(139, 233, 255, 0.14);
+}
+
+.project-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.project-copy p,
+.access-section .section-grid > p {
+  max-width: 620px;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 1.04rem;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.showcase-card {
+  margin: 0;
+}
+
+.image-placeholder {
+  position: relative;
+  display: grid;
+  min-height: 220px;
+  padding: 18px;
+  align-items: end;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(135deg, rgba(139, 233, 255, 0.08), transparent 42%),
+    radial-gradient(circle at 78% 18%, rgba(208, 182, 255, 0.12), transparent 34%),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    0 0 40px rgba(139, 233, 255, 0.055),
+    inset 0 0 48px rgba(255, 255, 255, 0.025);
+}
+
+.image-placeholder::before {
+  position: absolute;
+  inset: 16px;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.image-placeholder::after {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: var(--cyan);
+  box-shadow: 0 0 22px rgba(139, 233, 255, 0.7);
+}
+
+.image-placeholder span {
+  position: relative;
+  z-index: 1;
+  color: rgba(241, 244, 248, 0.78);
+  font-size: 0.82rem;
+}
+
+.chat-preview {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), transparent 34%),
+    radial-gradient(circle at 26% 72%, rgba(139, 233, 255, 0.14), transparent 28%),
+    rgba(255, 255, 255, 0.032);
+}
+
+.room-preview {
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255, 155, 200, 0.1), transparent 24%),
+    linear-gradient(135deg, rgba(208, 182, 255, 0.12), transparent 48%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.mobile-preview {
+  min-height: 280px;
+  background:
+    linear-gradient(90deg, transparent 24%, rgba(139, 233, 255, 0.08) 24% 76%, transparent 76%),
+    radial-gradient(circle at 50% 22%, rgba(139, 233, 255, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.showcase-card figcaption {
+  margin-top: 10px;
+  color: var(--faint);
+  font-size: 0.82rem;
+}
+
+.system-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.system-list article {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.system-list span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.system-list p {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;
@@ -469,6 +620,15 @@ html:lang(ja) .section-kicker {
 
   .link-row a {
     flex: 1 1 100%;
+  }
+
+  .showcase-grid,
+  .system-list {
+    grid-template-columns: 1fr;
+  }
+
+  .image-placeholder {
+    min-height: 190px;
   }
 
   .site-footer {

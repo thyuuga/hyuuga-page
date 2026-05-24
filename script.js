@@ -80,11 +80,19 @@ const languageButtons = document.querySelectorAll("[data-lang]");
 const translatableElements = document.querySelectorAll("[data-i18n]");
 
 const getInitialLanguage = () => {
+  if (!languageButtons.length || !translatableElements.length) {
+    return "en";
+  }
+
   const savedLanguage = localStorage.getItem("language");
   return translations[savedLanguage] ? savedLanguage : "en";
 };
 
 const setLanguage = (language) => {
+  if (!languageButtons.length || !translatableElements.length) {
+    return;
+  }
+
   const dictionary = translations[language] || translations.en;
 
   translatableElements.forEach((element) => {
