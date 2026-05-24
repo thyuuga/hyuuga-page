@@ -463,6 +463,22 @@ html:lang(ja) .section-kicker {
 
 .atmosphere-section h2 {
   max-width: 720px;
+  font-size: clamp(2.1rem, 4.6vw, 3.9rem);
+  line-height: 1.08;
+}
+
+html:lang(zh) .atmosphere-section .section-grid,
+html:lang(ja) .atmosphere-section .section-grid {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+html:lang(zh) .atmosphere-section h2,
+html:lang(ja) .atmosphere-section h2 {
+  max-width: 720px;
+  font-size: clamp(2rem, 4.1vw, 3.45rem);
+  line-height: 1.28;
+  letter-spacing: 0.02em;
 }
 
 .atmosphere-gallery {
@@ -473,7 +489,7 @@ html:lang(ja) .section-kicker {
 .atmosphere-fragment {
   position: relative;
   min-height: 320px;
-  aspect-ratio: 2.85 / 1;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.075);
   background: rgba(255, 255, 255, 0.014);
@@ -491,6 +507,11 @@ html:lang(ja) .section-kicker {
   object-position: center;
   opacity: 0.66;
   filter: saturate(0.72) contrast(0.9) brightness(0.62);
+  transition: opacity 220ms ease;
+}
+
+.atmosphere-fragment img.is-fading {
+  opacity: 0.18;
 }
 
 .atmosphere-fragment::before {
@@ -546,6 +567,7 @@ html:lang(ja) .atmosphere-text p {
     "Noto Serif CJK SC",
     serif;
   font-weight: 400;
+  font-size: clamp(0.88rem, 1.05vw, 1rem);
   line-height: 2;
 }
 
@@ -557,6 +579,15 @@ html:lang(ja) .atmosphere-text p {
 
 .atmosphere-strip figure {
   margin: 0;
+}
+
+.atmosphere-strip button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 .atmosphere-strip img {
@@ -572,9 +603,21 @@ html:lang(ja) .atmosphere-text p {
     filter 180ms ease;
 }
 
-.atmosphere-strip figure:hover img {
+.atmosphere-strip figure:hover img,
+.atmosphere-strip button:focus-visible img,
+.atmosphere-strip figure.is-active img {
   opacity: 0.78;
   filter: saturate(0.78) contrast(0.94) brightness(0.68);
+}
+
+.atmosphere-strip figure.is-active img {
+  border-color: rgba(139, 233, 255, 0.28);
+  box-shadow: 0 0 24px rgba(139, 233, 255, 0.08);
+}
+
+.atmosphere-strip button:focus-visible {
+  outline: 1px solid rgba(139, 233, 255, 0.42);
+  outline-offset: 3px;
 }
 
 .atmosphere-strip figcaption {
@@ -773,6 +816,18 @@ html:lang(ja) .atmosphere-text p {
     gap: 24px;
   }
 
+  html:lang(zh) .atmosphere-section .section-grid,
+  html:lang(ja) .atmosphere-section .section-grid {
+    gap: 24px;
+  }
+
+  html:lang(zh) .atmosphere-section h2,
+  html:lang(ja) .atmosphere-section h2 {
+    max-width: 12em;
+    font-size: clamp(1.85rem, 7vw, 2.7rem);
+    line-height: 1.32;
+  }
+
   .subtitle {
     width: auto;
   }
@@ -796,7 +851,7 @@ html:lang(ja) .atmosphere-text p {
   }
 
   .atmosphere-fragment {
-    aspect-ratio: 1.72 / 1;
+    aspect-ratio: 16 / 9;
     min-height: 250px;
   }
 
@@ -820,6 +875,12 @@ html:lang(ja) .atmosphere-text p {
   .atmosphere-text p {
     font-size: 0.96rem;
     line-height: 1.75;
+  }
+
+  html:lang(zh) .atmosphere-text p,
+  html:lang(ja) .atmosphere-text p {
+    font-size: 0.9rem;
+    line-height: 1.9;
   }
 
   .site-footer {

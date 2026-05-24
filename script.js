@@ -246,6 +246,9 @@ const translations = {
 const languageButtons = document.querySelectorAll("[data-lang]");
 const translatableElements = document.querySelectorAll("[data-i18n]");
 const localizedImages = document.querySelectorAll("[data-src-en]");
+const atmosphereMainImage = document.querySelector("#atmosphere-main-image");
+const atmosphereButtons = document.querySelectorAll("[data-atmosphere-src]");
+const atmosphereGallery = document.querySelector(".atmosphere-gallery");
 
 const getInitialLanguage = () => {
   if (!languageButtons.length || !translatableElements.length) {
@@ -292,3 +295,79 @@ languageButtons.forEach((button) => {
 });
 
 setLanguage(getInitialLanguage());
+
+const setAtmosphereImage = (button) => {
+  if (!atmosphereMainImage || !button) {
+    return;
+  }
+
+  const nextSource = button.dataset.atmosphereSrc;
+  if (!nextSource || atmosphereMainImage.getAttribute("src") === nextSource) {
+    return;
+  }
+
+  atmosphereMainImage.classList.add("is-fading");
+
+  window.setTimeout(() => {
+    atmosphereMainImage.setAttribute("src", nextSource);
+    atmosphereMainImage.setAttribute(
+      "alt",
+      button.dataset.atmosphereAlt || "Mio room atmosphere",
+    );
+    atmosphereMainImage.classList.remove("is-fading");
+  }, 180);
+
+  atmosphereButtons.forEach((item) => {
+    const isActive = item === button;
+    item.setAttribute("aria-pressed", isActive);
+    item.closest("figure")?.classList.toggle("is-active", isActive);
+  });
+};
+
+const getActiveAtmosphereIndex = () => {
+  return Array.from(atmosphereButtons).findIndex(
+    (button) => button.getAttribute("aria-pressed") === "true",
+  );
+};
+
+const shouldAutoPlayAtmosphere = () => {
+  return (
+    atmosphereButtons.length > 1 &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+};
+
+let atmosphereTimer;
+
+const stopAtmosphereAutoPlay = () => {
+  window.clearInterval(atmosphereTimer);
+};
+
+const startAtmosphereAutoPlay = () => {
+  if (!shouldAutoPlayAtmosphere()) {
+    return;
+  }
+
+  stopAtmosphereAutoPlay();
+  atmosphereTimer = window.setInterval(() => {
+    const activeIndex = getActiveAtmosphereIndex();
+    const nextIndex = (activeIndex + 1) % atmosphereButtons.length;
+    setAtmosphereImage(atmosphereButtons[nextIndex]);
+  }, 5000);
+};
+
+atmosphereButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setAtmosphereImage(button);
+    startAtmosphereAutoPlay();
+  });
+});
+
+if (atmosphereGallery) {
+  atmosphereGallery.addEventListener("mouseenter", stopAtmosphereAutoPlay);
+  atmosphereGallery.addEventListener("mouseleave", startAtmosphereAutoPlay);
+  atmosphereGallery.addEventListener("focusin", stopAtmosphereAutoPlay);
+  atmosphereGallery.addEventListener("focusout", startAtmosphereAutoPlay);
+}
+
+startAtmosphereAutoPlay();
