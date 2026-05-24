@@ -432,15 +432,7 @@ expressionButtons.forEach((button) => {
       );
       expressionMainImage.style.setProperty(
         "--expression-x",
-        button.dataset.expressionX || "0%",
-      );
-      expressionMainImage.style.setProperty(
-        "--expression-y",
-        button.dataset.expressionY || "0%",
-      );
-      expressionMainImage.style.setProperty(
-        "--expression-scale",
-        button.dataset.expressionScale || "1",
+        button.dataset.expressionX || "0px",
       );
       expressionMainImage.classList.remove("is-fading");
     }, 140);
