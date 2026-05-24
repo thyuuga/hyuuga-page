@@ -199,6 +199,7 @@ const translations = {
 
 const languageButtons = document.querySelectorAll("[data-lang]");
 const translatableElements = document.querySelectorAll("[data-i18n]");
+const localizedImages = document.querySelectorAll("[data-src-en]");
 
 const getInitialLanguage = () => {
   if (!languageButtons.length || !translatableElements.length) {
@@ -220,6 +221,13 @@ const setLanguage = (language) => {
     const key = element.dataset.i18n;
     if (dictionary[key]) {
       element.textContent = dictionary[key];
+    }
+  });
+
+  localizedImages.forEach((image) => {
+    const source = image.dataset[`src${language[0].toUpperCase()}${language.slice(1)}`];
+    if (source && image.getAttribute("src") !== source) {
+      image.setAttribute("src", source);
     }
   });
 

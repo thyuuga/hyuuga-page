@@ -468,10 +468,10 @@ html:lang(ja) .section-kicker {
 
 .image-placeholder {
   position: relative;
-  display: grid;
-  min-height: 220px;
+  display: block;
+  aspect-ratio: 1.95 / 1;
+  min-height: 0;
   padding: 18px;
-  align-items: end;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
   background:
@@ -483,9 +483,20 @@ html:lang(ja) .section-kicker {
     inset 0 0 48px rgba(255, 255, 255, 0.025);
 }
 
+.image-placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+  filter: saturate(0.86) contrast(0.96) brightness(0.82);
+}
+
 .image-placeholder::before {
   position: absolute;
   inset: 16px;
+  z-index: 1;
   content: "";
   border: 1px solid rgba(255, 255, 255, 0.075);
 }
@@ -494,6 +505,7 @@ html:lang(ja) .section-kicker {
   position: absolute;
   right: 18px;
   bottom: 18px;
+  z-index: 2;
   width: 8px;
   height: 8px;
   content: "";
@@ -502,8 +514,13 @@ html:lang(ja) .section-kicker {
 }
 
 .image-placeholder span {
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 2;
+  padding: 5px 8px;
+  background: rgba(7, 8, 13, 0.62);
+  backdrop-filter: blur(10px);
   color: rgba(241, 244, 248, 0.78);
   font-size: 0.82rem;
 }
@@ -523,7 +540,6 @@ html:lang(ja) .section-kicker {
 }
 
 .mobile-preview {
-  min-height: 280px;
   background:
     linear-gradient(90deg, transparent 24%, rgba(139, 233, 255, 0.08) 24% 76%, transparent 76%),
     radial-gradient(circle at 50% 22%, rgba(139, 233, 255, 0.12), transparent 30%),
@@ -639,7 +655,7 @@ html:lang(ja) .section-kicker {
   }
 
   .image-placeholder {
-    min-height: 190px;
+    aspect-ratio: 1.55 / 1;
   }
 
   .site-footer {
