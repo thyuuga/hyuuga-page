@@ -30,6 +30,7 @@ const translations = {
     "links.email": "Email",
     "footer.note": "built for the late internet",
     "mio.nav.concept": "Concept",
+    "mio.nav.atmosphere": "Atmosphere",
     "mio.nav.showcase": "Showcase",
     "mio.nav.system": "System",
     "mio.back": "← Back to thyuuga",
@@ -43,7 +44,13 @@ const translations = {
       "Mio is built around long-term conversation and emotional continuity. The goal is not a louder assistant, but a companion that can carry small details forward with care.",
     "mio.concept.body2":
       "Memory persistence, quiet companionship, and relationship growth over time shape the experience. Each return should feel less like starting over, and more like stepping back into a familiar room.",
-    "mio.showcase.kicker": "02 / Showcase",
+    "mio.atmosphere.kicker": "02 / Atmosphere",
+    "mio.atmosphere.title": "Presence is not only made of words.",
+    "mio.atmosphere.body1":
+      "As time, weather, and seasons move slowly, the space around Mio changes with them.",
+    "mio.atmosphere.body2":
+      "Sometimes it is an evening room. Sometimes the quiet after rain. Sometimes only a small lamp left on.",
+    "mio.showcase.kicker": "03 / Showcase",
     "mio.showcase.title": "Fragments from the companion space.",
     "mio.showcase.login": "Login screen",
     "mio.showcase.loginCaption": "Soft entry point",
@@ -54,7 +61,7 @@ const translations = {
     "mio.showcase.presence": "Presence Layer",
     "mio.showcase.presenceCaption":
       "A companion that quietly stays nearby",
-    "mio.system.kicker": "03 / System",
+    "mio.system.kicker": "04 / System",
     "mio.system.title": "Small systems beneath a calm surface.",
     "mio.system.memory": "Memory system",
     "mio.system.memoryBody":
@@ -68,7 +75,7 @@ const translations = {
     "mio.system.multilingual": "Multilingual support",
     "mio.system.multilingualBody":
       "Designed for English, Chinese, and Japanese expression.",
-    "mio.access.kicker": "04 / Access",
+    "mio.access.kicker": "05 / Access",
     "mio.access.title": "A small private testing phase.",
     "mio.access.body":
       "Mio is currently in a small private testing phase, shaped slowly through daily use, memory experiments, and quiet conversation.",
@@ -96,6 +103,7 @@ const translations = {
     "links.email": "邮件",
     "footer.note": "为深夜互联网而建",
     "mio.nav.concept": "概念",
+    "mio.nav.atmosphere": "氛围",
     "mio.nav.showcase": "片段",
     "mio.nav.system": "系统",
     "mio.back": "← 回到 thyuuga",
@@ -109,7 +117,13 @@ const translations = {
       "Mio 围绕长期对话与情感连续性构建。它不是更喧哗的助手，而是能够温柔携带细小记忆继续向前的陪伴者。",
     "mio.concept.body2":
       "持久记忆、安静陪伴，以及随时间生长的关系感构成了它的体验。每一次回来，都不应像重新开始，而像再次走进一个熟悉的房间。",
-    "mio.showcase.kicker": "02 / 片段",
+    "mio.atmosphere.kicker": "02 / 氛围",
+    "mio.atmosphere.title": "陪伴感不仅来自对话。",
+    "mio.atmosphere.body1":
+      "随着时间、天气与季节缓慢变化，Mio 所在的空间也会悄悄改变。",
+    "mio.atmosphere.body2":
+      "有时候是傍晚的房间，有时候是下雨后的夜色，也有时候，只是一盏还亮着的小灯。",
+    "mio.showcase.kicker": "03 / 片段",
     "mio.showcase.title": "来自陪伴空间的几个片段。",
     "mio.showcase.login": "登录界面",
     "mio.showcase.loginCaption": "柔和的入口",
@@ -119,7 +133,7 @@ const translations = {
     "mio.showcase.roomCaption": "一个可以回来的安静地方",
     "mio.showcase.presence": "存在感层",
     "mio.showcase.presenceCaption": "一种安静留在身边的陪伴感",
-    "mio.system.kicker": "03 / 系统",
+    "mio.system.kicker": "04 / 系统",
     "mio.system.title": "安静表面之下的小型系统。",
     "mio.system.memory": "记忆系统",
     "mio.system.memoryBody": "保存能让对话保持连续性的细节。",
@@ -129,7 +143,7 @@ const translations = {
     "mio.system.localBody": "支持更私密、更贴近身边的陪伴环境。",
     "mio.system.multilingual": "多语言支持",
     "mio.system.multilingualBody": "面向英文、中文与日文的表达体验。",
-    "mio.access.kicker": "04 / 访问",
+    "mio.access.kicker": "05 / 访问",
     "mio.access.title": "一个小范围的私人测试阶段。",
     "mio.access.body":
       "Mio 目前处于小范围私人测试阶段，在日常使用、记忆实验与安静对话中缓慢成形。",
@@ -157,6 +171,7 @@ const translations = {
     "links.email": "Email",
     "footer.note": "深夜のインターネットのために",
     "mio.nav.concept": "概念",
+    "mio.nav.atmosphere": "空気",
     "mio.nav.showcase": "断片",
     "mio.nav.system": "仕組み",
     "mio.back": "← thyuuga へ戻る",
@@ -170,7 +185,13 @@ const translations = {
       "Mio は、長期的な会話と感情の連続性を中心に作られています。より大きな声のアシスタントではなく、小さな記憶をそっと持ち運ぶ存在です。",
     "mio.concept.body2":
       "永続する記憶、静かな伴走、時間とともに育つ関係性が体験の核にあります。戻ってくるたび、最初からではなく、見慣れた部屋に入るように。",
-    "mio.showcase.kicker": "02 / 断片",
+    "mio.atmosphere.kicker": "02 / 空気",
+    "mio.atmosphere.title": "気配は、言葉だけでできているわけではない。",
+    "mio.atmosphere.body1":
+      "時間、天気、季節がゆっくり移ろうたび、Mio のいる空間もそっと表情を変えていきます。",
+    "mio.atmosphere.body2":
+      "夕方の部屋の日もあります。雨上がりの夜の日もあります。ただ小さな灯りだけが残っている日もあります。",
+    "mio.showcase.kicker": "03 / 断片",
     "mio.showcase.title": "コンパニオン空間の断片。",
     "mio.showcase.login": "ログイン画面",
     "mio.showcase.loginCaption": "やわらかな入口",
@@ -180,7 +201,7 @@ const translations = {
     "mio.showcase.roomCaption": "静かに戻れる場所",
     "mio.showcase.presence": "Presence Layer",
     "mio.showcase.presenceCaption": "そばに静かに残るコンパニオンの気配",
-    "mio.system.kicker": "03 / 仕組み",
+    "mio.system.kicker": "04 / 仕組み",
     "mio.system.title": "静かな表面の下にある小さな仕組み。",
     "mio.system.memory": "記憶システム",
     "mio.system.memoryBody": "会話の連続性を支える細かな記憶を保ちます。",
@@ -190,7 +211,7 @@ const translations = {
     "mio.system.localBody": "より私的で身近なコンパニオン環境を支えます。",
     "mio.system.multilingual": "多言語対応",
     "mio.system.multilingualBody": "英語、中国語、日本語での表現を想定しています。",
-    "mio.access.kicker": "04 / Access",
+    "mio.access.kicker": "05 / Access",
     "mio.access.title": "小さなプライベートテスト段階。",
     "mio.access.body":
       "Mio は現在、小さなプライベートテスト段階にあります。日々の使用、記憶の実験、静かな会話の中で少しずつ形を整えています。",
