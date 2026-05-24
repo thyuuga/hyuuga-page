@@ -58,7 +58,18 @@ const translations = {
     "mio.atmosphere.fallSunset": "Fall / Sunset",
     "mio.atmosphere.winterDay": "Winter / Day",
     "mio.atmosphere.night": "Night / Spring",
-    "mio.showcase.kicker": "03 / Showcase",
+    "mio.presence.kicker": "03 / Presence",
+    "mio.presence.title": "Small shifts in expression.",
+    "mio.presence.body":
+      "Mio's presence is carried through small emotional changes: a quiet smile, a shy pause, a trace of sadness, a little pride.",
+    "mio.presence.note": "Not a mode. Just a mood arriving softly.",
+    "mio.presence.normal": "Calm",
+    "mio.presence.joy": "Joy",
+    "mio.presence.shy": "Shy",
+    "mio.presence.proud": "Proud",
+    "mio.presence.sad": "Sad",
+    "mio.presence.frustrated": "Frustrated",
+    "mio.showcase.kicker": "04 / Showcase",
     "mio.showcase.title": "Fragments from the companion space.",
     "mio.showcase.login": "Login screen",
     "mio.showcase.loginCaption": "Soft entry point",
@@ -69,7 +80,7 @@ const translations = {
     "mio.showcase.presence": "Presence Layer",
     "mio.showcase.presenceCaption":
       "A companion that quietly stays nearby",
-    "mio.system.kicker": "04 / System",
+    "mio.system.kicker": "05 / System",
     "mio.system.title": "Small systems beneath a calm surface.",
     "mio.system.memory": "Memory system",
     "mio.system.memoryBody":
@@ -83,7 +94,7 @@ const translations = {
     "mio.system.multilingual": "Multilingual support",
     "mio.system.multilingualBody":
       "Designed for English, Chinese, and Japanese expression.",
-    "mio.access.kicker": "05 / Access",
+    "mio.access.kicker": "06 / Access",
     "mio.access.title": "A small private testing phase.",
     "mio.access.body":
       "Mio is currently in a small private testing phase, shaped slowly through daily use, memory experiments, and quiet conversation.",
@@ -139,7 +150,18 @@ const translations = {
     "mio.atmosphere.fallSunset": "秋 / 黄昏",
     "mio.atmosphere.winterDay": "冬 / 白昼",
     "mio.atmosphere.night": "夜 / 春",
-    "mio.showcase.kicker": "03 / 片段",
+    "mio.presence.kicker": "03 / 存在感",
+    "mio.presence.title": "细小变化里的情绪。",
+    "mio.presence.body":
+      "Mio 的存在感来自细微的情绪变化：安静的微笑，害羞的停顿，一点难过，也有一点小小的得意。",
+    "mio.presence.note": "不是模式。只是情绪轻轻抵达。",
+    "mio.presence.normal": "平静",
+    "mio.presence.joy": "开心",
+    "mio.presence.shy": "害羞",
+    "mio.presence.proud": "得意",
+    "mio.presence.sad": "难过",
+    "mio.presence.frustrated": "闹别扭",
+    "mio.showcase.kicker": "04 / 片段",
     "mio.showcase.title": "来自陪伴空间的几个片段。",
     "mio.showcase.login": "登录界面",
     "mio.showcase.loginCaption": "柔和的入口",
@@ -149,7 +171,7 @@ const translations = {
     "mio.showcase.roomCaption": "一个可以回来的安静地方",
     "mio.showcase.presence": "存在感层",
     "mio.showcase.presenceCaption": "一种安静留在身边的陪伴感",
-    "mio.system.kicker": "04 / 系统",
+    "mio.system.kicker": "05 / 系统",
     "mio.system.title": "安静表面之下的小型系统。",
     "mio.system.memory": "记忆系统",
     "mio.system.memoryBody": "保存能让对话保持连续性的细节。",
@@ -159,7 +181,7 @@ const translations = {
     "mio.system.localBody": "支持更私密、更贴近身边的陪伴环境。",
     "mio.system.multilingual": "多语言支持",
     "mio.system.multilingualBody": "面向英文、中文与日文的表达体验。",
-    "mio.access.kicker": "05 / 访问",
+    "mio.access.kicker": "06 / 访问",
     "mio.access.title": "一个小范围的私人测试阶段。",
     "mio.access.body":
       "Mio 目前处于小范围私人测试阶段，在日常使用、记忆实验与安静对话中缓慢成形。",
@@ -215,7 +237,18 @@ const translations = {
     "mio.atmosphere.fallSunset": "秋 / 夕暮れ",
     "mio.atmosphere.winterDay": "冬 / 昼",
     "mio.atmosphere.night": "夜 / 春",
-    "mio.showcase.kicker": "03 / 断片",
+    "mio.presence.kicker": "03 / 気配",
+    "mio.presence.title": "表情に宿る、小さな揺れ。",
+    "mio.presence.body":
+      "Mio の気配は、小さな感情の変化に宿ります。静かな笑顔、照れた間、少しの寂しさ、ほんの少しの誇らしさ。",
+    "mio.presence.note": "モードではなく、そっと訪れる気分のように。",
+    "mio.presence.normal": "穏やか",
+    "mio.presence.joy": "嬉しい",
+    "mio.presence.shy": "照れ",
+    "mio.presence.proud": "得意",
+    "mio.presence.sad": "寂しい",
+    "mio.presence.frustrated": "拗ねる",
+    "mio.showcase.kicker": "04 / 断片",
     "mio.showcase.title": "コンパニオン空間の断片。",
     "mio.showcase.login": "ログイン画面",
     "mio.showcase.loginCaption": "やわらかな入口",
@@ -225,7 +258,7 @@ const translations = {
     "mio.showcase.roomCaption": "静かに戻れる場所",
     "mio.showcase.presence": "Presence Layer",
     "mio.showcase.presenceCaption": "そばに静かに残るコンパニオンの気配",
-    "mio.system.kicker": "04 / 仕組み",
+    "mio.system.kicker": "05 / 仕組み",
     "mio.system.title": "静かな表面の下にある小さな仕組み。",
     "mio.system.memory": "記憶システム",
     "mio.system.memoryBody": "会話の連続性を支える細かな記憶を保ちます。",
@@ -235,7 +268,7 @@ const translations = {
     "mio.system.localBody": "より私的で身近なコンパニオン環境を支えます。",
     "mio.system.multilingual": "多言語対応",
     "mio.system.multilingualBody": "英語、中国語、日本語での表現を想定しています。",
-    "mio.access.kicker": "05 / Access",
+    "mio.access.kicker": "06 / Access",
     "mio.access.title": "小さなプライベートテスト段階。",
     "mio.access.body":
       "Mio は現在、小さなプライベートテスト段階にあります。日々の使用、記憶の実験、静かな会話の中で少しずつ形を整えています。",
@@ -249,6 +282,8 @@ const localizedImages = document.querySelectorAll("[data-src-en]");
 const atmosphereMainImage = document.querySelector("#atmosphere-main-image");
 const atmosphereButtons = document.querySelectorAll("[data-atmosphere-src]");
 const atmosphereGallery = document.querySelector(".atmosphere-gallery");
+const expressionMainImage = document.querySelector("#expression-main-image");
+const expressionButtons = document.querySelectorAll("[data-expression-src]");
 
 const getInitialLanguage = () => {
   if (!languageButtons.length || !translatableElements.length) {
@@ -371,3 +406,33 @@ if (atmosphereGallery) {
 }
 
 startAtmosphereAutoPlay();
+
+expressionButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (!expressionMainImage) {
+      return;
+    }
+
+    const nextSource = button.dataset.expressionSrc;
+    if (!nextSource || expressionMainImage.getAttribute("src") === nextSource) {
+      return;
+    }
+
+    expressionMainImage.classList.add("is-fading");
+
+    window.setTimeout(() => {
+      expressionMainImage.setAttribute("src", nextSource);
+      expressionMainImage.setAttribute(
+        "alt",
+        button.dataset.expressionAlt || "Mio expression",
+      );
+      expressionMainImage.classList.remove("is-fading");
+    }, 140);
+
+    expressionButtons.forEach((item) => {
+      const isActive = item === button;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-pressed", isActive);
+    });
+  });
+});
