@@ -112,7 +112,7 @@ a {
   z-index: 50;
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 7px;
   color: rgba(103, 113, 132, 0.58);
   font-size: 0.72rem;
   opacity: 0.72;
@@ -151,7 +151,7 @@ a {
 
 @media (max-width: 1180px) {
   .site-header {
-    padding-right: 112px;
+    padding-right: 138px;
   }
 }
 
@@ -672,7 +672,7 @@ html:lang(ja) .atmosphere-text p {
   }
 
   .site-header {
-    padding: 18px 96px 18px 0;
+    padding: 18px 118px 18px 0;
   }
 
   .nav-links {
@@ -683,7 +683,7 @@ html:lang(ja) .atmosphere-text p {
   .language-switcher {
     top: 20px;
     right: 14px;
-    gap: 6px;
+    gap: 5px;
     font-size: 0.68rem;
     white-space: nowrap;
   }
@@ -754,7 +754,7 @@ html:lang(ja) .atmosphere-text p {
     flex-direction: column;
     gap: 12px;
     padding-top: 18px;
-    padding-right: 86px;
+    padding-right: 108px;
   }
 }
 
