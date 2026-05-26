@@ -401,22 +401,46 @@ html:lang(ja) .section-kicker {
   color: var(--muted);
 }
 
+.project-item--linked {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.project-item-body {
+  flex: 1;
+  min-width: 0;
+}
+
 .learn-more {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--cyan);
-  letter-spacing: 0.02em;
-  opacity: 0.7;
-  transition: opacity 180ms ease, letter-spacing 180ms ease;
+  flex-shrink: 0;
+  padding-right: 6px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  opacity: 0.6;
+  white-space: nowrap;
+  transition: opacity 320ms ease, transform 320ms ease, color 320ms ease;
 }
 
 .learn-more:hover,
 .learn-more:focus-visible {
   opacity: 1;
-  letter-spacing: 0.05em;
-  text-shadow: 0 0 14px rgba(139, 233, 255, 0.2);
+  color: var(--text);
+  transform: translateX(3px);
+}
+
+@media (max-width: 520px) {
+  .project-item--linked {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .learn-more {
+    padding-right: 0;
+  }
 }
 
 .link-row {
