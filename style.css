@@ -401,19 +401,6 @@ html:lang(ja) .section-kicker {
   color: var(--muted);
 }
 
-.project-link .arrow {
-  font-weight: 400;
-  opacity: 0.5;
-  transition: opacity 180ms ease, transform 180ms ease;
-  display: inline-block;
-}
-
-.project-link:hover .arrow,
-.project-link:focus-visible .arrow {
-  opacity: 1;
-  transform: translateX(3px);
-}
-
 .learn-more {
   display: inline-block;
   margin-top: 10px;
