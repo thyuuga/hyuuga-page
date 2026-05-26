@@ -412,6 +412,10 @@ html:lang(ja) .section-kicker {
   min-width: 0;
 }
 
+.learn-more span {
+  display: inline;
+}
+
 .learn-more {
   flex-shrink: 0;
   padding-right: 6px;
