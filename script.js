@@ -370,43 +370,55 @@ const revealSections = document.querySelectorAll(
 );
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-if (
-  revealSections.length &&
-  !reduceMotionQuery.matches &&
-  "IntersectionObserver" in window
-) {
+if (revealSections.length && !reduceMotionQuery.matches) {
   document.body.classList.add("has-scroll-reveal");
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        entry.target
-          .querySelectorAll(".scroll-reveal-title, .scroll-reveal-content")
-          .forEach((element) => {
-            element.classList.toggle("is-visible", entry.isIntersecting);
-          });
-      });
-    },
-    {
-      root: null,
-      rootMargin: "-18% 0px -34% 0px",
-      threshold: 0.01,
-    },
-  );
 
   revealSections.forEach((section) => {
     section
       .querySelectorAll(".section-kicker, .section-grid > h2, .expression-heading")
       .forEach((element) => element.classList.add("scroll-reveal-title"));
-    if (section.closest(".project-page")) {
-      section
-        .querySelectorAll(
-          ".section-grid > :not(h2):not(.expression-heading)",
-        )
-        .forEach((element) => element.classList.add("scroll-reveal-content"));
-    }
-    revealObserver.observe(section);
+    section
+      .querySelectorAll(
+        ".section-grid > :not(h2):not(.expression-heading)",
+      )
+      .forEach((element) => element.classList.add("scroll-reveal-content"));
   });
+
+  const setRevealState = () => {
+    const activeTop = window.innerHeight * 0.22;
+    const activeBottom = window.innerHeight * 0.68;
+
+    revealSections.forEach((section) => {
+      const sectionBounds = section.getBoundingClientRect();
+      const isBefore = sectionBounds.top > activeBottom;
+      const isAfter = sectionBounds.bottom < activeTop;
+      const isVisible = !isBefore && !isAfter;
+
+      section
+        .querySelectorAll(".scroll-reveal-title, .scroll-reveal-content")
+        .forEach((element) => {
+          element.classList.toggle("is-before", isBefore);
+          element.classList.toggle("is-after", isAfter);
+          element.classList.toggle("is-visible", isVisible);
+        });
+    });
+  };
+
+  let revealFrame;
+  const requestRevealUpdate = () => {
+    if (revealFrame) {
+      return;
+    }
+
+    revealFrame = window.requestAnimationFrame(() => {
+      revealFrame = 0;
+      setRevealState();
+    });
+  };
+
+  window.addEventListener("scroll", requestRevealUpdate, { passive: true });
+  window.addEventListener("resize", requestRevealUpdate);
+  setRevealState();
 }
 
 const setAtmosphereImage = (button) => {
