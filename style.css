@@ -876,36 +876,41 @@ html:lang(ja) .expression-heading p {
   font-size: 0.82rem;
 }
 
-html:lang(zh) .expression-copy,
-html:lang(ja) .expression-copy {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  align-items: flex-start;
-  gap: clamp(20px, 3vw, 32px);
-  min-height: 360px;
-  max-height: 430px;
-  padding-bottom: 0;
-}
+@media (min-width: 761px) {
+  body[data-language="zh"] .expression-copy,
+  body[data-language="ja"] .expression-copy {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: clamp(20px, 3vw, 32px);
+    min-height: 380px;
+    max-height: 460px;
+    padding-bottom: 0;
+  }
 
-html:lang(zh) .expression-copy p,
-html:lang(ja) .expression-copy p,
-html:lang(zh) .expression-copy span,
-html:lang(ja) .expression-copy span {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  max-width: none;
-  max-height: 430px;
-}
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.body"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.body"],
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.note"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.note"] {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    flex: 0 0 auto;
+    inline-size: min(27em, 460px);
+    block-size: auto;
+    max-width: none;
+    max-height: none;
+  }
 
-html:lang(zh) .expression-copy p,
-html:lang(ja) .expression-copy p {
-  line-height: 2;
-}
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.body"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.body"] {
+    line-height: 2;
+  }
 
-html:lang(zh) .expression-copy span,
-html:lang(ja) .expression-copy span {
-  line-height: 1.9;
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.note"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.note"] {
+    line-height: 1.9;
+  }
 }
 
 .expression-stage {
@@ -1331,19 +1336,21 @@ html:lang(ja) .expression-copy span {
     padding-bottom: 0;
   }
 
-  html:lang(zh) .expression-copy,
-  html:lang(ja) .expression-copy {
+  body[data-language="zh"] .expression-copy,
+  body[data-language="ja"] .expression-copy {
     display: grid;
     gap: 14px;
     min-height: 0;
     max-height: none;
   }
 
-  html:lang(zh) .expression-copy p,
-  html:lang(ja) .expression-copy p,
-  html:lang(zh) .expression-copy span,
-  html:lang(ja) .expression-copy span {
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.body"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.body"],
+  body[data-language="zh"] .expression-copy [data-i18n="mio.presence.note"],
+  body[data-language="ja"] .expression-copy [data-i18n="mio.presence.note"] {
     writing-mode: horizontal-tb;
+    inline-size: auto;
+    block-size: auto;
     max-height: none;
   }
 
