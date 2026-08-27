@@ -852,7 +852,7 @@ html:lang(ja) .expression-heading p {
 
 .expression-panel {
   display: grid;
-  grid-template-columns: minmax(30ch, 1fr) minmax(260px, 0.72fr);
+  grid-template-columns: minmax(30ch, 36ch) minmax(260px, 0.72fr);
   gap: clamp(32px, 5vw, 62px);
   align-items: end;
 }
@@ -860,6 +860,7 @@ html:lang(ja) .expression-heading p {
 .expression-copy {
   display: grid;
   gap: 14px;
+  min-width: 0;
   padding-bottom: 18px;
 }
 
@@ -881,9 +882,10 @@ html:lang(ja) .expression-heading p {
   body[data-language="ja"] .expression-copy {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
     gap: clamp(20px, 3vw, 32px);
+    width: 100%;
     min-height: 380px;
     max-height: 460px;
     padding-bottom: 0;
