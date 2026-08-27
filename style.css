@@ -881,9 +881,11 @@ html:lang(ja) .expression-heading p {
 @media (min-width: 761px) {
   body[data-language="zh"] .expression-copy,
   body[data-language="ja"] .expression-copy {
+    position: relative;
+    left: clamp(0px, calc(4.5vw - 24px), 40px);
     display: flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     gap: clamp(20px, 3vw, 32px);
     width: 100%;
@@ -1341,6 +1343,8 @@ html:lang(ja) .expression-heading p {
 
   body[data-language="zh"] .expression-copy,
   body[data-language="ja"] .expression-copy {
+    position: static;
+    left: auto;
     display: grid;
     gap: 14px;
     min-height: 0;
