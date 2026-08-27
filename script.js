@@ -22,7 +22,6 @@ const translations = {
     "projects.title": "What I am working on now.",
     "projects.mio":
       "A long-term AI companion that remembers and grows a relationship over time.",
-    "projects.mioMeta": "Web / iOS · Memory · Voice · Vision",
     "projects.learnMore": "About Mio",
     "software.kicker": "03 / Small Software",
     "software.title": "Small tools made for daily life.",
@@ -127,7 +126,6 @@ const translations = {
     "projects.kicker": "02 / 项目",
     "projects.title": "现在正在面对的事情。",
     "projects.mio": "拥有记忆，并随着时间慢慢培养关系的长期 AI 陪伴体。",
-    "projects.mioMeta": "Web / iOS · 记忆 · 语音 · 视觉",
     "projects.learnMore": "关于 Mio",
     "software.kicker": "03 / Small Software",
     "software.title": "为日常生活制作的小工具。",
@@ -226,8 +224,7 @@ const translations = {
     "projects.kicker": "02 / 制作",
     "projects.title": "いま向き合っていること。",
     "projects.mio":
-      "記憶を持ち、時間とともに関係を育てていく、長期的な AI コンパニオン。",
-    "projects.mioMeta": "Web / iOS · Memory · Voice · Vision",
+      "記憶を持ち、時間とともに関係を育てていく、長期的な AI コンパニオン体験。",
     "projects.learnMore": "Mio について",
     "software.kicker": "03 / SMALL SOFTWARE",
     "software.title": "日々のためにつくった、小さな道具。",
