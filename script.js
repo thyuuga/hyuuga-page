@@ -373,7 +373,7 @@ const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 if (revealSections.length && !reduceMotionQuery.matches) {
   document.body.classList.add("has-scroll-reveal");
 
-  revealSections.forEach((section) => {
+  const revealItems = Array.from(revealSections).map((section) => {
     section
       .querySelectorAll(".section-kicker, .section-grid > h2, .expression-heading")
       .forEach((element) => element.classList.add("scroll-reveal-title"));
@@ -382,25 +382,58 @@ if (revealSections.length && !reduceMotionQuery.matches) {
         ".section-grid > :not(h2):not(.expression-heading)",
       )
       .forEach((element) => element.classList.add("scroll-reveal-content"));
+
+    return {
+      section,
+      elements: section.querySelectorAll(
+        ".scroll-reveal-title, .scroll-reveal-content",
+      ),
+      isArtworkSection: section.classList.contains("expression-section"),
+    };
   });
 
+  const clamp = (value, min = 0, max = 1) => {
+    return Math.min(Math.max(value, min), max);
+  };
+
   const setRevealState = () => {
-    const activeTop = window.innerHeight * 0.22;
-    const activeBottom = window.innerHeight * 0.68;
+    const viewportHeight = window.innerHeight;
+    const enterStart = viewportHeight * 1.08;
+    const enterEnd = viewportHeight * 0.65;
+    const exitStart = viewportHeight * 0.35;
+    const exitEnd = viewportHeight * -0.08;
 
-    revealSections.forEach((section) => {
+    revealItems.forEach(({ section, elements, isArtworkSection }) => {
       const sectionBounds = section.getBoundingClientRect();
-      const isBefore = sectionBounds.top > activeBottom;
-      const isAfter = sectionBounds.bottom < activeTop;
-      const isVisible = !isBefore && !isAfter;
+      const sectionCenter = sectionBounds.top + sectionBounds.height / 2;
+      const enterProgress = clamp(
+        (enterStart - sectionCenter) / (enterStart - enterEnd),
+      );
+      const exitProgress = clamp(
+        (exitStart - sectionCenter) / (exitStart - exitEnd),
+      );
+      const visibility = enterProgress * (1 - exitProgress);
+      const titleX = (1 - enterProgress) * -80 + exitProgress * -60;
+      const titleY = exitProgress * -20;
+      const contentY = (1 - enterProgress) * 16 + exitProgress * -16;
+      const artX = (1 - enterProgress) * 8 + exitProgress * 8;
+      const artY = (1 - enterProgress) * 6 + exitProgress * -6;
 
-      section
-        .querySelectorAll(".scroll-reveal-title, .scroll-reveal-content")
-        .forEach((element) => {
-          element.classList.toggle("is-before", isBefore);
-          element.classList.toggle("is-after", isAfter);
-          element.classList.toggle("is-visible", isVisible);
-        });
+      elements.forEach((element) => {
+        const isTitle = element.classList.contains("scroll-reveal-title");
+
+        element.style.setProperty("--reveal-progress", enterProgress);
+        element.style.setProperty("--exit-progress", exitProgress);
+        element.style.setProperty("--reveal-opacity", visibility);
+        element.style.setProperty(
+          "--reveal-x",
+          `${isTitle ? titleX : isArtworkSection ? artX : 0}px`,
+        );
+        element.style.setProperty(
+          "--reveal-y",
+          `${isTitle ? titleY : isArtworkSection ? artY : contentY}px`,
+        );
+      });
     });
   };
 
