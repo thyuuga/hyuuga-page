@@ -416,7 +416,7 @@ html:lang(ja) .section-kicker {
   border-color: rgba(139, 233, 255, 0.22);
 }
 
-.project-item--featured span {
+.project-item--featured .project-item-body > span {
   margin-bottom: 12px;
   font-family: Newsreader, Georgia, serif;
   font-size: clamp(1.55rem, 3vw, 2.6rem);
@@ -440,11 +440,12 @@ html:lang(ja) .section-kicker {
   min-width: 0;
 }
 
-.learn-more span {
-  display: inline;
-}
-
 .learn-more {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+  width: fit-content;
+  margin-top: 14px;
   flex-shrink: 0;
   padding-right: 6px;
   font-size: 0.75rem;
@@ -464,8 +465,12 @@ html:lang(ja) .section-kicker {
 }
 
 .link-arrow {
-  margin-left: 3px;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transform: translateY(2px);
 }
 
 .software-list {
