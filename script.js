@@ -8,6 +8,7 @@ const translations = {
   en: {
     "nav.about": "About",
     "nav.projects": "Projects",
+    "nav.software": "Software",
     "nav.links": "Links",
     "hero.signal": "quiet systems / persistent memory / japan",
     "hero.subtitle": "Software Engineer / AI Companion Builder",
@@ -18,15 +19,22 @@ const translations = {
     "about.body":
       "I care about AI that can stay with people over time: memory, continuity, emotional texture, and the small design choices that make a companion feel present without becoming loud.",
     "projects.kicker": "02 / Projects",
-    "projects.title": "Current directions.",
+    "projects.title": "What I am working on now.",
     "projects.mio":
-      "Long-term companion design with a calm emotional core.",
-    "projects.pi":
-      "A small local server for private, always-near AI systems.",
-    "projects.memory":
-      "Persistent memory layers for continuity, trust, and growth.",
+      "A long-term AI companion that remembers and grows a relationship over time.",
+    "projects.mioMeta": "Web / iOS · Memory · Voice · Vision",
     "projects.learnMore": "About Mio",
-    "links.kicker": "03 / Links",
+    "software.kicker": "03 / Small Software",
+    "software.title": "Small tools made for daily life.",
+    "software.privateZone":
+      "A private personal space for voice logs, English practice, daily notes, small utilities, and archives.",
+    "software.memoPad":
+      "A small self-hosted memo tool for managing notes, todos, accounts, and small records.",
+    "software.vocabularyBook":
+      "A vocabulary tool for saving words from daily English study and reviewing them later.",
+    "software.bonVoyage":
+      "A small travel and city exploration app for places and shared memories.",
+    "links.kicker": "04 / Links",
     "links.title": "Find me in the quiet corners.",
     "links.email": "Email",
     "footer.note": "built for the late internet",
@@ -91,9 +99,9 @@ const translations = {
     "mio.system.relationship": "Relationship system",
     "mio.system.relationshipBody":
       "Tracks gradual familiarity and emotional context.",
-    "mio.system.local": "Local AI server",
+    "mio.system.local": "Web and iOS surfaces",
     "mio.system.localBody":
-      "Supports a more private and always-near companion setup.",
+      "Shapes the companion experience across browser and mobile use.",
     "mio.system.multilingual": "Multilingual support",
     "mio.system.multilingualBody":
       "Designed for English, Chinese, and Japanese expression.",
@@ -106,6 +114,7 @@ const translations = {
   zh: {
     "nav.about": "关于",
     "nav.projects": "项目",
+    "nav.software": "小工具",
     "nav.links": "链接",
     "hero.signal": "安静系统 / 长期记忆 / 日本",
     "hero.subtitle": "软件工程师 / AI 陪伴系统构建者",
@@ -116,12 +125,21 @@ const translations = {
     "about.body":
       "我关注那些能够陪伴人很久的 AI：记忆、连续性、情感质感，以及让陪伴显得真实却不过分喧哗的细小设计选择。",
     "projects.kicker": "02 / 项目",
-    "projects.title": "正在探索的方向。",
-    "projects.mio": "拥有安静情感核心的长期 AI 陪伴体验。",
-    "projects.pi": "用于私密、近身 AI 系统的小型本地服务器。",
-    "projects.memory": "面向连续性、信任与关系成长的持久记忆层。",
+    "projects.title": "现在正在面对的事情。",
+    "projects.mio": "拥有记忆，并随着时间慢慢培养关系的长期 AI 陪伴体。",
+    "projects.mioMeta": "Web / iOS · 记忆 · 语音 · 视觉",
     "projects.learnMore": "关于 Mio",
-    "links.kicker": "03 / 链接",
+    "software.kicker": "03 / Small Software",
+    "software.title": "为日常生活制作的小工具。",
+    "software.privateZone":
+      "一个为自己准备的私人空间，用来整理语音记录、英语练习、日常笔记、小工具和归档。",
+    "software.memoPad":
+      "一个小型自托管 memo 工具，用来管理笔记、Todo、账号信息和零散记录。",
+    "software.vocabularyBook":
+      "用于保存日常英语学习中遇到的单词，并在之后快速回顾的词汇工具。",
+    "software.bonVoyage":
+      "一款围绕地点与共同记忆的小型旅行和城市探索应用。",
+    "links.kicker": "04 / 链接",
     "links.title": "在安静的角落找到我。",
     "links.email": "邮件",
     "footer.note": "为深夜互联网而建",
@@ -182,8 +200,8 @@ const translations = {
     "mio.system.memoryBody": "保存能让对话保持连续性的细节。",
     "mio.system.relationship": "关系系统",
     "mio.system.relationshipBody": "记录逐渐形成的熟悉感与情感上下文。",
-    "mio.system.local": "本地 AI 服务器",
-    "mio.system.localBody": "支持更私密、更贴近身边的陪伴环境。",
+    "mio.system.local": "Web 与 iOS 体验",
+    "mio.system.localBody": "让陪伴体验可以在浏览器和移动设备上自然延续。",
     "mio.system.multilingual": "多语言支持",
     "mio.system.multilingualBody": "面向英文、中文与日文的表达体验。",
     "mio.access.kicker": "06 / 访问",
@@ -195,6 +213,7 @@ const translations = {
   ja: {
     "nav.about": "紹介",
     "nav.projects": "制作",
+    "nav.software": "小さな道具",
     "nav.links": "リンク",
     "hero.signal": "静かなシステム / 長期記憶 / 日本",
     "hero.subtitle": "ソフトウェアエンジニア / AI コンパニオンビルダー",
@@ -206,11 +225,21 @@ const translations = {
       "時間をかけて人のそばにいられる AI に関心があります。記憶、連続性、感情の質感、そして存在感はあるけれど騒がしくない体験の設計です。",
     "projects.kicker": "02 / 制作",
     "projects.title": "いま向き合っていること。",
-    "projects.mio": "穏やかな感情の芯を持つ、長期的な AI コンパニオン体験。",
-    "projects.pi": "プライベートで身近な AI システムのための小さなローカルサーバー。",
-    "projects.memory": "連続性、信頼、関係性の成長を支える永続的な記憶レイヤー。",
+    "projects.mio":
+      "記憶を持ち、時間とともに関係を育てていく、長期的な AI コンパニオン。",
+    "projects.mioMeta": "Web / iOS · Memory · Voice · Vision",
     "projects.learnMore": "Mio について",
-    "links.kicker": "03 / リンク",
+    "software.kicker": "03 / SMALL SOFTWARE",
+    "software.title": "日々のためにつくった、小さな道具。",
+    "software.privateZone":
+      "声の記録、英語の練習、日々のメモや小さな道具をまとめた、自分のためのプライベート空間。",
+    "software.memoPad":
+      "メモ、Todo、アカウント情報などを自分で管理するための、小さなセルフホスト型メモツール。",
+    "software.vocabularyBook":
+      "日々の英語学習で出会った単語を残し、あとから素早く振り返るための語彙ツール。",
+    "software.bonVoyage":
+      "街を歩きながら場所や記憶を残していくための、小さな旅のアプリ。",
+    "links.kicker": "04 / リンク",
     "links.title": "静かな場所でつながる。",
     "links.email": "Email",
     "footer.note": "深夜のインターネットのために",
@@ -271,8 +300,9 @@ const translations = {
     "mio.system.memoryBody": "会話の連続性を支える細かな記憶を保ちます。",
     "mio.system.relationship": "関係性システム",
     "mio.system.relationshipBody": "少しずつ育つ親しさと感情の文脈を扱います。",
-    "mio.system.local": "ローカル AI サーバー",
-    "mio.system.localBody": "より私的で身近なコンパニオン環境を支えます。",
+    "mio.system.local": "Web と iOS の体験",
+    "mio.system.localBody":
+      "ブラウザとモバイルの上で、コンパニオン体験が自然につながるように整えています。",
     "mio.system.multilingual": "多言語対応",
     "mio.system.multilingualBody": "英語、中国語、日本語での表現を想定しています。",
     "mio.access.kicker": "06 / Access",
