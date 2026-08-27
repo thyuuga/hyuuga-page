@@ -852,8 +852,9 @@ html:lang(ja) .expression-heading p {
 
 .expression-panel {
   display: grid;
-  grid-template-columns: minmax(30ch, 36ch) minmax(260px, 0.72fr);
-  gap: clamp(32px, 5vw, 62px);
+  grid-template-columns: minmax(30ch, 36ch) 260px;
+  justify-content: end;
+  gap: clamp(40px, 4.5vw, 72px);
   align-items: end;
 }
 
