@@ -357,8 +357,31 @@ html:lang(ja) .home-page h2 {
   transform: translateX(0);
 }
 
+.has-scroll-reveal .scroll-reveal-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 820ms cubic-bezier(0.22, 1, 0.36, 1) 110ms,
+    transform 820ms cubic-bezier(0.22, 1, 0.36, 1) 110ms;
+  will-change: opacity, transform;
+}
+
+.has-scroll-reveal .scroll-reveal-content.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.has-scroll-reveal .expression-section .scroll-reveal-content {
+  transform: translateX(24px);
+}
+
+.has-scroll-reveal .expression-section .scroll-reveal-content.is-visible {
+  transform: translateX(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .has-scroll-reveal .scroll-reveal-title {
+  .has-scroll-reveal .scroll-reveal-title,
+  .has-scroll-reveal .scroll-reveal-content {
     opacity: 1;
     transform: none;
     transition: none;
@@ -551,7 +574,9 @@ html:lang(ja) .section-kicker {
 }
 
 .project-hero {
-  min-height: 70vh;
+  min-height: 94vh;
+  padding-top: clamp(132px, 14vh, 180px);
+  padding-bottom: 80px;
 }
 
 .project-hero h1 {
@@ -612,8 +637,8 @@ html:lang(ja) .section-kicker {
 
 .project-page .project-section:not(.atmosphere-section) h2,
 .project-page .access-section h2 {
-  max-width: 12.4em;
-  font-size: clamp(2.25rem, 3.75vw, 3.55rem);
+  max-width: 13.2em;
+  font-size: clamp(2.15rem, 3.45vw, 3.25rem);
   line-height: 1.12;
   text-wrap: balance;
 }
@@ -622,8 +647,8 @@ html:lang(zh) .project-page .project-section:not(.atmosphere-section) h2,
 html:lang(ja) .project-page .project-section:not(.atmosphere-section) h2,
 html:lang(zh) .project-page .access-section h2,
 html:lang(ja) .project-page .access-section h2 {
-  max-width: 13.5em;
-  font-size: clamp(2.05rem, 3.45vw, 3.25rem);
+  max-width: 14em;
+  font-size: clamp(2rem, 3.1vw, 2.9rem);
   line-height: 1.32;
   letter-spacing: 0.02em;
 }
@@ -634,8 +659,8 @@ html:lang(ja) .project-page .access-section h2 {
 }
 
 .atmosphere-section h2 {
-  max-width: 720px;
-  font-size: clamp(2.1rem, 4.6vw, 3.9rem);
+  max-width: 900px;
+  font-size: clamp(2.1rem, 4vw, 3.45rem);
   line-height: 1.08;
 }
 
@@ -647,8 +672,8 @@ html:lang(ja) .atmosphere-section .section-grid {
 
 html:lang(zh) .atmosphere-section h2,
 html:lang(ja) .atmosphere-section h2 {
-  max-width: 720px;
-  font-size: clamp(2rem, 4.1vw, 3.45rem);
+  max-width: 900px;
+  font-size: clamp(2rem, 3.4vw, 3rem);
   line-height: 1.28;
   letter-spacing: 0.02em;
 }
@@ -1104,6 +1129,12 @@ html:lang(ja) .expression-heading p {
   }
 
   .home-page .hero {
+    min-height: 72vh;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .project-hero {
     min-height: 72vh;
     padding-top: 72px;
     padding-bottom: 72px;

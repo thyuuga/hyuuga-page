@@ -366,18 +366,22 @@ languageButtons.forEach((button) => {
 setLanguage(getInitialLanguage());
 
 const revealSections = document.querySelectorAll(
-  ".home-page main > .section:not(.hero)",
+  ".home-page main > .section:not(.hero), .project-page main > .section:not(.hero)",
 );
 const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-if (revealSections.length && !reduceMotionQuery.matches) {
+if (
+  revealSections.length &&
+  !reduceMotionQuery.matches &&
+  "IntersectionObserver" in window
+) {
   document.body.classList.add("has-scroll-reveal");
 
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         entry.target
-          .querySelectorAll(".scroll-reveal-title")
+          .querySelectorAll(".scroll-reveal-title, .scroll-reveal-content")
           .forEach((element) => {
             element.classList.toggle("is-visible", entry.isIntersecting);
           });
@@ -392,8 +396,15 @@ if (revealSections.length && !reduceMotionQuery.matches) {
 
   revealSections.forEach((section) => {
     section
-      .querySelectorAll(".section-kicker, .section-grid > h2")
+      .querySelectorAll(".section-kicker, .section-grid > h2, .expression-heading")
       .forEach((element) => element.classList.add("scroll-reveal-title"));
+    if (section.closest(".project-page")) {
+      section
+        .querySelectorAll(
+          ".section-grid > :not(h2):not(.expression-heading)",
+        )
+        .forEach((element) => element.classList.add("scroll-reveal-content"));
+    }
     revealObserver.observe(section);
   });
 }
