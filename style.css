@@ -852,7 +852,7 @@ html:lang(ja) .expression-heading p {
 
 .expression-panel {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(260px, 0.72fr);
+  grid-template-columns: minmax(30ch, 1fr) minmax(260px, 0.72fr);
   gap: clamp(32px, 5vw, 62px);
   align-items: end;
 }
@@ -864,7 +864,7 @@ html:lang(ja) .expression-heading p {
 }
 
 .expression-copy p {
-  max-width: 600px;
+  max-width: 36ch;
   margin-bottom: 0;
   color: var(--muted);
   font-size: 1.04rem;
@@ -874,6 +874,38 @@ html:lang(ja) .expression-heading p {
 .expression-copy span {
   color: var(--faint);
   font-size: 0.82rem;
+}
+
+html:lang(zh) .expression-copy,
+html:lang(ja) .expression-copy {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: clamp(20px, 3vw, 32px);
+  min-height: 360px;
+  max-height: 430px;
+  padding-bottom: 0;
+}
+
+html:lang(zh) .expression-copy p,
+html:lang(ja) .expression-copy p,
+html:lang(zh) .expression-copy span,
+html:lang(ja) .expression-copy span {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  max-width: none;
+  max-height: 430px;
+}
+
+html:lang(zh) .expression-copy p,
+html:lang(ja) .expression-copy p {
+  line-height: 2;
+}
+
+html:lang(zh) .expression-copy span,
+html:lang(ja) .expression-copy span {
+  line-height: 1.9;
 }
 
 .expression-stage {
@@ -1297,6 +1329,22 @@ html:lang(ja) .expression-heading p {
 
   .expression-copy {
     padding-bottom: 0;
+  }
+
+  html:lang(zh) .expression-copy,
+  html:lang(ja) .expression-copy {
+    display: grid;
+    gap: 14px;
+    min-height: 0;
+    max-height: none;
+  }
+
+  html:lang(zh) .expression-copy p,
+  html:lang(ja) .expression-copy p,
+  html:lang(zh) .expression-copy span,
+  html:lang(ja) .expression-copy span {
+    writing-mode: horizontal-tb;
+    max-height: none;
   }
 
   .expression-stage {
