@@ -365,6 +365,39 @@ languageButtons.forEach((button) => {
 
 setLanguage(getInitialLanguage());
 
+const revealSections = document.querySelectorAll(
+  ".home-page main > .section:not(.hero)",
+);
+const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+if (revealSections.length && !reduceMotionQuery.matches) {
+  document.body.classList.add("has-scroll-reveal");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target
+          .querySelectorAll(".scroll-reveal-title")
+          .forEach((element) => {
+            element.classList.toggle("is-visible", entry.isIntersecting);
+          });
+      });
+    },
+    {
+      root: null,
+      rootMargin: "-18% 0px -34% 0px",
+      threshold: 0.01,
+    },
+  );
+
+  revealSections.forEach((section) => {
+    section
+      .querySelectorAll(".section-kicker, .section-grid > h2")
+      .forEach((element) => element.classList.add("scroll-reveal-title"));
+    revealObserver.observe(section);
+  });
+}
+
 const setAtmosphereImage = (button) => {
   if (!atmosphereMainImage || !button) {
     return;
