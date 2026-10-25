@@ -1,0 +1,211 @@
+/* Product-only layout; typography, colors and navigation come from style.css. */
+.recorder-page .recorder-hero {
+  min-height: 0;
+  padding-top: clamp(80px, 12vh, 144px);
+  padding-bottom: 80px;
+}
+
+.recorder-hero h1 {
+  font-size: clamp(3.6rem, 10vw, 7.8rem);
+  line-height: 1.04;
+  margin-bottom: 24px;
+}
+
+.recorder-subtitle {
+  margin-bottom: 24px;
+  color: var(--text);
+  font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+}
+
+.recorder-hero .intro {
+  max-width: 720px;
+  font-size: clamp(1rem, 1.7vw, 1.15rem);
+}
+
+.recorder-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 18px 0 12px;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.recorder-status {
+  margin: 0;
+  color: var(--cyan);
+  font-size: 0.78rem;
+}
+
+.recorder-page .section-grid,
+html:lang(zh) .recorder-page .section-grid,
+html:lang(ja) .recorder-page .section-grid {
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 5vw, 56px);
+}
+
+.recorder-page h2,
+html:lang(zh) .recorder-page h2,
+html:lang(ja) .recorder-page h2 {
+  font-size: clamp(2rem, 3.7vw, 3.2rem);
+  line-height: 1.16;
+  text-wrap: balance;
+}
+
+.recorder-page h3 {
+  margin: 0 0 12px;
+  font-size: 0.96rem;
+  font-weight: 500;
+}
+
+.recorder-preview {
+  margin: 0;
+  min-width: 0;
+}
+
+.recorder-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.recorder-preview-pending {
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+}
+
+.recorder-preview-pending p:first-child {
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.recorder-preview-pending p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.recorder-features,
+.recorder-editions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 24px;
+}
+
+.recorder-features article,
+.recorder-editions article {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.recorder-features p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.recorder-editions ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.recorder-editions li::marker {
+  color: var(--faint);
+}
+
+.recorder-note {
+  margin: 28px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.recorder-page .project-copy > p {
+  color: var(--muted);
+}
+
+.recorder-access-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.recorder-access-row h3 {
+  margin: 0;
+}
+
+.recorder-unavailable {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.recorder-page section[id] {
+  scroll-margin-top: 100px;
+}
+
+.recorder-page a:focus-visible,
+.recorder-page button:focus-visible {
+  outline: 1px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+@media (max-width: 900px) {
+  .recorder-page .section-grid,
+  html:lang(zh) .recorder-page .section-grid,
+  html:lang(ja) .recorder-page .section-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .recorder-page .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 0;
+  }
+
+  .recorder-page h2,
+  html:lang(zh) .recorder-page h2,
+  html:lang(ja) .recorder-page h2 {
+    max-width: 18em;
+  }
+
+  .recorder-page .nav-links {
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .recorder-page .recorder-hero {
+    padding-top: 64px;
+    padding-bottom: 56px;
+  }
+
+  .recorder-page .section:not(.hero) {
+    padding: 56px 0;
+  }
+
+  .recorder-features,
+  .recorder-editions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(.recorder-page) {
+    scroll-behavior: auto;
+  }
+}

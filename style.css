@@ -521,6 +521,44 @@ html:lang(ja) .section-kicker {
   color: var(--muted);
 }
 
+.software-item--featured {
+  padding-top: 26px;
+  padding-bottom: 26px;
+  border-bottom-color: rgba(139, 233, 255, 0.24);
+}
+
+.software-featured-heading,
+.software-featured-copy {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+.software-featured-heading .software-featured-label {
+  width: fit-content;
+  padding: 2px 7px;
+  border: 1px solid rgba(139, 233, 255, 0.24);
+  color: var(--cyan);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.software-featured-copy .software-meta {
+  font-size: 0.75rem;
+  line-height: 1.8;
+}
+
+.software-featured-copy .quiet-link {
+  color: var(--text);
+  font-size: 0.82rem;
+}
+
+.software-featured-copy .quiet-link:hover,
+.software-featured-copy .quiet-link:focus-visible {
+  color: var(--cyan);
+}
+
 @media (max-width: 520px) {
   .project-item--linked {
     flex-direction: column;
