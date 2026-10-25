@@ -31,6 +31,9 @@
 .private-zone-status h2 { color: var(--rust); }
 .private-zone-status .private-zone-essay p { max-width: 32em; color: var(--project-muted); font-size: 1rem; }
 .private-zone-status .text-link { margin-top: 28px; }
+.project-app-access { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px 24px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.project-app-access .text-link { margin-top: 0; }
+.private-zone-status .project-access-note { color: var(--project-muted); font-size: .75rem; }
 .private-zone-page .editorial-footer { padding-top: 70px; }
 .private-zone-footer-links { display: flex; flex-wrap: wrap; gap: 16px 32px; }
 .private-zone-page .footer-baseline { font-size: .75rem; }

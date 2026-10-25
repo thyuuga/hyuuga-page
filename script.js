@@ -6,6 +6,8 @@ if (year) {
 
 const translations = {
   en: {
+    "project.openApp": "Open App",
+    "project.privateLogin": "Private Access · Login Required",
     "memoPad.pageTitle": "Memo Pad — Notes & everyday tasks | thyuuga",
     "memoPad.title": "Memo Pad.",
     "memoPad.label": "Personal software / Web workspace",
@@ -279,6 +281,8 @@ const translations = {
     "mio.access.visit": "Visit Mio →",
   },
   zh: {
+    "project.openApp": "打开应用",
+    "project.privateLogin": "私人访问 · 需要登录",
     "memoPad.pageTitle": "Memo Pad — 笔记与日常待办 | thyuuga",
     "memoPad.title": "Memo Pad",
     "memoPad.label": "个人软件作品 / Web 工作空间",
@@ -545,6 +549,8 @@ const translations = {
     "mio.access.visit": "进入 Mio →",
   },
   ja: {
+    "project.openApp": "アプリを開く",
+    "project.privateLogin": "限定アクセス · ログインが必要です",
     "memoPad.pageTitle": "Memo Pad — ノートと日々のタスク | thyuuga",
     "memoPad.title": "Memo Pad",
     "memoPad.label": "個人ソフトウェア / Web ワークスペース",
