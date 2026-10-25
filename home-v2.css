@@ -180,12 +180,13 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
 }
 
 /* Native image cursors for the editorial site only; Mio has its own stylesheet.
-   Intrinsic size: 24px. Hotspots sit on the arrow tip / index fingertip.
+   Intrinsic size: 24px. Hotspots sit on the arrow tip / index fingertip / text center.
    No JS tracking, hidden cursor, or universal override of system states. */
 @media (hover: hover) and (pointer: fine) {
   body {
     --editorial-arrow: url('/asset/cursors/editorial-arrow.svg') 3 3, default;
     --editorial-pointer: url('/asset/cursors/editorial-pointer.svg') 9 3, pointer;
+    --editorial-text: url('/asset/cursors/editorial-text.svg') 12 12, text;
     cursor: var(--editorial-arrow);
   }
 
@@ -193,13 +194,13 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
   :where(p, h1, h2, h3, h4, h5, h6, li, dt, dd, blockquote, figcaption,
          pre, code, td, th, label, .eyebrow, .work-category, .work-availability,
          .footer-baseline):not(:where(a, button, [role='button'], [draggable='true'], [aria-busy='true']) *) {
-    cursor: text;
+    cursor: var(--editorial-text);
   }
   :where(input:not([type]), input[type='text'], input[type='search'],
          input[type='email'], input[type='url'], input[type='tel'],
          input[type='password'], input[type='number'], textarea,
          [contenteditable=''], [contenteditable='true'], [contenteditable='plaintext-only']) {
-    cursor: text;
+    cursor: var(--editorial-text);
   }
 
   :where(a[href], button:enabled, [role='button'], summary),

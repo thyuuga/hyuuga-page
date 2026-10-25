@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- Center/hotspot: (12, 12). Fine ivory keyline matches the arrow and hand. -->
+  <path d="M9 3H15M12 3V21M9 21H15" stroke="#EEE8DC" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M9 3H15M12 3V21M9 21H15" stroke="#9B5844" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>
