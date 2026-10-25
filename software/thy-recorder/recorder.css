@@ -1,211 +1,103 @@
-/* Product-only layout; typography, colors and navigation come from style.css. */
-.recorder-page .recorder-hero {
-  min-height: 0;
-  padding-top: clamp(80px, 12vh, 144px);
-  padding-bottom: 80px;
+/* Product layouts on the shared Warm Editorial foundation in home-v2.css. */
+.recorder-page {
+  --product-muted: #625f56;
+  --product-surface: #e8ded1;
 }
-
+.recorder-page .main-nav { flex-wrap: wrap; }
+.recorder-hero { padding-block: 68px 90px; }
+.recorder-hero > .eyebrow { color: var(--rust); }
 .recorder-hero h1 {
-  font-size: clamp(3.6rem, 10vw, 7.8rem);
-  line-height: 1.04;
-  margin-bottom: 24px;
+  margin-block: 30px 48px;
+  font-family: Newsreader, Georgia, serif;
+  font-size: clamp(4.5rem, 10vw, 9.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
 }
-
-.recorder-subtitle {
-  margin-bottom: 24px;
-  color: var(--text);
-  font-size: clamp(1.1rem, 2.3vw, 1.5rem);
+.recorder-hero h1 span { color: var(--rust); }
+.recorder-hero-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.recorder-subtitle { text-wrap: balance; max-width: 15em; font: 400 clamp(1.7rem, 2.7vw, 2.7rem)/1.25 var(--serif); letter-spacing: -0.025em; }
+.recorder-hero-copy .intro { max-width: 42em; font-size: 1.05rem; line-height: 1.8; }
+.recorder-facts { display: flex; flex-wrap: wrap; gap: 10px 20px; margin: 28px 0 16px; padding: 16px 0 0; border-top: 1px solid var(--rule); list-style: none; color: var(--product-muted); font-size: 0.75rem; }
+.recorder-status { color: var(--rust); font-size: 0.78rem; }
+.recorder-status::before { content: ''; display: inline-block; width: 5px; height: 5px; margin-right: 9px; background: currentColor; border-radius: 50%; vertical-align: middle; }
+.recorder-page .section { padding-block: 80px; }
+.recorder-page .section-kicker { color: var(--rust); margin-bottom: 28px; }
+.recorder-page h2 { max-width: 18em; font: 400 clamp(2.6rem, 4vw, 4rem)/1.1 var(--serif); letter-spacing: -0.035em; text-wrap: balance; }
+.recorder-page .section-grid { display: grid; gap: 48px; }
+.recorder-page .section-grid > * { min-width: 0; }
+.recorder-page .recorder-preview-section { padding: clamp(30px, 5vw, 70px); background: var(--forest); color: var(--paper); }
+.recorder-preview-section .section-kicker { color: var(--taupe); }
+.recorder-preview-section h2 { max-width: 16em; }
+.recorder-preview { min-width: 0; }
+.recorder-preview img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.recorder-preview-pending { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; min-height: 310px; padding: clamp(24px, 4vw, 52px); border: 1px solid rgba(238, 232, 220, 0.22); background: rgba(238, 232, 220, 0.035); }
+.recorder-preview-mark { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: baseline; color: var(--paper); font: 400 clamp(2.2rem, 4vw, 3.6rem)/1.1 Newsreader, Georgia, serif; letter-spacing: -0.035em; }
+.recorder-preview-mark > span { color: var(--taupe); font: 400 0.7rem/1.5 var(--sans); letter-spacing: 0.08em; }
+.recorder-preview-caption { max-width: 31em; }
+.recorder-preview-caption p:first-child { font-size: 1rem; }
+.recorder-preview-caption p:last-child { color: var(--taupe); font-size: 0.85rem; margin-top: 10px; }
+.recorder-features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 72px; counter-reset: feature; }
+.recorder-features article { border-top: 1px solid var(--rule); padding-top: 24px; counter-increment: feature; }
+.recorder-features article::before { content: '0' counter(feature); display: block; color: var(--rust); font-size: 0.7rem; margin-bottom: 20px; }
+.recorder-features h3 { max-width: 17em; margin-bottom: 14px; font: 400 clamp(1.6rem, 2.4vw, 2.2rem)/1.2 var(--serif); letter-spacing: -0.02em; }
+.recorder-features p { max-width: 36em; color: var(--product-muted); font-size: 1rem; }
+.recorder-editions-section { border-top: 1px solid var(--rule); }
+.recorder-editions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.recorder-editions article { padding: 32px 40px 10px 0; border-top: 1px solid var(--rule); }
+.recorder-editions article + article { padding-left: 48px; padding-right: 0; border-left: 1px solid var(--rule); }
+.recorder-editions h3 { margin-bottom: 24px; font: 400 3.6rem/1 Newsreader, Georgia, serif; letter-spacing: -0.035em; }
+.recorder-editions article + article h3 { color: var(--rust); }
+.recorder-editions ul { margin: 0; padding-left: 20px; display: grid; gap: 15px; color: var(--product-muted); font-size: 1rem; }
+.recorder-editions li { padding-left: 6px; }
+.recorder-editions li::marker { font-size: 0.7em; color: var(--rust); }
+.recorder-note { max-width: 55em; margin-top: 32px; color: var(--product-muted); font-size: 0.88rem; }
+.recorder-page #access { padding: clamp(28px, 5vw, 64px); background: var(--product-surface); }
+#access .section-grid { grid-template-columns: 1fr 1fr; gap: 64px; }
+#access .project-copy { display: grid; align-content: start; gap: 28px; }
+#access .project-copy > p { color: var(--product-muted); font-size: 1rem; }
+.recorder-access-row { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px 20px; padding-top: 24px; border-top: 1px solid var(--rule); }
+.recorder-access-row h3 { font-size: 1rem; font-weight: 500; }
+.recorder-unavailable { color: var(--product-muted); font-size: 0.75rem; border: 1px solid var(--rule); padding: 5px 12px; }
+.recorder-page section[id] { scroll-margin-top: 28px; }
+.recorder-footer-links { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.recorder-page .editorial-footer { padding-top: 70px; }
+.recorder-page .footer-baseline { font-size: 0.75rem; }
+html:lang(zh) .recorder-page h2, html:lang(ja) .recorder-page h2 { font-size: clamp(2rem, 3.5vw, 3.3rem); line-height: 1.4; letter-spacing: 0; }
+html:lang(zh) .recorder-subtitle, html:lang(ja) .recorder-subtitle { line-height: 1.5; }
+html:lang(zh) .recorder-features h3, html:lang(ja) .recorder-features h3 { font-size: clamp(1.4rem, 2vw, 1.8rem); line-height: 1.5; }
+@media (max-width: 1050px) {
+  .recorder-page .masthead { grid-template-columns: 1fr auto; gap: 20px; }
+  .recorder-page .main-nav { grid-row: 2; grid-column: 1 / -1; }
+  .recorder-page .language-switcher { grid-column: 2; grid-row: 1; }
+  .recorder-hero-summary, #access .section-grid { gap: 36px; }
+  .recorder-features { gap: 36px; }
 }
-
-.recorder-hero .intro {
-  max-width: 720px;
-  font-size: clamp(1rem, 1.7vw, 1.15rem);
+@media (max-width: 760px) {
+  .recorder-hero { padding-block: 46px 58px; }
+  .recorder-hero h1 { font-size: clamp(3.2rem, 12vw, 6rem); margin-block: 26px 32px; }
+  .recorder-hero-summary, #access .section-grid { grid-template-columns: 1fr; gap: 24px; }
+  .recorder-subtitle { text-wrap: balance; max-width: 22em; }
+  .recorder-page .section { padding-block: 56px; }
+  .recorder-page .recorder-preview-section, .recorder-page #access { padding: 30px 24px; }
+  .recorder-page .section-grid { gap: 32px; }
+  .recorder-page h2 { font-size: 2.6rem; }
+  .recorder-preview-pending { min-height: 270px; padding: 24px; gap: 40px; }
+  .recorder-editions article { padding-right: 24px; }
+  .recorder-editions article + article { padding-left: 24px; }
+  .recorder-page .editorial-footer { padding-top: 48px; }
 }
-
-.recorder-facts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
-  margin: 18px 0 12px;
-  padding: 0;
-  list-style: none;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.recorder-status {
-  margin: 0;
-  color: var(--cyan);
-  font-size: 0.78rem;
-}
-
-.recorder-page .section-grid,
-html:lang(zh) .recorder-page .section-grid,
-html:lang(ja) .recorder-page .section-grid {
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: clamp(32px, 5vw, 56px);
-}
-
-.recorder-page h2,
-html:lang(zh) .recorder-page h2,
-html:lang(ja) .recorder-page h2 {
-  font-size: clamp(2rem, 3.7vw, 3.2rem);
-  line-height: 1.16;
-  text-wrap: balance;
-}
-
-.recorder-page h3 {
-  margin: 0 0 12px;
-  font-size: 0.96rem;
-  font-weight: 500;
-}
-
-.recorder-preview {
-  margin: 0;
-  min-width: 0;
-}
-
-.recorder-preview img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-}
-
-.recorder-preview-pending {
-  padding: clamp(24px, 4vw, 44px);
-  border: 1px dashed var(--line);
-  border-radius: 12px;
-}
-
-.recorder-preview-pending p:first-child {
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.recorder-preview-pending p:last-child {
-  margin-bottom: 0;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.recorder-features,
-.recorder-editions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px 24px;
-}
-
-.recorder-features article,
-.recorder-editions article {
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-}
-
-.recorder-features p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.recorder-editions ul {
-  display: grid;
-  gap: 12px;
-  margin: 0;
-  padding-left: 18px;
-  color: var(--muted);
-  font-size: 0.88rem;
-}
-
-.recorder-editions li::marker {
-  color: var(--faint);
-}
-
-.recorder-note {
-  margin: 28px 0 0;
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-.recorder-page .project-copy > p {
-  color: var(--muted);
-}
-
-.recorder-access-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 20px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-}
-
-.recorder-access-row h3 {
-  margin: 0;
-}
-
-.recorder-unavailable {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.recorder-page section[id] {
-  scroll-margin-top: 100px;
-}
-
-.recorder-page a:focus-visible,
-.recorder-page button:focus-visible {
-  outline: 1px solid var(--cyan);
-  outline-offset: 5px;
-}
-
-@media (max-width: 900px) {
-  .recorder-page .section-grid,
-  html:lang(zh) .recorder-page .section-grid,
-  html:lang(ja) .recorder-page .section-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-
-  .recorder-page .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-    padding-right: 0;
-  }
-
-  .recorder-page h2,
-  html:lang(zh) .recorder-page h2,
-  html:lang(ja) .recorder-page h2 {
-    max-width: 18em;
-  }
-
-  .recorder-page .nav-links {
-    flex-wrap: wrap;
-    gap: 8px 20px;
-  }
-}
-
 @media (max-width: 520px) {
-  .recorder-page .recorder-hero {
-    padding-top: 64px;
-    padding-bottom: 56px;
-  }
-
-  .recorder-page .section:not(.hero) {
-    padding: 56px 0;
-  }
-
-  .recorder-features,
-  .recorder-editions {
-    grid-template-columns: 1fr;
-  }
+  .recorder-page .main-nav { gap: 12px 22px; font-size: 0.75rem; }
+  .recorder-hero h1 span { display: block; margin-left: 12%; }
+  .recorder-hero h1 { font-size: clamp(3.6rem, 15vw, 5rem); }
+  .recorder-hero-copy .intro { font-size: 1rem; }
+  .recorder-features, .recorder-editions { grid-template-columns: 1fr; }
+  .recorder-editions { gap: 36px; }
+  .recorder-editions article, .recorder-editions article + article { padding: 24px 0 0; border-left: 0; }
+  .recorder-preview-mark { font-size: 2rem; }
+  .recorder-preview-pending { min-height: 270px; padding: 20px; }
+  .recorder-page .recorder-preview-section, .recorder-page #access { padding-inline: 20px; }
 }
-
-@media (prefers-reduced-motion: reduce) {
-  html:has(.recorder-page) {
-    scroll-behavior: auto;
-  }
+@media (prefers-reduced-motion: no-preference) {
+  .recorder-hero { animation: quiet-arrival 650ms ease-out both; }
 }

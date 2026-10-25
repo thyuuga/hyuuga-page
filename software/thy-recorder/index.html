@@ -15,43 +15,49 @@
     <meta name="twitter:card" content="summary" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#EEE8DC" />
+    <link rel="stylesheet" href="/home-v2.css" />
     <link rel="stylesheet" href="/software/thy-recorder/recorder.css" />
   </head>
   <body class="recorder-page">
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="brand" href="/">thyuuga</a>
-        <nav class="nav-links">
+    <a data-i18n="v2.skip" class="skip-link" href="#main">Skip to content</a>
+    <div class="wrap">
+      <header class="masthead">
+        <a class="brand" href="/">thyuuga<span aria-hidden="true">.</span></a>
+        <nav class="main-nav" aria-label="Product">
           <a data-i18n="recorder.nav.preview" href="#preview">Preview</a>
           <a data-i18n="recorder.nav.features" href="#features">Features</a>
           <a data-i18n="recorder.nav.editions" href="#editions">Free / PRO</a>
           <a data-i18n="recorder.nav.access" href="#access">Release</a>
         </nav>
+        <div class="language-switcher" aria-label="Language">
+          <button type="button" class="is-active" data-lang="en" lang="en" aria-pressed="true">EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="ja" lang="ja" aria-pressed="false">日本語</button>
+        </div>
       </header>
-      <div class="language-switcher" aria-label="Language">
-        <button type="button" class="is-active" data-lang="en" lang="en" aria-pressed="true">EN</button>
-        <span aria-hidden="true">/</span>
-        <button type="button" data-lang="zh" lang="zh-CN" aria-pressed="false">中文</button>
-        <span aria-hidden="true">/</span>
-        <button type="button" data-lang="ja" lang="ja" aria-pressed="false">日本語</button>
-      </div>
-      <main>
-        <section class="hero section recorder-hero" aria-labelledby="recorder-title">
-          <p class="signal" data-i18n="nav.software">Software</p>
-          <h1 id="recorder-title">Thy Recorder</h1>
-          <p data-i18n="recorder.subtitle" class="recorder-subtitle">Screen recording, made simple.</p>
-          <p data-i18n="recorder.intro" class="intro">Thy Recorder is a lightweight macOS screen recording application designed for capturing windows, system audio, and microphone input with a clean, straightforward interface.</p>
-          <ul class="recorder-facts">
-            <li>macOS</li>
-            <li>Apple Silicon &amp; Intel</li>
-            <li>Free + PRO</li>
-          </ul>
-          <p data-i18n="recorder.status" class="recorder-status">Beta / Preparing for release</p>
+      <main id="main">
+        <section class="recorder-hero" aria-labelledby="recorder-title">
+          <p class="eyebrow" data-i18n="nav.software">Software</p>
+          <h1 id="recorder-title">Thy <span>Recorder</span></h1>
+          <div class="recorder-hero-summary">
+            <p data-i18n="recorder.subtitle" class="recorder-subtitle">Screen recording, made simple.</p>
+            <div class="recorder-hero-copy">
+              <p data-i18n="recorder.intro" class="intro">Thy Recorder is a lightweight macOS screen recording application designed for capturing windows, system audio, and microphone input with a clean, straightforward interface.</p>
+              <ul class="recorder-facts">
+                <li>macOS</li>
+                <li>Apple Silicon &amp; Intel</li>
+                <li>Free + PRO</li>
+              </ul>
+              <p data-i18n="recorder.status" class="recorder-status">Beta / Preparing for release</p>
+            </div>
+          </div>
         </section>
-        <section class="section" id="preview" aria-labelledby="preview-title">
-          <div data-i18n="recorder.preview.kicker" class="section-kicker">01 / Preview</div>
+        <section class="section recorder-preview-section" id="preview" aria-labelledby="preview-title">
+          <div data-i18n="recorder.preview.kicker" class="section-kicker eyebrow">01 / Preview</div>
           <div class="section-grid">
             <h2 data-i18n="recorder.preview.title" id="preview-title">A clear view of your recording.</h2>
             <div class="recorder-preview">
@@ -59,14 +65,17 @@
                    Use an img with intrinsic width/height, loading="lazy", decoding="async"
                    and translated alt text. Do not substitute a mockup or unrelated image. -->
               <div class="recorder-preview-pending">
-                <p data-i18n="recorder.preview.pending">App screenshot coming soon</p>
-                <p data-i18n="recorder.preview.note">A screenshot of the current two-column macOS interface will be added here.</p>
+                <span class="recorder-preview-mark" aria-hidden="true">Thy Recorder<span>macOS</span></span>
+                <div class="recorder-preview-caption">
+                  <p data-i18n="recorder.preview.pending">App screenshot coming soon</p>
+                  <p data-i18n="recorder.preview.note">A screenshot of the current two-column macOS interface will be added here.</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
-        <section class="section" id="features" aria-labelledby="features-title">
-          <div data-i18n="recorder.features.kicker" class="section-kicker">02 / Features</div>
+        <section class="section recorder-features-section" id="features" aria-labelledby="features-title">
+          <div data-i18n="recorder.features.kicker" class="section-kicker eyebrow">02 / Features</div>
           <div class="section-grid">
             <h2 data-i18n="recorder.features.title" id="features-title">The essentials, thoughtfully arranged.</h2>
             <div class="recorder-features">
@@ -89,8 +98,8 @@
             </div>
           </div>
         </section>
-        <section class="section" id="editions" aria-labelledby="editions-title">
-          <div data-i18n="recorder.editions.kicker" class="section-kicker">03 / Free + PRO</div>
+        <section class="section recorder-editions-section" id="editions" aria-labelledby="editions-title">
+          <div data-i18n="recorder.editions.kicker" class="section-kicker eyebrow">03 / Free + PRO</div>
           <div class="section-grid">
             <h2 data-i18n="recorder.editions.title" id="editions-title">Start simple. Make room for more.</h2>
             <div>
@@ -121,7 +130,7 @@
           </div>
         </section>
         <section class="section" id="access" aria-labelledby="access-title">
-          <div data-i18n="recorder.access.kicker" class="section-kicker">04 / Release</div>
+          <div data-i18n="recorder.access.kicker" class="section-kicker eyebrow">04 / Release</div>
           <div class="section-grid">
             <h2 data-i18n="recorder.access.title" id="access-title">Getting ready for your Mac.</h2>
             <div class="project-copy">
@@ -140,12 +149,15 @@
           </div>
         </section>
       </main>
-      <footer class="site-footer">
-        <span>(c) <span id="year"></span> thyuuga</span>
-        <div class="link-row">
-          <a data-i18n="recorder.back" href="/">← Back to homepage</a>
-          <a data-i18n="recorder.contact" href="mailto:kakukousyou@gmail.com">Contact the developer</a>
-          <!-- Add privacy, license terms and refund policy links when published. -->
+      <footer class="editorial-footer">
+        <a class="footer-wordmark" href="/" aria-label="thyuuga">thyuuga<span aria-hidden="true">.</span></a>
+        <div class="footer-baseline">
+          <span>(c) <span id="year"></span> thyuuga</span>
+          <div class="recorder-footer-links">
+            <a data-i18n="recorder.back" href="/">← Back to homepage</a>
+            <a data-i18n="recorder.contact" href="mailto:kakukousyou@gmail.com">Contact the developer</a>
+            <!-- Add privacy, license terms and refund policy links when published. -->
+          </div>
         </div>
       </footer>
     </div>
