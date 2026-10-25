@@ -1,0 +1,28 @@
+/* Reuse the existing editorial project layout; Memo Pad has its own gallery rhythm. */
+.memo-pad-page .private-zone-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px 10%; align-items: start; }
+.memo-pad-page .private-zone-hero > .eyebrow { grid-column: 1 / -1; }
+.memo-pad-page .private-zone-hero h1 { margin: 0; font-size: clamp(4.5rem, 9vw, 8.4rem); line-height: 1.12; }
+.memo-pad-page .private-zone-summary { display: block; padding-top: 14px; }
+.memo-pad-page .private-zone-subtitle { max-width: 16em; font-size: clamp(1.8rem, 2.5vw, 2.6rem); }
+.memo-pad-page .private-zone-intro { margin-top: 28px; }
+.memo-notebook > .eyebrow { margin-bottom: 18px; }
+.memo-todo { display: grid; grid-template-columns: minmax(0,.45fr) minmax(0,1fr); gap: 48px; align-items: center; margin-top: 54px; }
+.memo-todo-copy h3 { margin-top: 22px; font: 400 clamp(1.8rem,2.6vw,2.7rem)/1.2 var(--serif); letter-spacing: -.025em; text-wrap: balance; }
+.memo-todo-copy > p:last-child { color: var(--project-muted); margin-top: 20px; max-width: 28em; font-size: 1rem; }
+.memo-todo figcaption { justify-content: flex-end; }
+.memo-pad-page .private-zone-philosophy .private-zone-essay { grid-template-columns: .8fr 1fr; }
+.memo-pad-page .private-zone-philosophy h2 { max-width: 9em; }
+html:lang(zh) .memo-todo-copy h3, html:lang(ja) .memo-todo-copy h3 { line-height: 1.5; letter-spacing: 0; }
+@media (max-width: 1050px) {
+  .memo-pad-page .private-zone-hero { gap: 24px 40px; }
+  .memo-todo { gap: 30px; }
+}
+@media (max-width: 760px) {
+  .memo-pad-page .private-zone-hero, .memo-todo, .memo-pad-page .private-zone-philosophy .private-zone-essay { grid-template-columns: 1fr; }
+  .memo-pad-page .private-zone-hero h1 { font-size: clamp(4rem,14vw,6rem); }
+  .memo-pad-page .private-zone-summary { padding-top: 0; }
+  .memo-pad-page .private-zone-intro { margin-left: 0; margin-top: 24px; }
+  .memo-todo { margin-top: 36px; gap: 24px; }
+  .memo-todo-copy > p:last-child { margin-top: 14px; }
+  .memo-pad-page .private-zone-philosophy h2 { max-width: 15em; }
+}
