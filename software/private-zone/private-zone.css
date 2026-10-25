@@ -1,0 +1,66 @@
+/* Private Zone layouts; branding, controls and footer come from home-v2.css. */
+.private-zone-page { --project-surface: #e8ded1; --project-muted: #625f56; }
+.private-zone-page .main-nav { flex-wrap: wrap; }
+.private-zone-page section[id] { scroll-margin-top: 30px; }
+.private-zone-page .eyebrow { color: var(--rust); }
+.private-zone-hero { padding-block: 70px 100px; }
+.private-zone-hero h1 { margin-block: 38px 58px; font: 400 clamp(4.5rem, 11vw, 10rem)/1.05 Newsreader, Georgia, serif; letter-spacing: -0.055em; }
+.private-zone-summary { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 10%; align-items: start; }
+.private-zone-subtitle { max-width: 15em; font: italic 400 clamp(1.9rem, 3vw, 3rem)/1.25 var(--serif); color: var(--rust); text-wrap: balance; }
+.private-zone-intro { max-width: 34em; font-size: 1.05rem; color: var(--project-muted); }
+.private-zone-section { padding-block: 90px; }
+.private-zone-section-heading { display: grid; grid-template-columns: 0.48fr 1fr; gap: 40px; align-items: start; margin-bottom: 48px; }
+.private-zone-section-heading > .eyebrow { padding-top: 10px; }
+.private-zone-page h2 { max-width: 18em; font: 400 clamp(2.6rem, 4vw, 4rem)/1.12 var(--serif); letter-spacing: -0.035em; text-wrap: balance; }
+.private-zone-workspace { padding-top: 42px; border-top: 1px solid var(--rule); }
+.private-zone-preview { background: var(--project-surface); padding: clamp(12px, 2vw, 28px); }
+.private-zone-preview > a { display: block; }
+.private-zone-preview img { width: 100%; height: auto; border: 1px solid var(--taupe); box-shadow: 0 8px 24px rgba(37,40,32,.06); }
+.private-zone-preview figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px 24px; padding-top: 20px; color: var(--project-muted); font-size: .78rem; }
+.private-zone-preview .text-link { font-size: .75rem; flex-shrink: 0; }
+.private-zone-features { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 48px 72px; }
+.private-zone-features article { display: grid; grid-template-columns: 28px minmax(0,1fr); gap: 20px; border-top: 1px solid var(--rule); padding-top: 25px; }
+.private-zone-features article > span { padding-top: 8px; }
+.private-zone-features h3 { margin-bottom: 18px; font: 400 clamp(1.6rem, 2.5vw, 2.3rem)/1.2 var(--serif); letter-spacing: -.02em; }
+.private-zone-features p { max-width: 33em; color: var(--project-muted); font-size: 1rem; }
+.private-zone-philosophy { border-block: 1px solid var(--rule); }
+.private-zone-essay { display: grid; grid-template-columns: 1.1fr .9fr; gap: 10%; margin-top: 38px; align-items: start; }
+.private-zone-philosophy h2 { white-space: pre-line; }
+.private-zone-philosophy .private-zone-essay > p { max-width: 31em; padding-top: 12px; font-size: 1.1rem; line-height: 1.9; color: var(--project-muted); }
+.private-zone-status { margin-top: 60px; padding: clamp(28px,5vw,64px); background: var(--project-surface); }
+.private-zone-status h2 { color: var(--rust); }
+.private-zone-status .private-zone-essay p { max-width: 32em; color: var(--project-muted); font-size: 1rem; }
+.private-zone-status .text-link { margin-top: 28px; }
+.private-zone-page .editorial-footer { padding-top: 70px; }
+.private-zone-footer-links { display: flex; flex-wrap: wrap; gap: 16px 32px; }
+.private-zone-page .footer-baseline { font-size: .75rem; }
+html:lang(zh) .private-zone-subtitle, html:lang(ja) .private-zone-subtitle { font-style: normal; line-height: 1.5; }
+html:lang(zh) .private-zone-page h2, html:lang(ja) .private-zone-page h2 { font-size: clamp(2rem,3.5vw,3.3rem); line-height: 1.4; letter-spacing: 0; }
+html:lang(zh) .private-zone-features h3, html:lang(ja) .private-zone-features h3 { font-size: clamp(1.4rem,2vw,1.8rem); line-height: 1.5; }
+@media (max-width: 1050px) {
+  .private-zone-page .masthead { grid-template-columns: 1fr auto; gap: 20px; }
+  .private-zone-page .main-nav { grid-row: 2; grid-column: 1 / -1; }
+  .private-zone-page .language-switcher { grid-column: 2; grid-row: 1; }
+  .private-zone-features { gap: 36px; }
+  .private-zone-summary, .private-zone-essay { gap: 40px; }
+}
+@media (max-width: 760px) {
+  .private-zone-hero { padding-block: 46px 60px; }
+  .private-zone-hero h1 { font-size: clamp(3.5rem,12vw,6rem); margin-block: 30px 36px; }
+  .private-zone-summary, .private-zone-section-heading, .private-zone-essay { grid-template-columns: 1fr; gap: 24px; }
+  .private-zone-intro { margin-left: 10%; }
+  .private-zone-section { padding-block: 56px; }
+  .private-zone-section-heading { margin-bottom: 32px; }
+  .private-zone-page h2 { font-size: 2.6rem; }
+  .private-zone-features { grid-template-columns: 1fr; gap: 32px; }
+  .private-zone-essay { margin-top: 28px; }
+  .private-zone-philosophy .private-zone-essay > p { padding-top: 0; font-size: 1rem; }
+  .private-zone-status { margin-top: 36px; padding: 28px 24px; }
+  .private-zone-page .editorial-footer { padding-top: 48px; }
+}
+@media (max-width: 380px) {
+  .private-zone-page .main-nav { gap: 18px; font-size: .75rem; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .private-zone-hero { animation: quiet-arrival 650ms ease-out both; }
+}
