@@ -15,11 +15,15 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../style.css" />
+    <link rel="stylesheet" href="warm-night.css" />
   </head>
-  <body>
+  <body class="mio-warm-night">
     <div class="site-shell project-page">
       <header class="site-header" aria-label="Project navigation">
-        <a class="brand" href="/" aria-label="Back to thyuuga">thyuuga</a>
+        <div class="mio-header-brand">
+          <a class="brand" href="/" aria-label="Back to thyuuga">thyuuga</a>
+          <span class="mio-page-marker" aria-current="page">Mio</span>
+        </div>
         <nav class="nav-links">
           <a href="#concept" data-i18n="mio.nav.concept">Concept</a>
           <a href="#atmosphere" data-i18n="mio.nav.atmosphere">
@@ -505,7 +509,8 @@
 
       <footer class="site-footer">
         <span>(c) <span id="year"></span> thyuuga</span>
-        <a href="/" data-i18n="mio.back">← Back to thyuuga</a>
+        <span data-i18n="mio.footer.project">A project by thyuuga.</span>
+        <a href="/" data-i18n="mio.footer.back">Back to thyuuga.com ↗</a>
       </footer>
     </div>
 

@@ -6,6 +6,8 @@ if (year) {
 
 const translations = {
   en: {
+    "mio.footer.project": "A project by thyuuga.",
+    "mio.footer.back": "Back to thyuuga.com ↗",
     "v2.pageTitle": "thyuuga — Thoughtful software, quietly made",
     "v2.description": "Independent software and AI companions by thyuuga, a software engineer based in Japan. Explore Thy Recorder, Mio, and small tools for daily life.",
     "v2.nav.work": "Work",
@@ -202,6 +204,8 @@ const translations = {
     "mio.access.visit": "Visit Mio →",
   },
   zh: {
+    "mio.footer.project": "由 thyuuga 创作。",
+    "mio.footer.back": "返回 thyuuga.com ↗",
     "v2.pageTitle": "thyuuga — 安静创造，用心打磨",
     "v2.description": "居住在日本的软件工程师与独立开发者 thyuuga 的作品。探索 Thy Recorder、Mio，以及为日常生活制作的小工具。",
     "v2.nav.work": "作品",
@@ -391,6 +395,8 @@ const translations = {
     "mio.access.visit": "进入 Mio →",
   },
   ja: {
+    "mio.footer.project": "thyuuga が手がけるプロジェクト。",
+    "mio.footer.back": "thyuuga.com へ戻る ↗",
     "v2.pageTitle": "thyuuga — 静かにつくる、細部まで考える",
     "v2.description": "日本を拠点とするソフトウェアエンジニア・個人開発者 thyuuga の作品。Thy Recorder、Mio、日々のための小さな道具をご紹介します。",
     "v2.nav.work": "作品",
