@@ -92,6 +92,18 @@ img { display: block; max-width: 100%; height: auto; }
 .work-title-link:hover, .work-title-link:focus-visible { color: var(--rust); text-decoration-color: currentColor; }
 .work-title-link:hover > span { transform: translate(2px, -2px); }
 .work-availability { display: block; margin-top: 8px; font-size: 0.65rem; font-style: italic; }
+/* Center the serif letter body, rather than its asymmetric font leading.
+   Keep the original line-height footprint so rows and dividers do not move. */
+@supports (text-box-trim: trim-both) and (text-box-edge: cap alphabetic) {
+  @media (min-width: 1051px) {
+    .work-entry h3 {
+      text-box-trim: trim-both;
+      text-box-edge: cap alphabetic;
+      min-block-size: 1lh;
+      align-content: center;
+    }
+  }
+}
 .about-chapter { background: #e4ddcf; padding-block: 86px; }
 .about-grid { display: grid; grid-template-columns: 1fr 0.9fr; gap: 60px 100px; align-items: start; }
 .about-copy { padding-top: 42px; }
