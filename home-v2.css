@@ -27,8 +27,10 @@ img { display: block; max-width: 100%; height: auto; }
 .skip-link { position: absolute; z-index: 20; top: 12px; left: 12px; padding: 10px 20px; background: var(--ink); color: var(--paper); transform: translateY(-180%); }
 .skip-link:focus { transform: none; }
 .masthead { display: grid; grid-template-columns: 1fr auto 1fr; gap: 48px; align-items: center; padding-block: 25px; border-bottom: 1px solid var(--rule); }
-.brand { width: fit-content; font: 500 2rem/1 var(--serif); letter-spacing: -0.05em; }
-.brand span, .footer-wordmark span { color: var(--rust); }
+.brand { display: inline-flex; align-items: center; gap: 10px; width: fit-content; font: 500 2rem/1 var(--serif); letter-spacing: -0.05em; }
+.brand-logo { width: 32px; height: 32px; flex-shrink: 0; }
+.brand-name { white-space: nowrap; }
+.brand-name > span, .footer-wordmark span { color: var(--rust); }
 .main-nav { display: flex; gap: 32px; font-size: 0.8rem; }
 .main-nav a, .social-links a, .footer-baseline a { text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: color 180ms ease, text-decoration-color 180ms ease; }
 .main-nav a:hover, .social-links a:hover, .footer-baseline a:hover { color: var(--rust); text-decoration-color: currentColor; }
