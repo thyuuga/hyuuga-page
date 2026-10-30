@@ -198,22 +198,44 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
   /* Progressive enhancement: without view timelines, all content stays visible.
      Each content group follows its own position, including on upward scrolling.
      Sections and their backgrounds remain in the normal document flow. */
-  @supports (animation-timeline: view()) and (animation-range: cover 0% cover 100%) {
+  @supports (animation-timeline: view()) and (animation-range: cover 0% cover 100%) and (view-timeline-name: --editorial-group) {
     :where(.editorial-hero h1, .hero-bottom, .mio-copy, .mio-visual,
-           .selected-heading, .work-entry, .about-grid > div) {
+           .selected-heading, .about-grid > div:not(.contact-intro, .contact-links),
+           .work-entry > *, .contact-intro > h3, .contact-links > *) {
       animation: editorial-reveal auto linear both;
       animation-timeline: view(block);
       animation-range: cover 0% cover 100%;
     }
 
+    /* Hero is already on screen at load; only its departure needs a fade.
+       Scrolling back up restores it along the same timeline. */
+    :where(.editorial-hero h1, .hero-bottom) {
+      animation-name: editorial-hero-reveal;
+    }
+
+    /* Keep rule-bearing containers static. All children use their parent's
+       timeline, so different column heights never produce different opacity. */
+    :where(.work-entry, .contact-intro, .contact-links) {
+      view-timeline-name: --editorial-group;
+      view-timeline-axis: block;
+    }
+    :where(.work-entry > *, .contact-intro > h3, .contact-links > *) {
+      animation-timeline: --editorial-group;
+    }
+
     /* Keep keyboard-focused content readable even at a viewport edge. */
-    :where(.hero-bottom, .mio-copy, .work-entry, .about-grid > div):focus-within {
+    :where(.hero-bottom, .mio-copy, .about-copy):focus-within,
+    :where(.work-entry, .contact-intro, .contact-links):focus-within > * {
       animation: none;
     }
 
     @keyframes editorial-reveal {
       0% { opacity: 0; transform: translateY(12px); }
-      15%, 85% { opacity: 1; transform: translateY(0); }
+      20%, 75% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-12px); }
+    }
+    @keyframes editorial-hero-reveal {
+      0%, 75% { opacity: 1; transform: translateY(0); }
       100% { opacity: 0; transform: translateY(-12px); }
     }
   }
