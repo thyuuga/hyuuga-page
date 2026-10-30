@@ -821,6 +821,20 @@ const translations = {
 };
 
 const languageButtons = document.querySelectorAll("[data-lang]");
+// Keep the tab icon legible when the system color scheme changes.
+const themeFavicon = document.getElementById("theme-favicon");
+if (themeFavicon) {
+  const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  const updateFavicon = () => {
+    themeFavicon.setAttribute(
+      "href",
+      darkScheme.matches ? themeFavicon.dataset.dark : themeFavicon.dataset.light,
+    );
+  };
+  updateFavicon();
+  darkScheme.addEventListener("change", updateFavicon);
+}
+
 const translatableElements = document.querySelectorAll("[data-i18n]");
 const localizedImages = document.querySelectorAll("[data-src-en]");
 const atmosphereMainImage = document.querySelector("#atmosphere-main-image");
