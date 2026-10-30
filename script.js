@@ -821,15 +821,20 @@ const translations = {
 };
 
 const languageButtons = document.querySelectorAll("[data-lang]");
-// Keep the tab icon legible when the system color scheme changes.
-const themeFavicon = document.getElementById("theme-favicon");
-if (themeFavicon) {
+// HTML media queries select the initial icon. Keep only the matching icon
+// eligible for browsers that do not update favicon media queries dynamically.
+const themeFavicons = document.querySelectorAll("[data-theme-favicon]");
+if (themeFavicons.length) {
   const darkScheme = window.matchMedia("(prefers-color-scheme: dark)");
   const updateFavicon = () => {
-    themeFavicon.setAttribute(
-      "href",
-      darkScheme.matches ? themeFavicon.dataset.dark : themeFavicon.dataset.light,
-    );
+    const theme = darkScheme.matches ? "dark" : "light";
+    themeFavicons.forEach((icon) => {
+      if (icon.dataset.themeFavicon === theme) {
+        icon.setAttribute("rel", "icon");
+      } else {
+        icon.removeAttribute("rel");
+      }
+    });
   };
   updateFavicon();
   darkScheme.addEventListener("change", updateFavicon);
