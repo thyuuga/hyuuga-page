@@ -227,12 +227,6 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
 
     :where(.selected-heading) { animation-name: project-heading-reveal; }
     :where(.work-entry-content) { animation-name: project-row-reveal; }
-    .work-entry { --project-reveal-x: -32px; }
-    .work-entry:nth-child(even) { --project-reveal-x: 32px; }
-    @media (max-width: 760px) {
-      .work-entry { --project-reveal-x: -16px; }
-      .work-entry:nth-child(even) { --project-reveal-x: 16px; }
-    }
 
     /* Keep keyboard-focused content readable even at a viewport edge. */
     :where(.hero-bottom, .mio-copy, .about-copy):focus-within,
@@ -255,8 +249,9 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
       100% { opacity: 0; transform: translateY(-12px); }
     }
     @keyframes project-row-reveal {
-      0%, 100% { opacity: 0; transform: translateX(var(--project-reveal-x)); }
-      20%, 75% { opacity: 1; transform: translateX(0); }
+      0% { opacity: 0; transform: translateY(24px); }
+      20%, 75% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-24px); }
     }
   }
 }
