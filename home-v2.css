@@ -121,6 +121,9 @@ img { display: block; max-width: 100%; height: auto; }
 .contact-email { color: var(--rust); font-size: 1rem; }
 .social-links { display: flex; gap: 30px; margin-top: 25px; font-size: 0.75rem; }
 .social-links span { margin-left: 6px; }
+.social-links a.contact-github { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); font-size: 0.875rem; text-decoration: none; }
+.contact-github svg { flex-shrink: 0; }
+.social-links .contact-github > span { margin-left: 0; }
 .editorial-footer { padding-top: 48px; padding-bottom: 30px; }
 .footer-wordmark { display: block; width: fit-content; font-family: var(--serif); font-size: clamp(5rem, 18vw, 17.5rem); line-height: 1.05; letter-spacing: -0.065em; }
 .footer-baseline { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px 25px; margin-top: 35px; padding-top: 22px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.65rem; }
