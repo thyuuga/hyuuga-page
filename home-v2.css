@@ -115,6 +115,7 @@ img { display: block; max-width: 100%; height: auto; }
 .contact-intro { position: relative; padding-top: 26px; border-top: 1px solid var(--rule); }
 .contact-intro h3 { font-family: var(--serif); font-size: 1.8rem; white-space: pre-line; line-height: 1.3; }
 .contact-links { padding-top: 26px; border-top: 1px solid var(--rule); }
+.contact-invitation { margin-bottom: 22px; }
 .contact-email { color: var(--rust); font-size: 1rem; }
 .social-links { display: flex; gap: 30px; margin-top: 25px; font-size: 0.75rem; }
 .social-links span { margin-left: 6px; }
