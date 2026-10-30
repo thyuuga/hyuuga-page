@@ -80,7 +80,7 @@ img { display: block; max-width: 100%; height: auto; }
 .selected-heading .eyebrow, .about-grid .eyebrow { color: var(--rust); margin-bottom: 26px; }
 .selected-heading h2, .about-grid h2 { white-space: pre-line; font-family: var(--serif); font-size: clamp(2.8rem, 4.5vw, 4.25rem); line-height: 1.05; letter-spacing: -0.035em; }
 .selected-heading > p { max-width: 290px; justify-self: end; color: var(--muted); font-size: 0.9rem; }
-.work-entry { display: grid; grid-template-columns: 48px minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: baseline; padding-block: 36px; border-top: 1px solid var(--rule); }
+.work-entry { display: grid; grid-template-columns: 48px minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center; padding-block: 36px; border-top: 1px solid var(--rule); }
 .work-entry:last-child { border-bottom: 1px solid var(--rule); }
 .work-number { color: var(--rust); font-size: 0.7rem; }
 .work-entry h3 { font-family: var(--serif); font-size: 2.25rem; line-height: 1.15; letter-spacing: -0.025em; }
@@ -127,7 +127,7 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
   .masthead { gap: 25px; }
   .mio-grid { gap: 64px; }
   .mio-copy h2 { gap: 35px; }
-  .work-entry { grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr); gap: 12px 20px; }
+  .work-entry { grid-template-columns: 32px minmax(0, 1fr) minmax(0, 1fr); gap: 12px 20px; align-items: baseline; }
   .work-category { grid-column: 2; grid-row: auto; }
   .work-description { grid-column: 3; grid-row: span 2; }
   .work-entry h3 { grid-column: 2; }
