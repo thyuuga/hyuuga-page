@@ -890,6 +890,19 @@ languageButtons.forEach((button) => {
 
 setLanguage(getInitialLanguage());
 
+// Track the real navigation height, including language changes and mobile wrapping.
+// This only sizes the opening section; scrolling remains entirely browser-native.
+const editorialMasthead = document.querySelector(".editorial-page .masthead");
+if (editorialMasthead) {
+  const updateMastheadHeight = () => {
+    document.documentElement.style.setProperty(
+      "--masthead-height", `${editorialMasthead.getBoundingClientRect().height}px`,
+    );
+  };
+  updateMastheadHeight();
+  new ResizeObserver(updateMastheadHeight).observe(editorialMasthead);
+}
+
 const revealSections = document.querySelectorAll(
   ".home-page main > .section:not(.hero), .project-page main > .section:not(.hero)",
 );
