@@ -39,6 +39,8 @@ img { display: block; max-width: 100%; height: auto; }
 .language-switcher button { color: var(--muted); background: none; border: 0; padding: 10px 2px; cursor: pointer; }
 .language-switcher button.is-active { color: var(--rust); text-decoration: underline; text-underline-offset: 5px; }
 .language-switcher button:hover { color: var(--rust); }
+.localized-copy { opacity: 1; transition: opacity 180ms ease-out; }
+.is-changing-language .localized-copy { opacity: 0; transition-duration: 120ms; }
 .editorial-hero {
   /* The masthead stays in normal flow and is counted only once in the first screen. */
   min-height: calc(100vh - var(--masthead-height, 0px));

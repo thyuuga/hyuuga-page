@@ -856,6 +856,18 @@ if (themeFavicons.length) {
 }
 
 const translatableElements = document.querySelectorAll("[data-i18n]");
+const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+const localizedCopies = new Map();
+if (document.body.classList.contains("editorial-page")) {
+  // Fade an inner text layer so existing scroll-reveal opacity stays independent.
+  translatableElements.forEach((element) => {
+    const copy = document.createElement("span");
+    copy.className = "localized-copy";
+    copy.textContent = element.textContent;
+    element.replaceChildren(copy);
+    localizedCopies.set(element, copy);
+  });
+}
 const localizedImages = document.querySelectorAll("[data-src-en]");
 const atmosphereMainImage = document.querySelector("#atmosphere-main-image");
 const atmosphereButtons = document.querySelectorAll("[data-atmosphere-src]");
@@ -882,7 +894,7 @@ const setLanguage = (language) => {
   translatableElements.forEach((element) => {
     const key = element.dataset.i18n;
     if (dictionary[key]) {
-      element.textContent = dictionary[key];
+      (localizedCopies.get(element) || element).textContent = dictionary[key];
     }
   });
 
@@ -918,8 +930,29 @@ const setLanguage = (language) => {
   localStorage.setItem("language", language);
 };
 
+let languageChangeTimer;
+const switchLanguage = (language) => {
+  window.clearTimeout(languageChangeTimer);
+  if (!localizedCopies.size || reduceMotionQuery.matches ||
+      language === document.documentElement.lang) {
+    document.body.classList.remove("is-changing-language");
+    setLanguage(language);
+    return;
+  }
+
+  document.body.classList.add("is-changing-language");
+  // A new click replaces the pending language, rather than queuing transitions.
+  languageChangeTimer = window.setTimeout(() => {
+    try {
+      setLanguage(language);
+    } finally {
+      document.body.classList.remove("is-changing-language");
+    }
+  }, 140);
+};
+
 languageButtons.forEach((button) => {
-  button.addEventListener("click", () => setLanguage(button.dataset.lang));
+  button.addEventListener("click", () => switchLanguage(button.dataset.lang));
 });
 
 setLanguage(getInitialLanguage());
@@ -940,7 +973,6 @@ if (editorialMasthead) {
 const revealSections = document.querySelectorAll(
   ".home-page main > .section:not(.hero), .project-page main > .section:not(.hero)",
 );
-const reduceMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (revealSections.length && !reduceMotionQuery.matches) {
   document.body.classList.add("has-scroll-reveal");
