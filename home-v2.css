@@ -10,9 +10,10 @@
   --rule: rgba(37, 40, 32, 0.23);
   --serif: Newsreader, Georgia, "Times New Roman", serif;
   --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --anchor-clearance: 24px;
 }
 * { box-sizing: border-box; }
-html { overflow-y: auto; scroll-behavior: smooth; scroll-padding-top: 24px; }
+html { overflow-y: auto; scroll-behavior: smooth; scroll-padding-top: var(--anchor-clearance); }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 ::selection { color: var(--paper); background: var(--rust); }
 a { color: inherit; text-decoration: none; }
@@ -63,6 +64,10 @@ img { display: block; max-width: 100%; height: auto; }
 .explore-link:hover .circle-arrow { background: var(--ink); color: var(--paper); transform: rotate(45deg); }
 .chapter { position: relative; padding-block: 70px 100px; }
 .legacy-anchor { display: block; position: absolute; top: 0; }
+/* Mio's background starts at its anchor: cancel only the root's anchor clearance.
+   The masthead is in normal flow, so no navigation offset is needed here. */
+.editorial-page .mio-chapter,
+.editorial-page .mio-chapter > #work { scroll-margin-top: calc(-1 * var(--anchor-clearance)); }
 .text-link { display: inline-flex; align-items: center; gap: 28px; width: fit-content; padding-block: 6px; border-bottom: 1px solid currentColor; color: var(--ink); font-size: 0.8rem; transition: color 200ms ease, gap 200ms ease; }
 .text-link:hover { color: var(--rust); gap: 35px; }
 .mio-chapter { position: relative; display: grid; align-items: center; min-height: 100vh; min-height: 100svh; background: var(--forest); color: var(--paper); padding-block: 90px; }
