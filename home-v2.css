@@ -81,8 +81,22 @@ img { display: block; max-width: 100%; height: auto; }
 .mio-copy .text-link:hover { color: #e4baa3; }
 .mio-chapter a:focus-visible { outline-color: var(--paper); }
 .mio-visual { width: 100%; max-width: 435px; justify-self: end; }
-.mio-visual img { width: 100%; height: auto; transition: transform 700ms ease; }
-.mio-visual:hover img { transform: scale(1.025); }
+.mio-image-frame { position: relative; transition: transform 700ms ease; }
+.mio-visual img { width: 100%; height: auto; }
+/* Blend only the expression; keep the original silhouette and translucent edges. */
+.mio-visual .mio-smile {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 29% 20% at 54% 33%, #000 65%, transparent 100%);
+  mask-image: radial-gradient(ellipse 29% 20% at 54% 33%, #000 65%, transparent 100%);
+  transition: opacity 400ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .mio-visual:hover .mio-image-frame { transform: translateY(-4px) scale(1.025); }
+  .mio-visual:hover .mio-smile { opacity: 1; transition-duration: 600ms; transition-delay: 80ms; }
+}
 .mio-visual figcaption { display: flex; justify-content: space-between; padding-top: 14px; color: #c8c9bb; font-size: 0.68rem; }
 .selected-work { padding-top: 100px; }
 .selected-heading { display: grid; grid-template-columns: 1fr 0.7fr; gap: 90px; align-items: end; margin-bottom: 50px; }
@@ -346,5 +360,5 @@ html:lang(zh) .mio-tagline, html:lang(ja) .mio-tagline { line-height: 1.5; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .mio-visual:hover img, .explore-link:hover .circle-arrow, .work-title-link:hover > span { transform: none; }
+  .mio-visual:hover .mio-image-frame, .explore-link:hover .circle-arrow, .work-title-link:hover > span { transform: none; }
 }
