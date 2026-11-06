@@ -22,7 +22,7 @@ python3 -m http.server 8000 --bind 127.0.0.1
 | [home-v2.css](home-v2.css) | 首页样式、响应式布局、纸片样式与滚动动画；部分产品页也复用它 |
 | [script.js](script.js) | 三语言字典、语言切换及页面交互；各页面共用 |
 | [cursors.css](cursors.css) | 自定义鼠标指针 |
-| [mio/about/](mio/about/) | Mio 介绍页，使用根目录 `style.css` 与本目录 `warm-night.css` |
+| [mio/about/](mio/about/) | Mio 介绍页，独立使用本目录 `sky-blue.css`（暖白／天空蓝） |
 | [software/](software/) | Thy Recorder、Private Zone、Memo Pad 介绍页及各自样式 |
 | [asset/](asset/) | 图片、Logo、Favicon、指针、纸张纹理与字体资源 |
 
@@ -46,7 +46,9 @@ Inter 和 Newsreader 由页面中的 Google Fonts 样式表加载；网络不可
 - **首页语言转场**：`script.js` 的 `switchLanguage` 控制切换；`home-v2.css` 的 `.localized-copy` 控制文字透明度。先淡出 120ms，在 140ms 时换文案，再淡入 180ms；连续点击以最后一次为准。内层文字与原有滚动动画相互独立。
 - 两种效果均响应 `prefers-reduced-motion`。初次加载语言不播放转场。
 
-Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `asset/mio_illustration_live_{表情}_{open|closed}.png` 成对素材。`blink.mjs` 参考 PJMIO 的眨眼时序（间隔 3–6.5 秒、闭眼 85–125ms、偶尔连眨），睁闭眼瞬时互斥显示；`warm-night.css` 为两帧提供共用的轻微呼吸动画。离开视口、页面隐藏、切换表情或开启减少动态效果时暂停；图片加载失败或尺寸不匹配时保留可用的睁眼图。更换素材时应保持每对图片尺寸、人物位置及透明边缘一致。
+Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `asset/mio_illustration_live_{表情}_{open|closed}.png` 成对素材。`blink.mjs` 参考 PJMIO 的眨眼时序（间隔 3–6.5 秒、闭眼 85–125ms、偶尔连眨），睁闭眼瞬时互斥显示；`sky-blue.css` 为两帧提供共用的轻微呼吸动画。离开视口、页面隐藏、切换表情或开启减少动态效果时暂停；图片加载失败或尺寸不匹配时保留可用的睁眼图。更换素材时应保持每对图片尺寸、人物位置及透明边缘一致。
+
+Mio 介绍页的天空装饰为 `mio/about/sky-window.svg`，背景保持静态；页面不加载共享的深色 `style.css`。`script.js` 保留原有滚动进度机制，浅色 Mio 页按各内容组的实际边界计算淡入淡出，避免长图片区块尚在阅读时提前隐藏。房间缩略图支持鼠标悬停、键盘聚焦与点击，快速切换以最后一次选择为准。
 
 立绘构图由 `mio/about/framing.mjs` 根据实测人物边界计算，让六种表情共享人物高度、水平中心和脚底基准；窗口变化时重新适配，睁闭眼共用同一定位。更换图片后需同步复核该文件的边界数据，不能仅按整张图片尺寸缩放。
 
@@ -56,11 +58,11 @@ Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `ass
 
 ```sh
 node --check script.js
-node --test tests/mio-expressions.test.mjs
+node --test tests/*.test.mjs
 git diff --check
 ```
 
-前两条需要 Node.js，分别检查共享脚本语法和 Mio 的眨眼时序、表情切换、暂停清理及加载失败回退。视觉修改仍需通过本地浏览器验证：
+前两条需要 Node.js，分别检查共享脚本语法和 Mio 的眨眼时序、表情切换、暂停清理、加载失败回退、滚动可逆性、房间快速切换及三语言资源。视觉修改仍需通过本地浏览器验证：
 
 - 中英日切换、刷新后语言保留、连续切换，以及减少动态效果模式。
 - 1920×1080、1440×900、1366×768、390×844 下的换行、溢出和可读性。

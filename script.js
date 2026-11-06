@@ -973,6 +973,7 @@ const revealSections = document.querySelectorAll(
 );
 
 if (revealSections.length && !reduceMotionQuery.matches) {
+  const isMioSky = document.body.classList.contains("mio-sky-blue");
   document.body.classList.add("has-scroll-reveal");
 
   const revealItems = Array.from(revealSections).map((section) => {
@@ -1022,6 +1023,19 @@ if (revealSections.length && !reduceMotionQuery.matches) {
       const artY = (1 - enterProgress) * 6 + exitProgress * -6;
 
       elements.forEach((element) => {
+        if (isMioSky) {
+          // Read the untransformed content boundary. Long galleries must stay
+          // readable even when their section's center is outside the viewport.
+          const bounds = element.getBoundingClientRect();
+          const offset = parseFloat(element.style.getPropertyValue("--reveal-y")) || 0;
+          const top = bounds.top - offset;
+          const bottom = bounds.bottom - offset;
+          const enter = clamp((viewportHeight * 0.98 - top) / (viewportHeight * 0.2));
+          const leave = clamp((viewportHeight * 0.18 - bottom) / (viewportHeight * 0.2));
+          element.style.setProperty("--reveal-opacity", enter * (1 - leave));
+          element.style.setProperty("--reveal-y", `${(1 - enter) * 16 - leave * 12}px`);
+          return;
+        }
         const isTitle = element.classList.contains("scroll-reveal-title");
 
         element.style.setProperty("--reveal-progress", enterProgress);
@@ -1053,29 +1067,38 @@ if (revealSections.length && !reduceMotionQuery.matches) {
 
   window.addEventListener("scroll", requestRevealUpdate, { passive: true });
   window.addEventListener("resize", requestRevealUpdate);
+  if (isMioSky && "ResizeObserver" in window) {
+    const layoutObserver = new ResizeObserver(requestRevealUpdate);
+    revealSections.forEach(section => layoutObserver.observe(section));
+  }
   setRevealState();
 }
 
+let atmosphereSwapTimer;
 const setAtmosphereImage = (button) => {
   if (!atmosphereMainImage || !button) {
     return;
   }
 
   const nextSource = button.dataset.atmosphereSrc;
-  if (!nextSource || atmosphereMainImage.getAttribute("src") === nextSource) {
+  if (!nextSource) {
     return;
   }
 
-  atmosphereMainImage.classList.add("is-fading");
-
-  window.setTimeout(() => {
-    atmosphereMainImage.setAttribute("src", nextSource);
-    atmosphereMainImage.setAttribute(
-      "alt",
-      button.dataset.atmosphereAlt || "Mio room atmosphere",
-    );
+  window.clearTimeout(atmosphereSwapTimer);
+  if (atmosphereMainImage.getAttribute("src") === nextSource) {
     atmosphereMainImage.classList.remove("is-fading");
-  }, 180);
+  } else {
+    atmosphereMainImage.classList.add("is-fading");
+    atmosphereSwapTimer = window.setTimeout(() => {
+      atmosphereMainImage.setAttribute("src", nextSource);
+      atmosphereMainImage.setAttribute(
+        "alt",
+        button.dataset.atmosphereAlt || "Mio room atmosphere",
+      );
+      atmosphereMainImage.classList.remove("is-fading");
+    }, reduceMotionQuery.matches ? 0 : 180);
+  }
 
   atmosphereButtons.forEach((item) => {
     const isActive = item === button;
@@ -1104,11 +1127,11 @@ const stopAtmosphereAutoPlay = () => {
 };
 
 const startAtmosphereAutoPlay = () => {
+  stopAtmosphereAutoPlay();
   if (!shouldAutoPlayAtmosphere()) {
     return;
   }
 
-  stopAtmosphereAutoPlay();
   atmosphereTimer = window.setInterval(() => {
     const activeIndex = getActiveAtmosphereIndex();
     const nextIndex = (activeIndex + 1) % atmosphereButtons.length;
@@ -1116,11 +1139,21 @@ const startAtmosphereAutoPlay = () => {
   }, 5000);
 };
 
+reduceMotionQuery.addEventListener("change", startAtmosphereAutoPlay);
+
 atmosphereButtons.forEach((button) => {
   button.addEventListener("click", () => {
     setAtmosphereImage(button);
     startAtmosphereAutoPlay();
   });
+  if (document.body.classList.contains("mio-sky-blue")) {
+    button.addEventListener("pointerenter", () => {
+      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        setAtmosphereImage(button);
+      }
+    });
+    button.addEventListener("focus", () => setAtmosphereImage(button));
+  }
 });
 
 if (atmosphereGallery) {

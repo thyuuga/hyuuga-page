@@ -16,11 +16,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../../style.css" />
-    <link rel="stylesheet" href="warm-night.css" />
+    <link rel="stylesheet" href="sky-blue.css" />
     <link rel="stylesheet" href="/cursors.css" />
   </head>
-  <body class="mio-warm-night">
+  <body class="mio-sky-blue">
     <div class="site-shell project-page">
       <header class="site-header" aria-label="Project navigation">
         <div class="mio-header-brand">
@@ -35,33 +34,37 @@
           <a href="#showcase" data-i18n="mio.nav.showcase">Showcase</a>
           <a href="#system" data-i18n="mio.nav.system">System</a>
         </nav>
+        <div class="language-switcher" aria-label="Language switcher">
+          <button type="button" class="is-active" data-lang="en">EN</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="zh">中文</button>
+          <span aria-hidden="true">/</span>
+          <button type="button" data-lang="ja">日本語</button>
+        </div>
       </header>
-
-      <div class="language-switcher" aria-label="Language switcher">
-        <button type="button" class="is-active" data-lang="en">EN</button>
-        <span aria-hidden="true">/</span>
-        <button type="button" data-lang="zh">中文</button>
-        <span aria-hidden="true">/</span>
-        <button type="button" data-lang="ja">日本語</button>
-      </div>
 
       <main>
         <section class="hero project-hero section" aria-labelledby="mio-title">
-          <div class="hero-orbit" aria-hidden="true"></div>
-          <a class="back-link" href="/" data-i18n="mio.back">
-            ← Back to thyuuga
-          </a>
-          <p class="signal" data-i18n="mio.hero.signal">
-            mio archive / quiet companion system
-          </p>
-          <h1 id="mio-title">Mio</h1>
-          <p class="subtitle" data-i18n="mio.hero.subtitle">
-            Emotionally persistent AI companion
-          </p>
-          <p class="intro project-intro" data-i18n="mio.hero.intro">
-            A small companion world for long conversations, soft memory, and
-            the feeling of being met again after time has passed.
-          </p>
+          <div class="hero-copy">
+            <a class="back-link" href="/" data-i18n="mio.back">
+              ← Back to thyuuga
+            </a>
+            <p class="signal" data-i18n="mio.hero.signal">
+              mio archive / quiet companion system
+            </p>
+            <h1 id="mio-title">Mio</h1>
+            <p class="subtitle" data-i18n="mio.hero.subtitle">
+              Emotionally persistent AI companion
+            </p>
+            <p class="intro project-intro" data-i18n="mio.hero.intro">
+              A small companion world for long conversations, soft memory, and
+              the feeling of being met again after time has passed.
+            </p>
+            <a class="mio-button" href="https://mio.thyuuga.com/mio/" target="_blank" rel="noreferrer" data-i18n="mio.access.visit">Visit Mio →</a>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <img src="./sky-window.svg" width="600" height="600" alt="" fetchpriority="high" />
+          </div>
         </section>
 
         <section
@@ -104,22 +107,22 @@
             <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
               Presence is not only made of words.
             </h2>
+            <div class="atmosphere-text">
+              <p data-i18n="mio.atmosphere.body1">
+                As time, weather, and seasons move slowly, the space around
+                Mio changes with them.
+              </p>
+              <p data-i18n="mio.atmosphere.body2">
+                Sometimes an evening room. Sometimes the quiet after rain.
+              </p>
+            </div>
             <div class="atmosphere-gallery">
               <div class="atmosphere-fragment">
-                <img
+                <img loading="lazy" decoding="async" width="1672" height="941"
                   id="atmosphere-main-image"
                   src="../../asset/room_daytime_spring_sunny.png"
                   alt="Spring daytime room"
                 />
-                <div class="atmosphere-text">
-                  <p data-i18n="mio.atmosphere.body1">
-                    As time, weather, and seasons move slowly, the space around
-                    Mio changes with them.
-                  </p>
-                  <p data-i18n="mio.atmosphere.body2">
-                    Sometimes an evening room. Sometimes the quiet after rain.
-                  </p>
-                </div>
               </div>
               <div class="atmosphere-strip" aria-label="Atmosphere fragments">
                 <figure class="is-active">
@@ -129,7 +132,7 @@
                     data-atmosphere-alt="Spring daytime room"
                     aria-pressed="true"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_daytime_spring_sunny.png"
                       alt="Spring daytime room"
                     />
@@ -145,7 +148,7 @@
                     data-atmosphere-alt="Spring rainy room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_daytime_spring_rainy.png"
                       alt="Spring rainy room"
                     />
@@ -161,7 +164,7 @@
                     data-atmosphere-alt="Spring rainy dawn room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_dawn_spring_rainy.png"
                       alt="Spring rainy dawn room"
                     />
@@ -177,7 +180,7 @@
                     data-atmosphere-alt="Summer sunny room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_daytime_summer_sunny.png"
                       alt="Summer sunny room"
                     />
@@ -193,7 +196,7 @@
                     data-atmosphere-alt="Summer rainy room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_daytime_summer_rainy.png"
                       alt="Summer rainy room"
                     />
@@ -209,7 +212,7 @@
                     data-atmosphere-alt="Fall sunset room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_sunset_fall_sunny.png"
                       alt="Fall sunset room"
                     />
@@ -225,7 +228,7 @@
                     data-atmosphere-alt="Winter sunny room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_daytime_winter_sunny.png"
                       alt="Winter sunny room"
                     />
@@ -241,7 +244,7 @@
                     data-atmosphere-alt="Spring night room"
                     aria-pressed="false"
                   >
-                    <img
+                    <img loading="lazy" decoding="async" width="1672" height="941"
                       src="../../asset/room_night_spring.png"
                       alt="Spring night room"
                     />
@@ -271,8 +274,6 @@
               <p data-i18n="mio.presence.aside">
                 tiny emotional shifts that slowly become presence
               </p>
-            </div>
-            <div class="expression-panel">
               <div class="expression-copy">
                 <p data-i18n="mio.presence.body">
                   Mio's presence is carried through small emotional changes:
@@ -282,18 +283,6 @@
                 <span data-i18n="mio.presence.note">
                   Not a mode. Just a mood arriving softly.
                 </span>
-              </div>
-              <div class="expression-stage">
-                <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
-                  <div class="expression-motion">
-                    <img id="expression-main-image" class="expression-open"
-                      src="../../asset/mio_illustration_live_normal_open.png"
-                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
-                    <img class="expression-closed"
-                      src="../../asset/mio_illustration_live_normal_closed.png"
-                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
-                  </div>
-                </div>
               </div>
               <div class="expression-strip" aria-label="Mio expressions">
                 <button
@@ -371,6 +360,20 @@
                 </button>
               </div>
             </div>
+            <div class="expression-panel">
+              <div class="expression-stage">
+                <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
+                  <div class="expression-motion">
+                    <img id="expression-main-image" class="expression-open"
+                      src="../../asset/mio_illustration_live_normal_open.png"
+                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                    <img class="expression-closed"
+                      src="../../asset/mio_illustration_live_normal_closed.png"
+                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -389,7 +392,7 @@
             <div class="showcase-grid">
               <figure class="showcase-card">
                 <div class="image-placeholder login-preview">
-                  <img
+                  <img loading="lazy" decoding="async" width="1916" height="982"
                     src="../../asset/chinese_0_login.png"
                     data-src-en="../../asset/chinese_0_login.png"
                     data-src-zh="../../asset/chinese_0_login.png"
@@ -404,7 +407,7 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder chat-preview">
-                  <img
+                  <img loading="lazy" decoding="async" width="1912" height="982"
                     src="../../asset/chinese_1.png"
                     data-src-en="../../asset/chinese_1.png"
                     data-src-zh="../../asset/chinese_1.png"
@@ -419,7 +422,7 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder room-preview">
-                  <img
+                  <img loading="lazy" decoding="async" width="1902" height="969"
                     src="../../asset/chinese_2.png"
                     data-src-en="../../asset/chinese_2.png"
                     data-src-zh="../../asset/chinese_2.png"
@@ -434,7 +437,7 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder presence-preview">
-                  <img
+                  <img loading="lazy" decoding="async" width="1912" height="981"
                     src="../../asset/chinese_3.png"
                     data-src-en="../../asset/chinese_3.png"
                     data-src-zh="../../asset/chinese_3.png"
@@ -467,12 +470,14 @@
             </h2>
             <div class="system-list">
               <article>
+                <svg class="system-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4h12v17H7a3 3 0 0 1 0-6h12M7 4a3 3 0 0 0-3 3v11M9 8h6M9 11h4"/></svg>
                 <span data-i18n="mio.system.memory">Memory system</span>
                 <p data-i18n="mio.system.memoryBody">
                   Stores details that help conversations keep continuity.
                 </p>
               </article>
               <article>
+                <svg class="system-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 5c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 2 10 8 14 6-4 12-10 8-14Z"/></svg>
                 <span data-i18n="mio.system.relationship">
                   Relationship system
                 </span>
@@ -481,6 +486,7 @@
                 </p>
               </article>
               <article>
+                <svg class="system-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="14" height="12" rx="2"/><path d="M6 20h6M9 16v4"/><rect x="16" y="9" width="6" height="12" rx="1.5"/></svg>
                 <span data-i18n="mio.system.local">Web and iOS surfaces</span>
                 <p data-i18n="mio.system.localBody">
                   Shapes the companion experience across browser and mobile
@@ -488,6 +494,7 @@
                 </p>
               </article>
               <article>
+                <svg class="system-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 6h14M5 18h14"/></svg>
                 <span data-i18n="mio.system.multilingual">
                   Multilingual support
                 </span>

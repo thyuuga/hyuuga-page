@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" fill="none">
+  <defs>
+    <linearGradient id="sky" x1="300" y1="0" x2="300" y2="600" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A9CEDF"/>
+      <stop offset=".56" stop-color="#DCEEF7"/>
+      <stop offset="1" stop-color="#F8F8F2"/>
+    </linearGradient>
+    <linearGradient id="cloud" x1="300" y1="200" x2="300" y2="510" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFEFA" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#FFFEFA" stop-opacity=".15"/>
+    </linearGradient>
+    <clipPath id="round"><circle cx="300" cy="300" r="270"/></clipPath>
+    <filter id="soft" x="-20%" y="-30%" width="140%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
+  </defs>
+  <circle cx="300" cy="300" r="297" stroke="#7FA9CF" stroke-opacity=".36"/>
+  <g clip-path="url(#round)">
+    <circle cx="300" cy="300" r="270" fill="url(#sky)"/>
+    <g fill="url(#cloud)" filter="url(#soft)">
+      <path d="M-40 335c35-52 85-48 108-37 2-60 76-93 116-54 29-43 101-27 111 20 45-14 79 16 80 47 40-2 67 21 68 57H-40Z"/>
+      <path d="M270 440c13-38 45-54 78-43 10-57 66-77 104-43 24-14 66 0 73 29 49-14 96 17 111 56v85H270Z"/>
+    </g>
+  </g>
+</svg>
