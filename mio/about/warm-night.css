@@ -123,6 +123,11 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--accent); outlin
 .expression-sprite.is-fading { opacity: 0.22; }
 .expression-motion { position: relative; width: 100%; height: 100%; transform-origin: 55% 98.5%; }
 .expression-stage .expression-sprite img {
+  inset: auto;
+  left: var(--portrait-left, 0px);
+  top: var(--portrait-top, 0px);
+  width: var(--portrait-width, 100%);
+  height: var(--portrait-height, 100%);
   object-fit: contain;
   object-position: center bottom;
   opacity: 1;

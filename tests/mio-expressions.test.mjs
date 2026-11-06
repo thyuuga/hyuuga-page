@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createBlinkController, MIO_IDLE } from '../mio/about/blink.mjs';
 import { initExpressionGallery } from '../mio/about/expressions.mjs';
+import { EXPRESSION_FRAMES, expressionFrame } from '../mio/about/framing.mjs';
 
 const expressions = ['normal', 'joy', 'shy', 'proud', 'sad', 'angry'];
 const tick = () => new Promise(resolve => setImmediate(resolve));
@@ -58,12 +59,13 @@ class Target {
 }
 
 function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false } = {}) {
-  const time = clock(), sprite = new Target(), open = {}, closed = {}, stage = {};
+  const time = clock(), sprite = new Target(), open = {}, closed = {}, stage = { clientWidth: 258, clientHeight: 558 };
+  sprite.style = { setProperty(name, value) { this[name] = value; } };
   const pending = [], motion = new Target(), doc = new Target(), win = new Target();
   motion.matches = reduced; doc.hidden = false;
   const buttons = expressions.map(name => {
     const b = new Target(), wide = ['joy', 'angry'].includes(name);
-    b.dataset = { expressionSrc: `${name}_open.png`, expressionClosed: `${name}_closed.png`,
+    b.dataset = { expression: name, expressionSrc: `${name}_open.png`, expressionClosed: `${name}_closed.png`,
       expressionWidth: String(wide ? 1024 : 941), expressionHeight: String(wide ? 1536 : 1672), expressionAlt: name };
     b.classList.toggle('is-active', name === 'normal'); return b;
   });
@@ -73,6 +75,7 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
   win.matchMedia = () => motion; win.setTimeout = time.schedule; win.clearTimeout = time.cancel;
   let observer;
   const globals = { document: doc, window: win,
+    ResizeObserver: class { observe() {} disconnect() {} },
     IntersectionObserver: class {
       constructor(callback) { observer = this; this.callback = callback; }
       observe() {} disconnect() { this.disconnected = true; }
@@ -112,6 +115,7 @@ test('all six pairs switch together; visibility, reduced motion and cleanup stop
     assert.equal(g.closed.src, `${expression}_closed.png`);
     assert.equal(g.open.width, g.closed.width);
     assert.equal(g.open.height, g.closed.height);
+    assert.equal(g.sprite.style['--portrait-width'], `${expressionFrame(expression, 258, 558).width}px`);
     g.time.next(MIO_IDLE.wait); assert.equal(g.sprite.dataset.eyes, 'closed');
     g.observer.visible(false); assert.equal(g.sprite.dataset.eyes, 'open'); assert.equal(g.time.jobs.size, 0);
     g.observer.visible(true);
@@ -124,6 +128,30 @@ test('all six pairs switch together; visibility, reduced motion and cleanup stop
   g.win.emit('pagehide'); assert.equal(g.time.jobs.size, 0);
   g.win.emit('pageshow'); assert.equal(g.time.jobs.size, 1);
   g.dispose(); assert.equal(g.time.jobs.size, 0); assert(g.observer.disconnected);
+});
+
+test('six portraits share body height, center and foot baseline at desktop and mobile sizes', () => {
+  for (const [width, height] of [[258, 558], [348, 438], [278, 438]]) {
+    let commonHeight;
+    for (const [name, source] of Object.entries(EXPRESSION_FRAMES)) {
+      const frame = expressionFrame(name, width, height);
+      const scale = frame.width / source.width;
+      const top = frame.top + source.top * scale;
+      const bottom = frame.top + source.bottom * scale;
+      const left = frame.left + source.left * scale;
+      const right = frame.left + source.right * scale;
+      commonHeight ??= bottom - top;
+      assert(Math.abs(bottom - top - commonHeight) < 0.001);
+      assert(Math.abs((left + right) / 2 - width / 2) < 0.001);
+      assert(Math.abs(bottom - height * 0.985) < 0.001);
+      assert(top > 0 && bottom < height && left > 0 && right < width);
+      if (width === 258) {
+        const oldHeight = (source.bottom - source.top) * Math.min(width / source.width, height / source.height);
+        assert(commonHeight > oldHeight * 1.14, `${name} should be visibly larger`);
+      }
+    }
+  }
+  assert.equal(expressionFrame('normal', 0, 0), null);
 });
 
 test('late decoding cannot overwrite the last selection, including return to initial expression', async t => {

@@ -1,4 +1,5 @@
 import { createBlinkController } from './blink.mjs';
+import { expressionFrame } from './framing.mjs';
 
 export function initExpressionGallery() {
   const stage = document.querySelector('.expression-stage');
@@ -17,6 +18,17 @@ export function initExpressionGallery() {
   }, {
     schedule: window.setTimeout.bind(window), cancel: window.clearTimeout.bind(window),
   });
+
+  function updateFrame() {
+    const frame = expressionFrame(current.dataset.expression, stage.clientWidth, stage.clientHeight);
+    if (!frame) return;
+    for (const [property, value] of Object.entries(frame)) {
+      sprite.style.setProperty(`--portrait-${property}`, `${value}px`);
+    }
+  }
+  const resizeObserver = new ResizeObserver(updateFrame);
+  resizeObserver.observe(stage);
+  updateFrame();
 
   function sync() {
     const active = ready && !switching && visible && pageActive &&
@@ -72,6 +84,7 @@ export function initExpressionGallery() {
       ready = pairReady;
       sprite.dataset.ready = pairReady ? 'true' : 'static';
       current = button;
+      updateFrame();
       buttons.forEach(item => {
         item.classList.toggle('is-active', item === button);
         item.setAttribute('aria-pressed', String(item === button));
@@ -116,6 +129,7 @@ export function initExpressionGallery() {
     blink.stop();
     sprite.dataset.breathing = 'false';
     observer.disconnect();
+    resizeObserver.disconnect();
     listeners.forEach(([button, listener]) => button.removeEventListener('click', listener));
     document.removeEventListener('visibilitychange', refresh);
     reduced.removeEventListener('change', refresh);
