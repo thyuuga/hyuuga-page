@@ -119,6 +119,33 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--accent); outlin
 .expression-stage::after { background: linear-gradient(180deg, transparent, rgba(17, 27, 26, 0.72)); }
 .expression-stage img { opacity: 0.94; filter: saturate(0.84) contrast(0.96) brightness(0.87); }
 .expression-stage img.is-fading { opacity: 0.22; }
+.expression-sprite { position: absolute; inset: 0; opacity: 0.94; transition: opacity 180ms ease; }
+.expression-sprite.is-fading { opacity: 0.22; }
+.expression-motion { position: relative; width: 100%; height: 100%; transform-origin: 55% 98.5%; }
+.expression-stage .expression-sprite img {
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.expression-sprite .expression-closed { visibility: hidden; }
+.expression-sprite[data-eyes="closed"] .expression-open { visibility: hidden; }
+.expression-sprite[data-eyes="closed"] .expression-closed { visibility: visible; }
+@media (prefers-reduced-motion: no-preference) {
+  .expression-sprite[data-breathing="true"] .expression-motion {
+    animation: expression-breath 5600ms ease-in-out infinite;
+  }
+}
+@keyframes expression-breath {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.0006, 1.003); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .expression-sprite { transition: none; }
+  .expression-sprite .expression-open { visibility: visible !important; }
+  .expression-sprite .expression-closed { visibility: hidden !important; }
+}
 .expression-strip { gap: 8px 18px; }
 .expression-strip button { color: var(--faint); font-size: 0.78rem; }
 .expression-strip button::before { background: var(--faint); }

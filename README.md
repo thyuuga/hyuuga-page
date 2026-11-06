@@ -46,16 +46,19 @@ Inter 和 Newsreader 由页面中的 Google Fonts 样式表加载；网络不可
 - **首页语言转场**：`script.js` 的 `switchLanguage` 控制切换；`home-v2.css` 的 `.localized-copy` 控制文字透明度。先淡出 120ms，在 140ms 时换文案，再淡入 180ms；连续点击以最后一次为准。内层文字与原有滚动动画相互独立。
 - 两种效果均响应 `prefers-reduced-motion`。初次加载语言不播放转场。
 
+Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `asset/mio_illustration_live_{表情}_{open|closed}.png` 成对素材。`blink.mjs` 参考 PJMIO 的眨眼时序（间隔 3–6.5 秒、闭眼 85–125ms、偶尔连眨），睁闭眼瞬时互斥显示；`warm-night.css` 为两帧提供共用的轻微呼吸动画。离开视口、页面隐藏、切换表情或开启减少动态效果时暂停；图片加载失败或尺寸不匹配时保留可用的睁眼图。更换素材时应保持每对图片尺寸、人物位置及透明边缘一致。
+
 首页「探索作品」的 `#work` 锚点位于 Mio 区块顶边。`home-v2.css` 使用同一个 `--anchor-clearance` 变量，让 Mio 锚点的负 `scroll-margin-top` 抵消全局 `scroll-padding-top`，使深绿色背景与视口顶部对齐；其他锚点保留原有间距。导航栏处于正常文档流中，无需额外扣除导航高度。
 
 ## 修改后的检查
 
 ```sh
 node --check script.js
+node --test tests/mio-expressions.test.mjs
 git diff --check
 ```
 
-第一条需要 Node.js，仅检查语法。仓库目前没有自动化测试套件；视觉修改需通过本地浏览器验证：
+前两条需要 Node.js，分别检查共享脚本语法和 Mio 的眨眼时序、表情切换、暂停清理及加载失败回退。视觉修改仍需通过本地浏览器验证：
 
 - 中英日切换、刷新后语言保留、连续切换，以及减少动态效果模式。
 - 1920×1080、1440×900、1366×768、390×844 下的换行、溢出和可读性。

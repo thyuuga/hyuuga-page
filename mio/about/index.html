@@ -284,20 +284,25 @@
                 </span>
               </div>
               <div class="expression-stage">
-                <img
-                  id="expression-main-image"
-                  src="../../asset/mio_illustration_normal.png"
-                  alt="Mio calm expression"
-                  style="--expression-x: 0px"
-                />
+                <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
+                  <div class="expression-motion">
+                    <img id="expression-main-image" class="expression-open"
+                      src="../../asset/mio_illustration_live_normal_open.png"
+                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                    <img class="expression-closed"
+                      src="../../asset/mio_illustration_live_normal_closed.png"
+                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                  </div>
+                </div>
               </div>
               <div class="expression-strip" aria-label="Mio expressions">
                 <button
                   type="button"
                   class="is-active"
-                  data-expression-src="../../asset/mio_illustration_normal.png"
+                  data-expression-src="../../asset/mio_illustration_live_normal_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_normal_closed.png"
+                  data-expression-width="941" data-expression-height="1672"
                   data-expression-alt="Mio calm expression"
-                  data-expression-x="0px"
                   aria-pressed="true"
                   data-i18n="mio.presence.normal"
                 >
@@ -305,9 +310,10 @@
                 </button>
                 <button
                   type="button"
-                  data-expression-src="../../asset/mio_illustration_joy.png"
+                  data-expression-src="../../asset/mio_illustration_live_joy_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_joy_closed.png"
+                  data-expression-width="1024" data-expression-height="1536"
                   data-expression-alt="Mio joyful expression"
-                  data-expression-x="18px"
                   aria-pressed="false"
                   data-i18n="mio.presence.joy"
                 >
@@ -315,9 +321,10 @@
                 </button>
                 <button
                   type="button"
-                  data-expression-src="../../asset/mio_illustration_shy.png"
+                  data-expression-src="../../asset/mio_illustration_live_shy_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_shy_closed.png"
+                  data-expression-width="941" data-expression-height="1672"
                   data-expression-alt="Mio shy expression"
-                  data-expression-x="0px"
                   aria-pressed="false"
                   data-i18n="mio.presence.shy"
                 >
@@ -325,9 +332,10 @@
                 </button>
                 <button
                   type="button"
-                  data-expression-src="../../asset/mio_illustration_proud.png"
+                  data-expression-src="../../asset/mio_illustration_live_proud_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_proud_closed.png"
+                  data-expression-width="941" data-expression-height="1672"
                   data-expression-alt="Mio proud expression"
-                  data-expression-x="0px"
                   aria-pressed="false"
                   data-i18n="mio.presence.proud"
                 >
@@ -335,9 +343,10 @@
                 </button>
                 <button
                   type="button"
-                  data-expression-src="../../asset/mio_illustration_sad.png"
+                  data-expression-src="../../asset/mio_illustration_live_sad_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_sad_closed.png"
+                  data-expression-width="941" data-expression-height="1672"
                   data-expression-alt="Mio sad expression"
-                  data-expression-x="0px"
                   aria-pressed="false"
                   data-i18n="mio.presence.sad"
                 >
@@ -345,9 +354,10 @@
                 </button>
                 <button
                   type="button"
-                  data-expression-src="../../asset/mio_illustration_angry.png"
+                  data-expression-src="../../asset/mio_illustration_live_angry_open.png"
+                  data-expression-closed="../../asset/mio_illustration_live_angry_closed.png"
+                  data-expression-width="1024" data-expression-height="1536"
                   data-expression-alt="Mio frustrated expression"
-                  data-expression-x="22px"
                   aria-pressed="false"
                   data-i18n="mio.presence.frustrated"
                 >
@@ -518,5 +528,6 @@
     </div>
 
     <script src="../../script.js"></script>
+    <script type="module" src="./expressions.mjs"></script>
   </body>
 </html>

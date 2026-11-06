@@ -872,8 +872,6 @@ const localizedImages = document.querySelectorAll("[data-src-en]");
 const atmosphereMainImage = document.querySelector("#atmosphere-main-image");
 const atmosphereButtons = document.querySelectorAll("[data-atmosphere-src]");
 const atmosphereGallery = document.querySelector(".atmosphere-gallery");
-const expressionMainImage = document.querySelector("#expression-main-image");
-const expressionButtons = document.querySelectorAll("[data-expression-src]");
 
 const getInitialLanguage = () => {
   if (!languageButtons.length || !translatableElements.length) {
@@ -1133,37 +1131,3 @@ if (atmosphereGallery) {
 }
 
 startAtmosphereAutoPlay();
-
-expressionButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (!expressionMainImage) {
-      return;
-    }
-
-    const nextSource = button.dataset.expressionSrc;
-    if (!nextSource || expressionMainImage.getAttribute("src") === nextSource) {
-      return;
-    }
-
-    expressionMainImage.classList.add("is-fading");
-
-    window.setTimeout(() => {
-      expressionMainImage.setAttribute("src", nextSource);
-      expressionMainImage.setAttribute(
-        "alt",
-        button.dataset.expressionAlt || "Mio expression",
-      );
-      expressionMainImage.style.setProperty(
-        "--expression-x",
-        button.dataset.expressionX || "0px",
-      );
-      expressionMainImage.classList.remove("is-fading");
-    }, 140);
-
-    expressionButtons.forEach((item) => {
-      const isActive = item === button;
-      item.classList.toggle("is-active", isActive);
-      item.setAttribute("aria-pressed", isActive);
-    });
-  });
-});
