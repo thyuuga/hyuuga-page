@@ -131,7 +131,7 @@ test('all six pairs switch together; visibility, reduced motion and cleanup stop
 });
 
 test('six portraits share body height, center and foot baseline at desktop and mobile sizes', () => {
-  for (const [width, height] of [[258, 558], [348, 438], [278, 438], [420, 660], [342, 540], [300, 580]]) {
+  for (const [width, height] of [[258, 558], [348, 438], [278, 438], [420, 660], [342, 540], [300, 580], [480, 740], [420, 650], [342, 600], [284, 600]]) {
     let commonHeight;
     for (const [name, source] of Object.entries(EXPRESSION_FRAMES)) {
       const frame = expressionFrame(name, width, height);

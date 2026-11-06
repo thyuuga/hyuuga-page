@@ -40,15 +40,15 @@ test('Mio reveal is reversible, stationary, and keeps long content readable', ()
   const opacity = () => Number(values.get('--reveal-opacity'));
   const y = () => parseFloat(values.get('--reveal-y'));
   assert.equal(opacity(), 0); assert.equal(y(), 16);
-  top = 880; update(); assert.equal(opacity(), .5); assert.equal(y(), 8);
+  top = 930; update(); assert.equal(opacity(), .5); assert.equal(y(), 8);
   for (let n = 0; n < 10; n++) update();
   assert.equal(opacity(), .5); assert.equal(y(), 8); // no transform feedback/drift
-  top = 780; update(); assert.equal(opacity(), 1); assert.equal(y(), 0);
+  top = 880; update(); assert.equal(opacity(), 1); assert.equal(y(), 0);
   top = -900; update(); assert.equal(opacity(), 1); // gallery exceeds a viewport
-  top = -1720; update(); assert.equal(opacity(), .5); assert.equal(y(), -6);
+  top = -1770; update(); assert.equal(opacity(), .5); assert.equal(y(), -6);
   top = -1820; update(); assert.equal(opacity(), 0); assert.equal(y(), -12);
   top = -900; update(); assert.equal(opacity(), 1); assert.equal(y(), 0);
-  top = 880; update(); assert.equal(opacity(), .5); assert.equal(y(), 8);
+  top = 930; update(); assert.equal(opacity(), .5); assert.equal(y(), 8);
 });
 
 test('rapid room selections keep the last choice, including returning to the current image', () => {

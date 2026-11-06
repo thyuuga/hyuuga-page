@@ -1030,8 +1030,10 @@ if (revealSections.length && !reduceMotionQuery.matches) {
           const offset = parseFloat(element.style.getPropertyValue("--reveal-y")) || 0;
           const top = bounds.top - offset;
           const bottom = bounds.bottom - offset;
-          const enter = clamp((viewportHeight * 0.98 - top) / (viewportHeight * 0.2));
-          const leave = clamp((viewportHeight * 0.18 - bottom) / (viewportHeight * 0.2));
+          // Keep fades at the viewport edges, not in the reading area.
+          // Stopping after the first 12% of the viewport leaves content clear.
+          const enter = clamp((viewportHeight * 0.98 - top) / (viewportHeight * 0.1));
+          const leave = clamp((viewportHeight * 0.08 - bottom) / (viewportHeight * 0.1));
           element.style.setProperty("--reveal-opacity", enter * (1 - leave));
           element.style.setProperty("--reveal-y", `${(1 - enter) * 16 - leave * 12}px`);
           return;
