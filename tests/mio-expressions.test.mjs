@@ -67,7 +67,7 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
   const pending = [], motion = new Target(), doc = new Target(), win = new Target();
   motion.matches = reduced; doc.hidden = false;
   const buttons = expressions.map(name => {
-    const b = new Target(), wide = ['joy', 'angry'].includes(name);
+    const b = new Target(), wide = ['joy', 'proud', 'angry'].includes(name);
     b.dataset = { expression: name, expressionSrc: `${name}_open.png`, expressionClosed: `${name}_closed.png`,
       expressionWidth: String(wide ? 1024 : 941), expressionHeight: String(wide ? 1536 : 1672), expressionAlt: name };
     b.classList.toggle('is-active', name === 'normal'); return b;
@@ -86,7 +86,7 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
     },
     Image: class {
       decode() {
-        const wide = /joy|angry/.test(this.src);
+        const wide = /joy|proud|angry/.test(this.src);
         this.naturalWidth = wide ? 1024 : 941; this.naturalHeight = wide ? 1536 : 1672;
         if (mismatch && this.src.includes(mismatch)) this.naturalWidth++;
         if (fail && this.src.includes(fail)) return Promise.reject(new Error('load failed'));
@@ -209,6 +209,10 @@ test('HTML points to twelve real PNGs with matching pair dimensions', () => {
       return [data.readUInt32BE(16), data.readUInt32BE(20)];
     });
     assert.deepEqual(sizes[0], sizes[1]);
-    assert.deepEqual(sizes[0], ['joy', 'angry'].includes(expression) ? [1024, 1536] : [941, 1672]);
+    const button = [...html.matchAll(/<button\b[^>]*>/g)].find(([tag]) => tag.includes(`data-expression="${expression}"`))[0];
+    const declared = ['width', 'height'].map(axis => Number(button.match(new RegExp(`data-expression-${axis}="(\\d+)"`))[1]));
+    assert.deepEqual(declared, sizes[0]);
+    assert.deepEqual([EXPRESSION_FRAMES[expression].width, EXPRESSION_FRAMES[expression].height], sizes[0]);
+    assert.deepEqual(sizes[0], ['joy', 'proud', 'angry'].includes(expression) ? [1024, 1536] : [941, 1672]);
   }
 });
