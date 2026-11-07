@@ -160,17 +160,21 @@ html:lang(zh) #concept h2, html:lang(ja) #concept h2 { max-width: 8em; font-size
 .mode-panel[hidden] * { visibility: hidden !important; }
 .mode-panel:not([hidden]) { animation: mode-appear 240ms ease-out both; }
 @keyframes mode-appear { from { opacity: 0; } to { opacity: 1; } }
-.atmosphere-section { background: #f1f5f4; }
+/* Only scenery spans the viewport. Copy, tabs and the original demo share
+   the same gutters as the other sections; no 100vw / scrollbar overflow. */
+.atmosphere-section { padding-inline: 0; background: var(--bg); }
+.atmosphere-section > .section-kicker, .atmosphere-section > .showcase-modes { margin-inline: var(--page-gutter); }
 .atmosphere-section .section-grid { grid-template-columns: 1fr; gap: 0; }
-.room-showcase { position: relative; isolation: isolate; border-radius: 18px; overflow: hidden; background: var(--surface); }
-.room-modes { aspect-ratio: 1023 / 585; min-height: 460px; }
+.room-showcase { position: relative; isolation: isolate; background: var(--bg); }
+.room-modes { aspect-ratio: 1023 / 585; min-height: 560px; max-height: 960px; }
 .room-feature { position: relative; isolation: isolate; overflow: hidden; }
-.room-feature-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.room-feature-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; }
 .room-feature::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #faf9f6f5, #faf9f6eb 20%, #faf9f6c2 37%, #faf9f633 58%, transparent 70%); }
-.room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
+.room-feature::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--bg), transparent clamp(40px, 6vw, 96px), transparent calc(100% - clamp(40px, 6vw, 96px)), var(--bg)); }
+.room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; padding-inline: var(--page-gutter); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
 [data-mode="room-live"] .room-feature-content { visibility: hidden; }
-.room-demo-layout { padding: clamp(12px, 1.5vw, 24px); }
-.atmosphere-copy { align-self: center; display: grid; gap: 24px; padding: clamp(28px, 3.4vw, 56px); min-width: 0; }
+.room-demo-layout { padding: 24px var(--page-gutter); }
+.atmosphere-copy { align-self: center; display: grid; gap: 24px; padding-block: clamp(28px, 3.4vw, 56px); padding-right: clamp(24px, 3vw, 48px); min-width: 0; }
 .atmosphere-copy h2 { max-width: 13em; font-size: clamp(2rem, 2.5vw, 3rem); line-height: 1.25; }
 html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: clamp(1.85rem, 2.2vw, 2.65rem); line-height: 1.5; }
 .atmosphere-text { display: grid; gap: 12px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
@@ -188,19 +192,19 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 
 /* One shared stage and transform for both eye frames; no portrait box or tint. */
 .expression-section { background: var(--bg); }
-.presence-feature { position: relative; isolation: isolate; border-radius: 18px; background: #edf5ff; }
-.presence-feature .character-backdrop { border-radius: inherit; }
-.presence-feature .expression-heading { padding: clamp(24px, 3vw, 48px); }
-.presence-modes { width: min(100%, 700px); aspect-ratio: 735 / 840; align-self: end; margin-inline: auto; overflow: hidden; border-radius: 0 18px 18px 0; }
-.presence-portrait { overflow: hidden; }
+.presence-feature { position: relative; }
+.presence-feature .expression-heading { padding-block: clamp(24px, 3vw, 48px); }
+.presence-modes { width: min(100%, 700px); aspect-ratio: 735 / 876; align-self: end; margin-inline: auto; overflow: hidden; }
+/* Feather only the lower skirt, after the hand; never mask text or controls. */
+.presence-portrait { overflow: hidden; mask-image: linear-gradient(#000 calc(100% - 36px), transparent); }
 .presence-promo-image { width: 100%; height: auto; }
 .expression-demo, .expression-demo[hidden] { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
-.expression-demo-copy { grid-row: 2; display: grid; gap: 8px; padding: 12px clamp(16px, 2vw, 28px) 20px; background: #edf5ffb3; }
+.expression-demo-copy { grid-row: 2; display: grid; gap: 8px; padding: 12px clamp(16px, 2vw, 28px) 20px; }
 .expression-demo-copy p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .character-backdrop img { object-position: center bottom; }
 .character-backdrop::after {
   background:
-    linear-gradient(180deg, var(--bg), transparent 32px, transparent calc(100% - 32px), var(--bg)),
+    linear-gradient(180deg, var(--bg), transparent 96px, transparent calc(100% - 72px), var(--bg)),
     linear-gradient(90deg, #f8fafbb3, #f8fafb66 38%, transparent 65%);
 }
 .presence-feature .section-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; }
@@ -218,6 +222,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   height: 100%;
   margin-inline: auto;
   overflow: hidden;
+  mask-image: linear-gradient(#000 calc(100% - 24px), transparent);
 }
 .expression-composition { width: 100%; height: 100%; transform: scale(var(--portrait-zoom)); transform-origin: 50% 0; }
 .expression-stage { position: relative; width: 100%; height: 100%; }
@@ -305,9 +310,9 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 }
 @media (max-width: 900px) {
   .room-showcase .room-feature-content { position: static; display: block; visibility: visible; pointer-events: auto; }
-  .room-showcase .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+  .room-showcase .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding-right: 0; }
   .room-feature::before { display: none; }
-  .room-modes { min-height: 400px; }
+  .room-modes { min-height: 0; }
 
   .project-hero { grid-template-columns: 1fr; min-height: 0; padding-block: 44px 48px; gap: 28px; }
   .hero-copy { max-width: 38rem; }
@@ -318,9 +323,13 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 @media (max-width: 800px) {
   .presence-feature .section-grid { grid-template-columns: 1fr; }
   .expression-heading { max-width: 42rem; }
-  .presence-modes { width: min(100%, 520px); border-radius: 0; }
+  .presence-modes { width: min(100%, 520px); }
   .expression-viewport { --portrait-zoom: 1.5; }
-  .character-backdrop img { object-position: 62% bottom; }
+  /* Stacked copy and portrait need a taller sky. Anchor the full flower image
+     below them instead of enlarging/cropping a desktop landscape to this height. */
+  .character-backdrop { background: linear-gradient(180deg, var(--bg), #edf5ff 40%, #e4f1fb 75%, var(--bg)); }
+  .character-backdrop img { position: absolute; bottom: 0; height: auto; object-fit: contain; mask-image: linear-gradient(transparent, #000 28%); }
+  .character-backdrop::after { background: linear-gradient(180deg, var(--bg), #faf9f6b3 25%, transparent 50%, transparent calc(100% - 48px), var(--bg)); }
 }
 @media (max-width: 700px) {
   :root { --page-gutter: 24px; }
@@ -347,19 +356,21 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   #concept h2 { font-size: clamp(2.2rem, 8.5vw, 3rem); }
   html:lang(zh) #concept h2, html:lang(ja) #concept h2 { font-size: clamp(2rem, 7.5vw, 2.7rem); }
   #concept .project-copy { font-size: 1.0625rem; }
-  .room-showcase, .presence-feature { border-radius: 12px; }
-  .room-showcase .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .room-showcase .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding-block: 24px; }
   /* On phones keep both room images complete; only the short thumbnail strip
      adds height in live mode, rather than reserving a large empty promo area. */
   .room-modes { aspect-ratio: auto; min-height: 0; }
   .room-modes .mode-panel[hidden] { display: none; }
   .room-feature { aspect-ratio: 1023 / 585; }
+  .room-feature-image { object-position: center; }
+  .room-feature::after { background: linear-gradient(180deg, var(--bg), transparent 24px, transparent calc(100% - 24px), var(--bg)); }
+  .room-demo-layout { padding-block: 12px; }
   .atmosphere-fragment { aspect-ratio: 1672 / 941; }
   .atmosphere-gallery { grid-template-rows: auto auto; }
   .showcase-modes { gap: 3px; padding: 4px; }
   .showcase-modes button { padding-inline: 13px; font-size: .85rem; }
   .presence-feature .section-grid { gap: 12px; }
-  .presence-feature .expression-heading { padding: 24px; }
+  .presence-feature .expression-heading { padding-block: 24px; }
   .atmosphere-copy h2 { font-size: 2rem; }
   html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: 1.85rem; }
   .atmosphere-strip { display: flex; gap: 12px; overflow-x: auto; padding: 5px 5px 10px; scrollbar-width: thin; }
