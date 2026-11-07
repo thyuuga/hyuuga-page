@@ -106,25 +106,29 @@
             02 / Atmosphere
           </div>
           <div class="section-grid">
-            <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
-              Presence is not only made of words.
-            </h2>
-            <div class="atmosphere-text">
-              <p data-i18n="mio.atmosphere.body1">
-                As time, weather, and seasons move slowly, the space around
-                Mio changes with them.
-              </p>
-              <p data-i18n="mio.atmosphere.body2">
-                Sometimes an evening room. Sometimes the quiet after rain.
-              </p>
-            </div>
             <div class="atmosphere-gallery">
-              <div class="atmosphere-fragment">
-                <img loading="lazy" decoding="async" width="1672" height="941"
-                  id="atmosphere-main-image"
-                  src="../../asset/room_daytime_spring_sunny.png"
-                  alt="Spring daytime room"
-                />
+              <div class="atmosphere-module">
+                <div class="atmosphere-copy">
+                  <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
+                    Presence is not only made of words.
+                  </h2>
+                  <div class="atmosphere-text">
+                    <p data-i18n="mio.atmosphere.body1">
+                      As time, weather, and seasons move slowly, the space around
+                      Mio changes with them.
+                    </p>
+                    <p data-i18n="mio.atmosphere.body2">
+                      Sometimes an evening room. Sometimes the quiet after rain.
+                    </p>
+                  </div>
+                </div>
+                <div class="atmosphere-fragment">
+                  <img loading="lazy" decoding="async" width="1672" height="941"
+                    id="atmosphere-main-image"
+                    src="../../asset/room_daytime_spring_sunny.png"
+                    alt="Spring daytime room"
+                  />
+                </div>
               </div>
               <div class="atmosphere-strip" aria-label="Atmosphere fragments">
                 <figure class="is-active">
@@ -366,15 +370,19 @@
               </div>
             </div>
             <div class="expression-panel">
-              <div class="expression-stage">
-                <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
-                  <div class="expression-motion">
-                    <img id="expression-main-image" class="expression-open"
-                      src="../../asset/mio_illustration_live_normal_open.png"
-                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
-                    <img class="expression-closed"
-                      src="../../asset/mio_illustration_live_normal_closed.png"
-                      width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+              <div class="expression-viewport">
+                <div class="expression-composition">
+                  <div class="expression-stage">
+                    <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
+                      <div class="expression-motion">
+                        <img id="expression-main-image" class="expression-open"
+                          src="../../asset/mio_illustration_live_normal_open.png"
+                          width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                        <img class="expression-closed"
+                          src="../../asset/mio_illustration_live_normal_closed.png"
+                          width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -397,14 +405,16 @@
             <div class="showcase-grid">
               <figure class="showcase-card">
                 <div class="image-placeholder login-preview">
-                  <img loading="lazy" decoding="async" width="1916" height="982"
+                  <a class="preview-image-link" data-preview-link href="../../asset/chinese_0_login.png" target="_blank" rel="noopener noreferrer" aria-labelledby="preview-login-label">
+                    <img loading="lazy" decoding="async" width="1916" height="982"
                     src="../../asset/chinese_0_login.png"
                     data-src-en="../../asset/chinese_0_login.png"
                     data-src-zh="../../asset/chinese_0_login.png"
                     data-src-ja="../../asset/japanese_0_login.png"
                     alt="Mio login screen"
                   />
-                  <span data-i18n="mio.showcase.login">Login screen</span>
+                  </a>
+                  <span id="preview-login-label" data-i18n="mio.showcase.login">Login screen</span>
                 </div>
                 <figcaption data-i18n="mio.showcase.loginCaption">
                   Soft entry point
@@ -412,14 +422,16 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder chat-preview">
-                  <img loading="lazy" decoding="async" width="1912" height="982"
+                  <a class="preview-image-link" data-preview-link href="../../asset/chinese_1.png" target="_blank" rel="noopener noreferrer" aria-labelledby="preview-chat-label">
+                    <img loading="lazy" decoding="async" width="1912" height="982"
                     src="../../asset/chinese_1.png"
                     data-src-en="../../asset/chinese_1.png"
                     data-src-zh="../../asset/chinese_1.png"
                     data-src-ja="../../asset/japanese_1.png"
                     alt="Mio chat interface"
                   />
-                  <span data-i18n="mio.showcase.chat">Chat interface</span>
+                  </a>
+                  <span id="preview-chat-label" data-i18n="mio.showcase.chat">Chat interface</span>
                 </div>
                 <figcaption data-i18n="mio.showcase.chatCaption">
                   Long conversation surface
@@ -427,14 +439,16 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder room-preview">
-                  <img loading="lazy" decoding="async" width="1902" height="969"
+                  <a class="preview-image-link" data-preview-link href="../../asset/chinese_2.png" target="_blank" rel="noopener noreferrer" aria-labelledby="preview-room-label">
+                    <img loading="lazy" decoding="async" width="1902" height="969"
                     src="../../asset/chinese_2.png"
                     data-src-en="../../asset/chinese_2.png"
                     data-src-zh="../../asset/chinese_2.png"
                     data-src-ja="../../asset/japanese_2.png"
                     alt="Mio room atmosphere"
                   />
-                  <span data-i18n="mio.showcase.room">Room atmosphere</span>
+                  </a>
+                  <span id="preview-room-label" data-i18n="mio.showcase.room">Room atmosphere</span>
                 </div>
                 <figcaption data-i18n="mio.showcase.roomCaption">
                   A quiet place to return to
@@ -442,14 +456,16 @@
               </figure>
               <figure class="showcase-card">
                 <div class="image-placeholder presence-preview">
-                  <img loading="lazy" decoding="async" width="1912" height="981"
+                  <a class="preview-image-link" data-preview-link href="../../asset/chinese_3.png" target="_blank" rel="noopener noreferrer" aria-labelledby="preview-presence-label">
+                    <img loading="lazy" decoding="async" width="1912" height="981"
                     src="../../asset/chinese_3.png"
                     data-src-en="../../asset/chinese_3.png"
                     data-src-zh="../../asset/chinese_3.png"
                     data-src-ja="../../asset/japanese_3.png"
                     alt="Mio presence layer"
                   />
-                  <span data-i18n="mio.showcase.presence">
+                  </a>
+                  <span id="preview-presence-label" data-i18n="mio.showcase.presence">
                     Presence Layer
                   </span>
                 </div>

@@ -10,7 +10,9 @@
   --faint: #5e7284;
   --line: #cedde4;
   --surface: #fffefa;
-  --page-gutter: max(24px, calc((100% - 1220px) / 2));
+  /* 1296px at a 1440px viewport, growing to 1680px on wider displays. */
+  --display-width: clamp(1280px, 90vw, 1680px);
+  --page-gutter: max(24px, calc((100% - var(--display-width)) / 2));
   --serif: Newsreader, Georgia, serif;
 }
 
@@ -69,7 +71,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .language-switcher button { min-height: 40px; padding: 4px 2px; border: 0; background: transparent; color: var(--muted); }
 .language-switcher button:hover, .language-switcher button.is-active { color: var(--text); text-decoration: underline; text-underline-offset: 6px; }
 
-.section { position: relative; isolation: isolate; padding: clamp(64px, 6vw, 92px) var(--page-gutter); }
+.section { position: relative; isolation: isolate; padding: clamp(56px, 5vw, 80px) var(--page-gutter); }
 .section-kicker, .signal { color: var(--accent); font-size: .72rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; }
 .section-kicker { margin-bottom: 28px; }
 h2 {
@@ -83,7 +85,7 @@ h2 {
 html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.5; font-weight: 400; }
 .section-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 4.5vw, 64px); align-items: start; }
 .section-grid > *, .hero-copy { min-width: 0; }
-.project-copy { display: grid; gap: 24px; }
+.project-copy { display: grid; gap: 24px; max-width: 62ch; }
 .project-copy p, .expression-copy p { color: var(--muted); font-size: 1.04rem; line-height: 1.9; max-width: 62ch; }
 
 /* Background images own their clipping and masks; content stays outside them. */
@@ -99,7 +101,7 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
   padding-block: 56px 80px;
   background: #eaf3fc;
 }
-.hero-copy { max-width: 34rem; }
+.hero-copy { max-width: 38rem; }
 /* Preserve the composite's native ratio and the entire ring on wide screens.
    Only the pale left edge can extend outside the background layer. */
 .hero-backdrop img {
@@ -118,8 +120,8 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 .back-link { display: inline-block; margin-bottom: 26px; font-size: .78rem; color: var(--muted); }
 .signal { margin-bottom: 22px; font-size: .68rem; }
 .project-hero h1 { font-family: Newsreader, Georgia, serif; font-size: clamp(7rem, 14vw, 12rem); font-weight: 500; letter-spacing: -.065em; line-height: .95; margin: 0 0 26px -5px; }
-.subtitle { font-family: var(--serif); font-size: clamp(1.3rem, 2vw, 1.65rem); line-height: 1.6; margin-bottom: 18px; }
-.intro { max-width: 49ch; font-size: 1.02rem; color: var(--muted); line-height: 1.9; }
+.subtitle { max-width: 23em; font-family: var(--serif); font-size: clamp(1.55rem, 2.1vw, 2.1rem); line-height: 1.5; margin-bottom: 22px; }
+.intro { max-width: 50ch; font-size: 1.125rem; color: var(--muted); line-height: 1.8; }
 .mio-button, .quiet-link {
   display: inline-flex;
   align-items: center;
@@ -136,18 +138,28 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
   line-height: 1.65;
   transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
-.hero-copy .mio-button { margin-top: 30px; }
+.hero-copy .mio-button { margin-top: 32px; min-height: 56px; padding: 14px 34px; background: var(--accent); border-color: var(--accent); color: #fffefa; font-size: 1rem; }
+.hero-copy .mio-button:hover { background: #365d83; border-color: #365d83; }
 .mio-button:hover, .quiet-link:hover { background: #b8d6e7; border-color: #7fa9cf; transform: translateY(-2px); }
 .hero-orbit { display: none; pointer-events: none; }
 #concept { border-bottom: 1px solid var(--line); }
+#concept .section-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+#concept h2 { max-width: 20ch; font-size: clamp(2.8rem, 4.2vw, 4.5rem); line-height: 1.15; }
+html:lang(zh) #concept h2, html:lang(ja) #concept h2 { max-width: 8em; font-size: clamp(2.4rem, 3.7vw, 3.9rem); line-height: 1.5; }
+#concept .project-copy { max-width: 58ch; font-size: 1.125rem; }
+#concept .project-copy p { font-size: inherit; }
 
 /* The room itself keeps its original colors. Copy never covers the artwork. */
 .atmosphere-section { background: #f1f5f4; }
-.atmosphere-section .section-grid { row-gap: 28px; align-items: start; }
+.atmosphere-section .section-grid { grid-template-columns: 1fr; gap: 0; }
+.atmosphere-module { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); align-items: start; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--surface); }
+.atmosphere-copy { align-self: center; display: grid; gap: 24px; padding: clamp(24px, 2.3vw, 40px); min-width: 0; }
+.atmosphere-copy h2 { max-width: 13em; font-size: clamp(2rem, 2.5vw, 3rem); line-height: 1.25; }
+html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: clamp(1.85rem, 2.2vw, 2.65rem); line-height: 1.5; }
 .atmosphere-text { display: grid; gap: 12px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
 .atmosphere-gallery { grid-column: 1 / -1; display: grid; gap: 16px; min-width: 0; }
-.atmosphere-fragment { aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 16px; background: #dfe7e8; }
-.atmosphere-fragment img { width: 100%; height: 100%; object-fit: contain; opacity: 1; transition: opacity 240ms ease; }
+.atmosphere-fragment { position: relative; width: 100%; aspect-ratio: 1672 / 941; overflow: hidden; background: #dfe7e8; }
+.atmosphere-fragment img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 1; transition: opacity 240ms ease; }
 .atmosphere-fragment img.is-fading { opacity: .18; }
 .atmosphere-strip { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; }
 .atmosphere-strip figure { min-width: 0; }
@@ -158,26 +170,31 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 .atmosphere-strip figure.is-active figcaption { color: var(--text); }
 
 /* One shared stage and transform for both eye frames; no portrait box or tint. */
-.expression-section { background: #edf5ff; }
+.expression-section { padding-bottom: 0; background: #edf5ff; }
 .character-backdrop img { object-position: center bottom; }
 .character-backdrop::after {
   background:
     linear-gradient(180deg, #f1f5f4, transparent 48px, transparent calc(100% - 48px), var(--bg)),
     linear-gradient(90deg, #f8fafbb3, #f8fafb66 38%, transparent 65%);
 }
-.expression-section .section-grid { align-items: center; }
+.expression-section .section-grid { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; }
 .expression-heading { display: grid; gap: 24px; }
 .expression-heading > p { max-width: 40ch; font-size: .73rem; line-height: 1.8; color: var(--faint); letter-spacing: .06em; text-transform: uppercase; }
 .expression-copy { display: grid; gap: 16px; margin-top: 12px; }
 .expression-copy span { font-size: .9rem; color: var(--faint); }
-.expression-panel { min-width: 0; }
-.expression-stage {
+.expression-panel { min-width: 0; align-self: end; }
+/* One common close-up outside both the normalized stage and breathing node.
+   Cropping is intentional below the hands; source images stay unmodified. */
+.expression-viewport {
+  --portrait-zoom: 1.65;
   position: relative;
-  width: min(100%, 480px);
-  height: clamp(600px, 52vw, 740px);
+  width: min(100%, 700px);
+  height: clamp(520px, 43vw, 650px);
   margin-inline: auto;
   overflow: hidden;
 }
+.expression-composition { width: 100%; height: 100%; transform: scale(var(--portrait-zoom)); transform-origin: 50% 0; }
+.expression-stage { position: relative; width: 100%; height: 100%; }
 .expression-sprite { position: absolute; inset: 0; opacity: 1; transition: opacity 180ms ease; }
 .expression-sprite.is-fading { opacity: .22; }
 .expression-motion { position: relative; width: 100%; height: 100%; transform-origin: 55% 98.5%; }
@@ -209,13 +226,18 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 #showcase { border-top: 1px solid var(--line); }
 #showcase .section-grid, #system .section-grid { grid-template-columns: 1fr; gap: 40px; }
 #showcase h2, #system h2 { max-width: 19em; }
-.showcase-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+.showcase-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
 .showcase-card { min-width: 0; transition: transform 220ms ease; }
 .image-placeholder { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
-.image-placeholder img { width: 100%; height: auto; aspect-ratio: 1.9; object-fit: contain; background: #edf2f3; }
+.preview-image-link { position: relative; display: block; background: #edf2f3; }
+.preview-image-link::after { content: "↗"; position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #fffefae8; color: var(--text); font-size: 1rem; }
+.preview-image-link:focus-visible { outline-offset: -3px; }
+.image-placeholder img { width: 100%; height: auto; }
 .image-placeholder span { display: block; padding: 16px 20px; border-top: 1px solid var(--line); font-size: 1rem; font-weight: 500; line-height: 1.6; }
 .showcase-card figcaption { padding: 12px 3px 0; font-size: .94rem; line-height: 1.8; color: var(--muted); }
 #system { background: #f0f5f7; }
+#system .section-kicker, #system h2 { text-align: center; }
+#system h2 { justify-self: center; }
 .system-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .system-list article { padding: 28px 24px; border: 1px solid #d6e2e8; border-radius: 12px; background: #fffefa; }
 .system-icon { display: block; color: #6086a7; margin-bottom: 24px; }
@@ -245,12 +267,17 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 @media (hover: hover) and (pointer: fine) {
   .showcase-card:hover { transform: translateY(-4px); }
 }
+@media (max-width: 1199px) {
+  .showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 1000px) {
   .site-header { gap: 22px; }
   .nav-links { gap: 8px 16px; }
-  .showcase-grid, .system-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .system-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .atmosphere-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .expression-stage { height: 640px; }
+  .atmosphere-module { grid-template-columns: 1fr; }
+  .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+  .expression-viewport { height: 520px; }
 }
 @media (max-width: 900px) {
   .project-hero { grid-template-columns: 1fr; min-height: 0; padding-block: 44px 48px; gap: 28px; }
@@ -262,7 +289,7 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 @media (max-width: 800px) {
   .expression-section .section-grid { grid-template-columns: 1fr; }
   .expression-heading { max-width: 42rem; }
-  .expression-stage { width: min(100%, 420px); height: 650px; }
+  .expression-viewport { --portrait-zoom: 1.5; width: min(100%, 520px); height: auto; aspect-ratio: 1 / 1.4; }
   .character-backdrop img { object-position: 62% bottom; }
 }
 @media (max-width: 700px) {
@@ -274,7 +301,8 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
   .language-switcher { grid-column: 2; grid-row: 1; gap: 5px; }
   .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; gap: 6px 24px; font-size: .78rem; }
   .nav-links a { padding-block: 5px; }
-  .section { padding-block: 56px; }
+  .section { padding-block: 48px; }
+  .expression-section { padding-bottom: 0; }
   .section-kicker { margin-bottom: 22px; }
   .section-grid { grid-template-columns: 1fr; gap: 30px; }
   h2 { font-size: clamp(2rem, 8vw, 2.6rem); }
@@ -282,15 +310,22 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
   .project-hero { padding-block: 36px 40px; }
   .back-link { margin-bottom: 28px; }
   .project-hero h1 { font-size: clamp(6.5rem, 28vw, 9rem); }
-  .subtitle { font-size: 1.3rem; }
+  .subtitle { font-size: 1.55rem; }
   .hero-orbit { width: min(94%, 340px); }
-  .intro, .project-copy p, .expression-copy p, .atmosphere-text { font-size: 1rem; }
-  .atmosphere-section .section-grid { gap: 28px; }
-  .atmosphere-fragment { border-radius: 10px; }
+  .intro { font-size: 1.0625rem; }
+  .project-copy p, .expression-copy p, .atmosphere-text { font-size: 1rem; }
+  #concept .section-grid { grid-template-columns: 1fr; gap: 28px; }
+  #concept h2 { font-size: clamp(2.2rem, 8.5vw, 3rem); }
+  html:lang(zh) #concept h2, html:lang(ja) #concept h2 { font-size: clamp(2rem, 7.5vw, 2.7rem); }
+  #concept .project-copy { font-size: 1.0625rem; }
+  .atmosphere-module { border-radius: 12px; }
+  .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .atmosphere-copy h2 { font-size: 2rem; }
+  html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: 1.85rem; }
   .atmosphere-strip { display: flex; gap: 12px; overflow-x: auto; padding: 5px 5px 10px; scrollbar-width: thin; }
   .atmosphere-strip figure { flex: 0 0 104px; }
   .atmosphere-strip figcaption { font-size: .75rem; }
-  .expression-stage { width: min(100%, 380px); height: 620px; }
+  .expression-viewport { width: min(100%, 440px); }
   .expression-strip { gap: 8px; }
   .expression-strip button { padding-inline: 14px; }
   #showcase .section-grid, #system .section-grid { gap: 30px; }
@@ -302,7 +337,6 @@ html:lang(zh) h2, html:lang(ja) h2 { font-size: clamp(2rem, 3vw, 2.9rem); line-h
 }
 @media (max-width: 460px) {
   .showcase-grid, .system-list { grid-template-columns: 1fr; }
-  .expression-stage { height: 600px; }
 }
 @media (max-width: 360px) {
   :root { --page-gutter: 18px; }

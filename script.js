@@ -916,6 +916,8 @@ const setLanguage = (language) => {
     if (source && image.getAttribute("src") !== source) {
       image.setAttribute("src", source);
     }
+    const previewLink = image.closest("a[data-preview-link]");
+    if (source && previewLink) previewLink.setAttribute("href", source);
   });
 
   languageButtons.forEach((button) => {

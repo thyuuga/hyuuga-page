@@ -92,3 +92,19 @@ test('every Mio text key and localized preview image is present in all three lan
     assert(readFileSync(new URL(`../mio/about/${path}`, import.meta.url)).length > 0);
   }
 });
+
+test('full-size preview links follow each localized image, including Japanese back to Chinese', () => {
+  const code = script.slice(script.indexOf('  localizedImages.forEach((image) => {'), script.indexOf('\n  languageButtons.forEach', script.indexOf('  localizedImages.forEach((image) => {')));
+  const hrefs = {}, attrs = { src: 'chinese.png' };
+  const image = {
+    dataset: { srcEn: 'chinese.png', srcZh: 'chinese.png', srcJa: 'japanese.png' },
+    getAttribute: key => attrs[key], setAttribute: (key, value) => attrs[key] = value,
+    closest: () => ({ setAttribute: (key, value) => hrefs[key] = value }),
+  };
+  const ordinaryImage = { ...image, closest: () => null };
+  for (const language of ['en', 'ja', 'zh']) {
+    vm.runInNewContext(code, { language, localizedImages: [image, ordinaryImage] });
+    assert.equal(hrefs.href, language === 'ja' ? 'japanese.png' : 'chinese.png');
+    assert.equal(hrefs.href, attrs.src);
+  }
+});
