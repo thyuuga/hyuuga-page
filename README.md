@@ -46,7 +46,7 @@ Inter 和 Newsreader 由页面中的 Google Fonts 样式表加载；网络不可
 - **首页语言转场**：`script.js` 的 `switchLanguage` 控制切换；`home-v2.css` 的 `.localized-copy` 控制文字透明度。先淡出 120ms，在 140ms 时换文案，再淡入 180ms；连续点击以最后一次为准。内层文字与原有滚动动画相互独立。
 - 两种效果均响应 `prefers-reduced-motion`。初次加载语言不播放转场。
 
-Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `asset/mio_illustration_live_{表情}_{open|closed}.png` 成对素材。`blink.mjs` 参考 PJMIO 的眨眼时序（间隔 3–6.5 秒、闭眼 85–125ms、偶尔连眨），睁闭眼瞬时互斥显示；`sky-blue.css` 为两帧提供共用的轻微呼吸动画。离开视口、页面隐藏、切换表情或开启减少动态效果时暂停；图片加载失败或尺寸不匹配时保留可用的睁眼图。更换素材时应保持每对图片尺寸、人物位置及透明边缘一致。
+Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `asset/mio_illustration_live_{表情}_{open|closed}.png` 成对素材。`blink.mjs` 参考 PJMIO 的眨眼时序（间隔 3–6.5 秒、闭眼 85–125ms、偶尔连眨），睁闭眼瞬时互斥显示；`sky-blue.css` 为两帧提供共用的轻微呼吸动画。离开视口、页面隐藏、切换表情或开启减少动态效果时暂停；图片加载失败或尺寸不匹配时保留可用的睁眼图。更换素材时应保持每对图片尺寸、人物位置及透明边缘一致。`proud` 睁闭眼引用已带图片 SHA-256 前 12 位版本号；替换同名图片后需同步更新对应 `v` 参数，避免新尺寸声明遇到浏览器缓存的旧图片。
 
 Mio 介绍页的背景资源位于 [`asset/mio/sky-blue/`](asset/mio/sky-blue/README.md)，保留上一级原始 PNG 并使用 WebP。桌面 Hero 使用完整天空圆环背景，≤900px 改为无圆环底图和独立圆环，旧 `sky-window.svg` 不再引用。背景保持静态，仅背景容器拥有渐变和裁切，不影响人物与正文。页面不加载共享的深色 `style.css`。`script.js` 继续按滚动位置计算内容边界，在视口边缘的 10% 高度内淡入淡出，主要阅读区域保持完整显示。房间缩略图在支持精细悬停的指针上停留 180ms 后预览，离开或换目标会取消计时及未完成的 Hover 加载；点击直接选择。Tab 仅聚焦，Enter / Space 通过原生按钮选择，按钮名称引用三语言时间／天气标签。触屏点击与横向滚动分开处理，不拦截原生滚动。主动选择后保持当前场景，未交互时保留原有轮播；模式隐藏、页面隐藏及 `pagehide` 会清理计时器、过期加载与动画，返回页面后按状态恢复。
 

@@ -1,12 +1,24 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { createBlinkController, MIO_IDLE } from '../mio/about/blink.mjs';
 import { initExpressionGallery } from '../mio/about/expressions.mjs';
 import { EXPRESSION_FRAMES, expressionFrame } from '../mio/about/framing.mjs';
 
 const expressions = ['normal', 'joy', 'shy', 'proud', 'sad', 'angry'];
 const tick = () => new Promise(resolve => setImmediate(resolve));
+
+test('updated proud frames use content-versioned URLs to avoid stale dimension mismatches', () => {
+  const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
+  for (const state of ['open', 'closed']) {
+    const name = `mio_illustration_live_proud_${state}.png`;
+    const data = readFileSync(new URL(`../asset/${name}`, import.meta.url));
+    const version = createHash('sha256').update(data).digest('hex').slice(0, 12);
+    assert(html.includes(`../../asset/${name}?v=${version}"`));
+  }
+});
+
 function clock() {
   let serial = 0;
   const jobs = new Map();
