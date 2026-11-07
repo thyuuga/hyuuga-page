@@ -1103,6 +1103,15 @@ if (revealSections.length && !reduceMotionQuery.matches) {
 let atmosphereSwapRevision = 0;
 let atmospherePendingSource = null;
 let atmosphereFadeAnimation = null;
+let atmosphereHoverTimer = null;
+let atmosphereHoverButton = null;
+let atmospherePendingTrigger = null;
+let atmosphereHasUserSelection = false;
+let atmospherePageActive = true;
+let atmospherePointerInside = false;
+let atmosphereFocusInside = false;
+const atmosphereHoverQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+const atmosphereStrip = atmosphereGallery?.querySelector(".atmosphere-strip");
 const atmospherePreviousImage = atmosphereGallery?.querySelector(".atmosphere-previous-image");
 
 const finishAtmosphereFade = () => {
@@ -1111,14 +1120,41 @@ const finishAtmosphereFade = () => {
   atmosphereFadeAnimation = null;
 };
 
-const setAtmosphereImage = async (button) => {
-  if (!atmosphereMainImage || !button) return;
+const cancelAtmosphereHover = (button) => {
+  if (button && button !== atmosphereHoverButton) return;
+  window.clearTimeout(atmosphereHoverTimer);
+  atmosphereHoverTimer = null;
+  atmosphereHoverButton = null;
+  // Leaving while a hover preview is still decoding must not change the room later.
+  if (atmospherePendingTrigger === "hover") {
+    atmosphereSwapRevision++;
+    atmospherePendingSource = null;
+    atmospherePendingTrigger = null;
+  }
+};
+
+const setAtmosphereImage = async (button, trigger = "auto") => {
+  if (!atmosphereMainImage || !button || !atmospherePageActive || document.hidden) return;
+  if (trigger !== "auto") {
+    atmosphereHasUserSelection = true;
+    stopAtmosphereAutoPlay();
+  }
   const nextSource = button.dataset.atmosphereSrc;
-  if (!nextSource || nextSource === atmospherePendingSource) return;
+  if (!nextSource) return;
+  if (nextSource === atmospherePendingSource) {
+    if (trigger !== "auto") atmospherePendingTrigger = trigger;
+    return;
+  }
   const revision = ++atmosphereSwapRevision;
   atmospherePendingSource = nextSource;
+  atmospherePendingTrigger = trigger;
 
   const previousSource = atmosphereMainImage.getAttribute("src");
+  if (previousSource === nextSource) {
+    atmospherePendingSource = null;
+    atmospherePendingTrigger = null;
+    return; // Keep an in-flight fade intact when reselecting its current scene.
+  }
   if (previousSource !== nextSource) {
     // Keep the current scene fully visible until the replacement can be painted.
     const nextImage = new Image();
@@ -1126,12 +1162,16 @@ const setAtmosphereImage = async (button) => {
     try {
       await nextImage.decode();
     } catch {
-      if (revision === atmosphereSwapRevision) atmospherePendingSource = null;
+      if (revision === atmosphereSwapRevision) {
+        atmospherePendingSource = null;
+        atmospherePendingTrigger = null;
+      }
       return; // A failed request must not blank the room or change its selection.
     }
     if (revision !== atmosphereSwapRevision) return;
   }
   atmospherePendingSource = null;
+  atmospherePendingTrigger = null;
   finishAtmosphereFade();
   atmosphereMainImage.setAttribute("src", nextSource);
   atmosphereMainImage.setAttribute("alt", button.dataset.atmosphereAlt || "Mio room atmosphere");
@@ -1143,7 +1183,7 @@ const setAtmosphereImage = async (button) => {
     atmospherePreviousImage.hidden = false;
     const animation = atmospherePreviousImage.animate(
       [{ opacity: 1 }, { opacity: 0 }],
-      { duration: 240, easing: "ease-out", fill: "forwards" },
+      { duration: 300, easing: "ease-out", fill: "forwards" },
     );
     atmosphereFadeAnimation = animation;
     animation.finished.then(() => {
@@ -1166,7 +1206,8 @@ const getActiveAtmosphereIndex = () => {
 
 const shouldAutoPlayAtmosphere = () => {
   return (
-    atmosphereButtons.length > 1 &&
+    atmosphereButtons.length > 1 && atmospherePageActive && !document.hidden &&
+    !atmosphereHasUserSelection && !atmospherePointerInside && !atmosphereFocusInside && !atmosphereGesture &&
     !atmosphereGallery?.closest("[hidden]") &&
     !window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
@@ -1196,32 +1237,129 @@ reduceMotionQuery.addEventListener("change", () => {
   startAtmosphereAutoPlay();
 });
 
+const canHoverAtmosphere = (event) => atmosphereHoverQuery.matches &&
+  (event.pointerType === "mouse" || event.pointerType === "pen");
+
+let atmosphereGesture = null;
+let atmosphereIgnorePointerClickUntil = 0;
+
 atmosphereButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    setAtmosphereImage(button);
-    startAtmosphereAutoPlay();
+  button.addEventListener("click", (event) => {
+    cancelAtmosphereHover();
+    // Native Enter/Space clicks have detail 0 and are never suppressed by a swipe.
+    if (event.detail !== 0 && window.performance.now() < atmosphereIgnorePointerClickUntil) {
+      event.preventDefault();
+      return;
+    }
+    void setAtmosphereImage(button, "click");
   });
   if (document.body.classList.contains("mio-sky-blue")) {
-    button.addEventListener("pointerenter", () => {
-      if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-        setAtmosphereImage(button);
-      }
+    button.addEventListener("pointerenter", (event) => {
+      if (!canHoverAtmosphere(event)) return;
+      cancelAtmosphereHover();
+      if (button.dataset.atmosphereSrc === atmosphereMainImage?.getAttribute("src")) return;
+      atmosphereHoverButton = button;
+      atmosphereHoverTimer = window.setTimeout(() => {
+        atmosphereHoverTimer = null;
+        void setAtmosphereImage(button, "hover");
+      }, 180);
     });
-    button.addEventListener("focus", () => setAtmosphereImage(button));
+    button.addEventListener("pointerleave", () => cancelAtmosphereHover(button));
+    button.addEventListener("focus", () => cancelAtmosphereHover());
   }
 });
+
+const pauseAtmosphere = () => {
+  cancelAtmosphereHover();
+  atmosphereSwapRevision++;
+  atmospherePendingSource = null;
+  atmospherePendingTrigger = null;
+  atmosphereGesture = null;
+  atmosphereIgnorePointerClickUntil = 0;
+  atmospherePointerInside = false;
+  atmosphereFocusInside = false;
+  stopAtmosphereAutoPlay();
+  finishAtmosphereFade();
+};
 
 if (atmosphereGallery) {
   window.addEventListener("mio:modechange", (event) => {
     if (event.detail.root.contains(atmosphereGallery)) {
-      if (atmosphereGallery.closest("[hidden]")) finishAtmosphereFade();
+      if (atmosphereGallery.closest("[hidden]")) pauseAtmosphere();
       startAtmosphereAutoPlay();
     }
   });
-  atmosphereGallery.addEventListener("mouseenter", stopAtmosphereAutoPlay);
-  atmosphereGallery.addEventListener("mouseleave", startAtmosphereAutoPlay);
-  atmosphereGallery.addEventListener("focusin", stopAtmosphereAutoPlay);
-  atmosphereGallery.addEventListener("focusout", startAtmosphereAutoPlay);
+  atmosphereGallery.addEventListener("pointerenter", (event) => {
+    if (!canHoverAtmosphere(event)) return;
+    atmospherePointerInside = true;
+    stopAtmosphereAutoPlay();
+  });
+  atmosphereGallery.addEventListener("pointerleave", () => {
+    atmospherePointerInside = false;
+    cancelAtmosphereHover();
+    startAtmosphereAutoPlay();
+  });
+  atmosphereGallery.addEventListener("focusin", () => {
+    atmosphereFocusInside = true;
+    stopAtmosphereAutoPlay();
+  });
+  atmosphereGallery.addEventListener("focusout", (event) => {
+    if (atmosphereGallery.contains(event.relatedTarget)) return;
+    atmosphereFocusInside = false;
+    cancelAtmosphereHover();
+    startAtmosphereAutoPlay();
+  });
+  atmosphereHoverQuery.addEventListener("change", () => {
+    if (!atmosphereHoverQuery.matches) {
+      atmospherePointerInside = false;
+      cancelAtmosphereHover();
+      startAtmosphereAutoPlay();
+    }
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pauseAtmosphere(); else startAtmosphereAutoPlay();
+  });
+  window.addEventListener("pagehide", () => {
+    atmospherePageActive = false;
+    pauseAtmosphere();
+  });
+  window.addEventListener("pageshow", () => {
+    atmospherePageActive = true;
+    startAtmosphereAutoPlay();
+  });
+}
+
+if (atmosphereStrip) {
+  atmosphereStrip.addEventListener("pointerleave", () => cancelAtmosphereHover());
+  atmosphereStrip.addEventListener("pointerdown", (event) => {
+    cancelAtmosphereHover();
+    stopAtmosphereAutoPlay();
+    atmosphereIgnorePointerClickUntil = 0;
+    atmosphereGesture = event.pointerType === "touch" || event.pointerType === "pen"
+      ? { id: event.pointerId, x: event.clientX, y: event.clientY, moved: false }
+      : null;
+  }, { passive: true });
+  atmosphereStrip.addEventListener("pointermove", (event) => {
+    if (!atmosphereGesture || atmosphereGesture.id !== event.pointerId) return;
+    if (Math.hypot(event.clientX - atmosphereGesture.x, event.clientY - atmosphereGesture.y) > 8) {
+      atmosphereGesture.moved = true;
+    }
+  }, { passive: true });
+  atmosphereStrip.addEventListener("scroll", () => {
+    cancelAtmosphereHover();
+    if (atmosphereGesture) atmosphereGesture.moved = true;
+  }, { passive: true });
+  const finishGesture = (event) => {
+    if (!atmosphereGesture || atmosphereGesture.id !== event.pointerId) return;
+    const distance = Math.hypot(event.clientX - atmosphereGesture.x, event.clientY - atmosphereGesture.y);
+    if (atmosphereGesture.moved || distance > 8 || event.type === "pointercancel") {
+      atmosphereIgnorePointerClickUntil = window.performance.now() + 800;
+    }
+    atmosphereGesture = null;
+    startAtmosphereAutoPlay();
+  };
+  window.addEventListener("pointerup", finishGesture, { passive: true });
+  window.addEventListener("pointercancel", finishGesture, { passive: true });
 }
 
 startAtmosphereAutoPlay();

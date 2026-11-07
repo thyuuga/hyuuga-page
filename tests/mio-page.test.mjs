@@ -123,6 +123,12 @@ test('promotional visuals are outside both live galleries; all original controls
   }
   const rooms = nodes.filter(node => node.attrs['data-atmosphere-src']);
   assert.equal(rooms.length, 8); assert(rooms.every(node => hasAncestor(node, 'atmosphere-gallery')));
+  for (const button of rooms) {
+    assert.equal(button.tag, 'button'); assert.equal(button.attrs.type, 'button');
+    const label = nodes.find(node => node.attrs.id === button.attrs['aria-labelledby']);
+    assert.equal(label?.tag, 'figcaption');
+    assert(label.attrs['data-i18n'].startsWith('mio.atmosphere.'));
+  }
   assert(hasAncestor(nodes.find(node => node.attrs.id === 'atmosphere-main-image'), 'atmosphere-gallery'));
   const expressions = nodes.filter(node => node.attrs['data-expression-src']);
   assert.equal(expressions.length, 6); assert(expressions.every(node => hasAncestor(node, 'expression-demo')));
