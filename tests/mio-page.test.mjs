@@ -85,7 +85,7 @@ test('every Mio text key and localized preview image is present in all three lan
   const dictionary = script.slice(script.indexOf('const translations ='), script.indexOf('const languageButtons ='));
   const translations = vm.runInNewContext(`${dictionary}\ntranslations;`);
   const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
-  for (const [, key] of html.matchAll(/data-i18n="([^"]+)"/g)) {
+  for (const [, key] of html.matchAll(/data-i18n(?:-alt)?="([^"]+)"/g)) {
     for (const language of ['en', 'zh', 'ja']) assert(translations[language][key], `${language}: ${key}`);
   }
   for (const [, path] of html.matchAll(/data-src-(?:en|zh|ja)="([^"]+)"/g)) {
@@ -106,5 +106,42 @@ test('full-size preview links follow each localized image, including Japanese ba
     vm.runInNewContext(code, { language, localizedImages: [image, ordinaryImage] });
     assert.equal(hrefs.href, language === 'ja' ? 'japanese.png' : 'chinese.png');
     assert.equal(hrefs.href, attrs.src);
+  }
+});
+
+test('promotional visuals are outside both live galleries; all original controls and main images remain', () => {
+  const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
+  const nodes = [], stack = [];
+  const voidTags = new Set(['meta', 'link', 'img', 'br', 'hr', 'input', 'source']);
+  for (const [, closing, tag, attributes] of html.matchAll(/<(\/?)([a-z][\w-]*)\b([^>]*)>/g)) {
+    if (closing) { assert.equal(stack.pop().tag, tag); continue; }
+    const attrs = Object.fromEntries([...attributes.matchAll(/([\w-]+)="([^"]*)"/g)].map(([, key, value]) => [key, value]));
+    const node = { tag, attrs, parents: [...stack] }; nodes.push(node);
+    if (!voidTags.has(tag) && !attributes.trimEnd().endsWith('/')) stack.push(node);
+  }
+  assert.equal(stack.length, 0);
+  const hasClass = (node, name) => (node.attrs.class || '').split(/\s+/).includes(name);
+  const hasAncestor = (node, name) => node.parents.some(parent => hasClass(parent, name));
+  const ids = nodes.filter(node => node.attrs.id).map(node => node.attrs.id);
+  assert.equal(ids.length, new Set(ids).size);
+  for (const name of ['room-feature-image', 'presence-promo-image']) {
+    const [image, ...duplicates] = nodes.filter(node => hasClass(node, name));
+    assert(image); assert.equal(duplicates.length, 0);
+    for (const selector of ['atmosphere-gallery', 'expression-stage', 'expression-sprite', 'expression-motion']) assert(!hasAncestor(image, selector));
+    assert(!image.attrs.id);
+    assert(!image.attrs['data-atmosphere-src']); assert(!image.attrs['data-expression-src']);
+    assert(readFileSync(new URL(`../mio/about/${image.attrs.src}`, import.meta.url)).length > 0);
+  }
+  const rooms = nodes.filter(node => node.attrs['data-atmosphere-src']);
+  assert.equal(rooms.length, 8); assert(rooms.every(node => hasAncestor(node, 'atmosphere-gallery')));
+  assert(hasAncestor(nodes.find(node => node.attrs.id === 'atmosphere-main-image'), 'atmosphere-gallery'));
+  const expressions = nodes.filter(node => node.attrs['data-expression-src']);
+  assert.equal(expressions.length, 6); assert(expressions.every(node => hasAncestor(node, 'expression-demo')));
+  for (const name of ['expression-stage', 'expression-sprite', 'expression-open', 'expression-closed']) {
+    const matches = nodes.filter(node => hasClass(node, name));
+    assert.equal(matches.length, 1); assert(hasAncestor(matches[0], 'expression-demo'));
+  }
+  for (const key of ['mio.atmosphere.title', 'mio.atmosphere.body1', 'mio.atmosphere.body2', 'mio.presence.title', 'mio.presence.body']) {
+    assert.equal(nodes.filter(node => node.attrs['data-i18n'] === key).length, 1);
   }
 });

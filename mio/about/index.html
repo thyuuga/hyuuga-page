@@ -105,30 +105,36 @@
           <div class="section-kicker" data-i18n="mio.atmosphere.kicker">
             02 / Atmosphere
           </div>
-          <div class="section-grid">
-            <div class="atmosphere-gallery">
-              <div class="atmosphere-module">
-                <div class="atmosphere-copy">
-                  <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
-                    Presence is not only made of words.
-                  </h2>
-                  <div class="atmosphere-text">
-                    <p data-i18n="mio.atmosphere.body1">
-                      As time, weather, and seasons move slowly, the space around
-                      Mio changes with them.
-                    </p>
-                    <p data-i18n="mio.atmosphere.body2">
-                      Sometimes an evening room. Sometimes the quiet after rain.
-                    </p>
-                  </div>
+          <div class="room-feature">
+            <div class="section-grid room-feature-content">
+              <div class="atmosphere-copy">
+                <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
+                  Presence is not only made of words.
+                </h2>
+                <div class="atmosphere-text">
+                  <p data-i18n="mio.atmosphere.body1">
+                    As time, weather, and seasons move slowly, the space around
+                    Mio changes with them.
+                  </p>
+                  <p data-i18n="mio.atmosphere.body2">
+                    Sometimes an evening room. Sometimes the quiet after rain.
+                  </p>
                 </div>
-                <div class="atmosphere-fragment">
-                  <img loading="lazy" decoding="async" width="1672" height="941"
-                    id="atmosphere-main-image"
-                    src="../../asset/room_daytime_spring_sunny.png"
-                    alt="Spring daytime room"
-                  />
-                </div>
+              </div>
+            </div>
+            <img class="room-feature-image" src="../../asset/mio/mio-room-daylight.png"
+              width="1023" height="585" alt="A sunlit bedroom with a large window and blue bedding"
+              data-i18n-alt="mio.atmosphere.visualAlt" loading="lazy" decoding="async" />
+          </div>
+          <div class="section-grid room-demo-layout">
+            <div class="atmosphere-gallery" role="group" aria-labelledby="room-demo-title">
+              <h3 id="room-demo-title" class="demo-title" data-i18n="mio.atmosphere.demoTitle">Time &amp; weather demo</h3>
+              <div class="atmosphere-fragment">
+                <img loading="lazy" decoding="async" width="1672" height="941"
+                  id="atmosphere-main-image"
+                  src="../../asset/room_daytime_spring_sunny.png"
+                  alt="Spring daytime room"
+                />
               </div>
               <div class="atmosphere-strip" aria-label="Atmosphere fragments">
                 <figure class="is-active">
@@ -269,30 +275,43 @@
           id="presence"
           aria-labelledby="presence-title"
         >
-          <div class="section-art character-backdrop" aria-hidden="true">
-            <img src="../../asset/mio/sky-blue/character-sky.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
-          </div>
           <div class="section-kicker" data-i18n="mio.presence.kicker">
             03 / Presence
           </div>
-          <div class="section-grid">
-            <div class="expression-heading">
-              <h2 id="presence-title" data-i18n="mio.presence.title">
-                Small shifts in expression.
-              </h2>
-              <p data-i18n="mio.presence.aside">
-                tiny emotional shifts that slowly become presence
-              </p>
-              <div class="expression-copy">
-                <p data-i18n="mio.presence.body">
-                  Mio's presence is carried through small emotional changes:
-                  a quiet smile, a shy pause, a trace of sadness, a little
-                  pride.
+          <div class="presence-feature">
+            <div class="section-art character-backdrop" aria-hidden="true">
+              <img src="../../asset/mio/sky-blue/character-sky.webp" width="1672" height="941" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="section-grid">
+              <div class="expression-heading">
+                <h2 id="presence-title" data-i18n="mio.presence.title">
+                  Small shifts in expression.
+                </h2>
+                <p data-i18n="mio.presence.aside">
+                  tiny emotional shifts that slowly become presence
                 </p>
-                <span data-i18n="mio.presence.note">
-                  Not a mode. Just a mood arriving softly.
-                </span>
+                <div class="expression-copy">
+                  <p data-i18n="mio.presence.body">
+                    Mio's presence is carried through small emotional changes:
+                    a quiet smile, a shy pause, a trace of sadness, a little
+                    pride.
+                  </p>
+                  <span data-i18n="mio.presence.note">
+                    Not a mode. Just a mood arriving softly.
+                  </span>
+                </div>
               </div>
+              <div class="presence-portrait">
+                <img class="presence-promo-image" src="../../asset/mio/mio-character-transparent.png"
+                  width="735" height="876" alt="Mio smiling in a light dress"
+                  data-i18n-alt="mio.presence.visualAlt" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div class="section-grid expression-demo" role="group" aria-labelledby="expression-demo-title">
+            <div class="expression-demo-copy">
+              <h3 id="expression-demo-title" class="demo-title" data-i18n="mio.presence.demoTitle">Expression demo</h3>
+              <p data-i18n="mio.presence.demoHint">Choose an expression to see the subtle changes.</p>
               <div class="expression-strip" aria-label="Mio expressions">
                 <button
                   type="button"

@@ -228,6 +228,8 @@ const translations = {
     "mio.concept.body2":
       "Memory persistence, quiet companionship, and relationship growth over time shape the experience. Each return should feel less like starting over, and more like stepping back into a familiar room.",
     "mio.atmosphere.kicker": "02 / Atmosphere",
+    "mio.atmosphere.demoTitle": "Time & weather demo",
+    "mio.atmosphere.visualAlt": "A sunlit bedroom with a large window and blue bedding",
     "mio.atmosphere.title": "Presence is not only made of words.",
     "mio.atmosphere.body1":
       "As time, weather, and seasons move slowly, the space around Mio changes with them.",
@@ -242,6 +244,9 @@ const translations = {
     "mio.atmosphere.winterDay": "Winter / Day",
     "mio.atmosphere.night": "Night / Spring",
     "mio.presence.kicker": "03 / Presence",
+    "mio.presence.demoTitle": "Expression demo",
+    "mio.presence.demoHint": "Choose an expression to see the subtle changes.",
+    "mio.presence.visualAlt": "Mio smiling in a light dress",
     "mio.presence.title": "Small shifts in expression.",
     "mio.presence.aside":
       "tiny emotional shifts that slowly become presence",
@@ -507,6 +512,8 @@ const translations = {
     "mio.concept.body2":
       "持久记忆、安静陪伴，以及随时间生长的关系感构成了它的体验。每一次回来，都不应像重新开始，而像再次走进一个熟悉的房间。",
     "mio.atmosphere.kicker": "02 / 氛围",
+    "mio.atmosphere.demoTitle": "时间与天气演示",
+    "mio.atmosphere.visualAlt": "有大窗户、蓝色床品与阳光的卧室",
     "mio.atmosphere.title": "陪伴感不仅来自对话。",
     "mio.atmosphere.body1":
       "随着时间、天气与季节缓慢变化，Mio 所在的空间也会悄悄改变。",
@@ -521,6 +528,9 @@ const translations = {
     "mio.atmosphere.winterDay": "冬 / 白昼",
     "mio.atmosphere.night": "夜 / 春",
     "mio.presence.kicker": "03 / 存在感",
+    "mio.presence.demoTitle": "表情演示",
+    "mio.presence.demoHint": "选一种表情，看看 Mio 的细微变化。",
+    "mio.presence.visualAlt": "穿着浅色连衣裙、轻轻微笑的 Mio",
     "mio.presence.title": "细小变化里的情绪。",
     "mio.presence.aside": "细微的情绪变化，慢慢成为存在感",
     "mio.presence.body":
@@ -781,6 +791,8 @@ const translations = {
     "mio.concept.body2":
       "永続する記憶、静かな伴走、時間とともに育つ関係性が体験の核にあります。戻ってくるたび、最初からではなく、見慣れた部屋に入るように。",
     "mio.atmosphere.kicker": "02 / 空気",
+    "mio.atmosphere.demoTitle": "時間と天気のデモ",
+    "mio.atmosphere.visualAlt": "大きな窓と青い寝具のある、日差しの入る寝室",
     "mio.atmosphere.title": "気配は、言葉だけでできているわけではない。",
     "mio.atmosphere.body1":
       "時間、天気、季節がゆっくり移ろうたび、Mio のいる空間もそっと表情を変えていきます。",
@@ -795,6 +807,9 @@ const translations = {
     "mio.atmosphere.winterDay": "冬 / 昼",
     "mio.atmosphere.night": "夜 / 春",
     "mio.presence.kicker": "03 / 気配",
+    "mio.presence.demoTitle": "表情を試す",
+    "mio.presence.demoHint": "表情を選んで、Mio の小さな変化を見てみてください。",
+    "mio.presence.visualAlt": "淡い色のワンピースを着て、微笑む Mio",
     "mio.presence.title": "表情に宿る、小さな揺れ。",
     "mio.presence.aside": "小さな感情の揺れが、少しずつ気配になる",
     "mio.presence.body":
