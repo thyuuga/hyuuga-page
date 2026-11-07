@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="sky-blue.css" />
+    <link rel="stylesheet" href="sky-blue.css?v=7c82b49074b5" />
     <link rel="stylesheet" href="/cursors.css" />
   </head>
   <body class="mio-sky-blue">
@@ -102,12 +102,14 @@
           id="atmosphere" data-mode-switcher
           aria-labelledby="atmosphere-title"
         >
-          <div class="section-kicker" data-i18n="mio.atmosphere.kicker">
-            02 / Atmosphere
-          </div>
-          <div class="showcase-modes" role="tablist" aria-labelledby="atmosphere-title">
-            <button type="button" id="room-intro-tab" role="tab" aria-selected="true" aria-controls="room-intro" tabindex="0" data-i18n="mio.atmosphere.introMode">Mio’s room</button>
-            <button type="button" id="room-live-tab" role="tab" aria-selected="false" aria-controls="room-live" tabindex="-1" data-i18n="mio.atmosphere.liveMode">Passing time</button>
+          <div class="room-controls">
+            <div class="section-kicker" data-i18n="mio.atmosphere.kicker">
+              02 / Atmosphere
+            </div>
+            <div class="showcase-modes" role="tablist" aria-labelledby="atmosphere-title">
+              <button type="button" id="room-intro-tab" role="tab" aria-selected="true" aria-controls="room-intro" tabindex="0" data-i18n="mio.atmosphere.introMode">Mio’s room</button>
+              <button type="button" id="room-live-tab" role="tab" aria-selected="false" aria-controls="room-live" tabindex="-1" data-i18n="mio.atmosphere.liveMode">Passing time</button>
+            </div>
           </div>
           <div class="room-showcase">
             <div class="section-grid room-feature-content">
@@ -126,153 +128,151 @@
                 </div>
               </div>
             </div>
-            <div class="mode-panels room-modes">
-              <div class="room-feature mode-panel" id="room-intro" role="tabpanel" aria-labelledby="room-intro-tab" tabindex="0">
+            <div class="room-scene-stage">
+              <div class="room-scene-mode room-feature mode-panel" id="room-intro" role="tabpanel" aria-labelledby="room-intro-tab" tabindex="0">
                 <img class="room-feature-image" src="../../asset/mio/mio-room-daylight.png"
                   width="1023" height="585" alt="A sunlit bedroom with a large window and blue bedding"
                   data-i18n-alt="mio.atmosphere.visualAlt" loading="lazy" decoding="async" />
               </div>
-              <div class="room-demo-layout mode-panel" id="room-live" role="tabpanel" aria-labelledby="room-live-tab" tabindex="0" hidden inert>
-                <div class="atmosphere-gallery" role="group" aria-labelledby="room-live-tab">
-                  <div class="atmosphere-fragment">
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      id="atmosphere-main-image"
-                      src="../../asset/room_daytime_spring_sunny.png"
-                      alt="Spring daytime room"
-                    />
-                    <img class="atmosphere-previous-image" width="1672" height="941"
-                      alt="" aria-hidden="true" hidden decoding="async" />
-                  </div>
-                  <div class="atmosphere-strip" aria-label="Atmosphere fragments">
-                    <figure class="is-active">
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_daytime_spring_sunny.png"
-                        data-atmosphere-alt="Spring daytime room"
-                        aria-pressed="true"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_daytime_spring_sunny.png"
-                          alt="Spring daytime room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.springDay">
-                        Spring / Day
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_daytime_spring_rainy.png"
-                        data-atmosphere-alt="Spring rainy room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_daytime_spring_rainy.png"
-                          alt="Spring rainy room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.springRain">
-                        Spring / Rain
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_dawn_spring_rainy.png"
-                        data-atmosphere-alt="Spring rainy dawn room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_dawn_spring_rainy.png"
-                          alt="Spring rainy dawn room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.dawnRain">
-                        Dawn / Rain
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_daytime_summer_sunny.png"
-                        data-atmosphere-alt="Summer sunny room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_daytime_summer_sunny.png"
-                          alt="Summer sunny room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.summerDay">
-                        Summer / Day
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_daytime_summer_rainy.png"
-                        data-atmosphere-alt="Summer rainy room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_daytime_summer_rainy.png"
-                          alt="Summer rainy room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.summerRain">
-                        Summer / Rain
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_sunset_fall_sunny.png"
-                        data-atmosphere-alt="Fall sunset room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_sunset_fall_sunny.png"
-                          alt="Fall sunset room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.fallSunset">
-                        Fall / Sunset
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_daytime_winter_sunny.png"
-                        data-atmosphere-alt="Winter sunny room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_daytime_winter_sunny.png"
-                          alt="Winter sunny room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.winterDay">
-                        Winter / Day
-                      </figcaption>
-                    </figure>
-                    <figure>
-                      <button
-                        type="button"
-                        data-atmosphere-src="../../asset/room_night_spring.png"
-                        data-atmosphere-alt="Spring night room"
-                        aria-pressed="false"
-                      >
-                        <img loading="lazy" decoding="async" width="1672" height="941"
-                          src="../../asset/room_night_spring.png"
-                          alt="Spring night room"
-                        />
-                      </button>
-                      <figcaption data-i18n="mio.atmosphere.night">
-                        Night / Spring
-                      </figcaption>
-                    </figure>
-                  </div>
+              <div class="room-scene-mode atmosphere-gallery mode-panel" id="room-live" role="tabpanel" aria-labelledby="room-live-tab" tabindex="0" hidden inert>
+                <div class="atmosphere-fragment">
+                  <img loading="lazy" decoding="async" width="1672" height="941"
+                    id="atmosphere-main-image"
+                    src="../../asset/room_daytime_spring_sunny.png"
+                    alt="Spring daytime room"
+                  />
+                  <img class="atmosphere-previous-image" width="1672" height="941"
+                    alt="" aria-hidden="true" hidden decoding="async" />
+                </div>
+                <div class="atmosphere-strip" aria-label="Atmosphere fragments">
+                  <figure class="is-active">
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_daytime_spring_sunny.png"
+                      data-atmosphere-alt="Spring daytime room"
+                      aria-pressed="true"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_daytime_spring_sunny.png"
+                        alt="Spring daytime room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.springDay">
+                      Spring / Day
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_daytime_spring_rainy.png"
+                      data-atmosphere-alt="Spring rainy room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_daytime_spring_rainy.png"
+                        alt="Spring rainy room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.springRain">
+                      Spring / Rain
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_dawn_spring_rainy.png"
+                      data-atmosphere-alt="Spring rainy dawn room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_dawn_spring_rainy.png"
+                        alt="Spring rainy dawn room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.dawnRain">
+                      Dawn / Rain
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_daytime_summer_sunny.png"
+                      data-atmosphere-alt="Summer sunny room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_daytime_summer_sunny.png"
+                        alt="Summer sunny room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.summerDay">
+                      Summer / Day
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_daytime_summer_rainy.png"
+                      data-atmosphere-alt="Summer rainy room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_daytime_summer_rainy.png"
+                        alt="Summer rainy room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.summerRain">
+                      Summer / Rain
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_sunset_fall_sunny.png"
+                      data-atmosphere-alt="Fall sunset room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_sunset_fall_sunny.png"
+                        alt="Fall sunset room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.fallSunset">
+                      Fall / Sunset
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_daytime_winter_sunny.png"
+                      data-atmosphere-alt="Winter sunny room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_daytime_winter_sunny.png"
+                        alt="Winter sunny room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.winterDay">
+                      Winter / Day
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <button
+                      type="button"
+                      data-atmosphere-src="../../asset/room_night_spring.png"
+                      data-atmosphere-alt="Spring night room"
+                      aria-pressed="false"
+                    >
+                      <img loading="lazy" decoding="async" width="1672" height="941"
+                        src="../../asset/room_night_spring.png"
+                        alt="Spring night room"
+                      />
+                    </button>
+                    <figcaption data-i18n="mio.atmosphere.night">
+                      Night / Spring
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
             </div>

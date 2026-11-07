@@ -162,30 +162,30 @@ html:lang(zh) #concept h2, html:lang(ja) #concept h2 { max-width: 8em; font-size
 @keyframes mode-appear { from { opacity: 0; } to { opacity: 1; } }
 /* Only scenery spans the viewport. Copy, tabs and the original demo share
    the same gutters as the other sections; no 100vw / scrollbar overflow. */
-.atmosphere-section { padding-inline: 0; background: var(--bg); }
-.atmosphere-section > .section-kicker, .atmosphere-section > .showcase-modes { margin-inline: var(--page-gutter); }
+.atmosphere-section { --room-side-space: 24px; --room-content-width: min(var(--display-width), calc(100% - 2 * var(--room-side-space))); padding-inline: 0; background: var(--bg); }
+.room-controls { width: var(--room-content-width); margin-inline: auto; }
 .atmosphere-section .section-grid { grid-template-columns: 1fr; gap: 0; }
-.room-showcase { position: relative; isolation: isolate; background: var(--bg); }
-.room-modes { aspect-ratio: 1023 / 585; min-height: 560px; max-height: 960px; }
-.room-feature { position: relative; isolation: isolate; overflow: hidden; }
+.room-showcase { position: relative; width: 100%; isolation: isolate; background: var(--bg); }
+/* A normal full-width block owns the dimensions. Both panels are direct layers,
+   independent of implicit Grid tracks, image intrinsic widths and control sizes. */
+.room-scene-stage { position: relative; width: 100%; aspect-ratio: 1023 / 585; min-height: 560px; max-height: 960px; }
+.room-scene-mode { position: absolute; inset: 0; width: 100%; height: 100%; }
+.room-feature { isolation: isolate; overflow: hidden; }
 .room-feature-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; }
 .room-feature::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #faf9f6f5, #faf9f6eb 20%, #faf9f6c2 37%, #faf9f633 58%, transparent 70%); }
 .room-feature::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--bg), transparent clamp(40px, 6vw, 96px), transparent calc(100% - clamp(40px, 6vw, 96px)), var(--bg)); }
-.room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; padding-inline: var(--page-gutter); grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
+.room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; width: var(--room-content-width); margin-inline: auto; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
 [data-mode="room-live"] .room-feature-content { visibility: hidden; }
-.room-demo-layout { position: relative; }
 /* Scene transitions belong to image layers, never the panel or its controls. */
-.room-modes > .mode-panel:not([hidden]) { animation: none; }
+.room-scene-stage > .mode-panel:not([hidden]) { animation: none; }
 .atmosphere-copy { align-self: center; display: grid; gap: 24px; padding-block: clamp(28px, 3.4vw, 56px); padding-right: clamp(24px, 3vw, 48px); min-width: 0; }
 .atmosphere-copy h2 { max-width: 13em; font-size: clamp(2rem, 2.5vw, 3rem); line-height: 1.25; }
 html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: clamp(1.85rem, 2.2vw, 2.65rem); line-height: 1.5; }
 .atmosphere-text { display: grid; gap: 12px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
-.atmosphere-gallery { position: relative; min-width: 0; width: 100%; height: 100%; }
 .atmosphere-fragment { position: absolute; inset: 0; overflow: hidden; }
 .atmosphere-fragment img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% center; opacity: 1; }
 .atmosphere-previous-image[hidden] { display: none; }
-.atmosphere-fragment::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--bg), transparent 24px, transparent calc(100% - 24px), var(--bg)); }
-.atmosphere-strip { position: absolute; z-index: 1; bottom: 16px; left: var(--page-gutter); right: var(--page-gutter); display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; padding: 12px; border-radius: 10px; background: #faf9f6e6; }
+.atmosphere-strip { position: absolute; z-index: 1; bottom: 16px; inset-inline: 0; width: var(--room-content-width); margin-inline: auto; display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; padding: 12px; border-radius: 10px; background: #faf9f6e6; }
 .atmosphere-strip figure { min-width: 0; }
 .atmosphere-strip button { display: block; width: 100%; padding: 3px; border: 1px solid transparent; border-radius: 9px; background: transparent; transition: border-color 180ms ease; }
 .atmosphere-strip img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 5px; }
@@ -315,7 +315,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   .room-showcase .room-feature-content { position: static; display: block; visibility: visible; pointer-events: auto; }
   .room-showcase .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; padding-right: 0; }
   .room-feature::before { display: none; }
-  .room-modes { min-height: 0; }
+  .room-scene-stage { min-height: 0; }
 
   .project-hero { grid-template-columns: 1fr; min-height: 0; padding-block: 44px 48px; gap: 28px; }
   .hero-copy { max-width: 38rem; }
@@ -362,7 +362,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   .room-showcase .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding-block: 24px; }
   /* The same scene height in both modes; a modest crop keeps room context
      above the compact thumbnail strip instead of producing a tall portrait crop. */
-  .room-modes { aspect-ratio: 3 / 2; min-height: 0; }
+  .room-scene-stage { aspect-ratio: 3 / 2; min-height: 0; }
   .room-feature-image, .atmosphere-fragment img { object-position: 60% center; }
   .room-feature::after { background: linear-gradient(180deg, var(--bg), transparent 24px, transparent calc(100% - 24px), var(--bg)); }
   .showcase-modes { gap: 3px; padding: 4px; }
@@ -388,6 +388,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 }
 @media (max-width: 360px) {
   :root { --page-gutter: 18px; }
+  .atmosphere-section { --room-side-space: 18px; }
   .nav-links { gap: 6px 18px; }
   .mio-page-marker { display: none; }
 }

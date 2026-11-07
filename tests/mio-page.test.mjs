@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import vm from 'node:vm';
 
 const script = readFileSync(new URL('../script.js', import.meta.url), 'utf8');
@@ -11,6 +12,13 @@ const classList = () => {
   return { add: name => names.add(name), remove: name => names.delete(name),
     contains: name => names.has(name), toggle: (name, active) => active ? names.add(name) : names.delete(name) };
 };
+
+test('Mio stylesheet URL changes with its content so new markup cannot reuse stale CSS', () => {
+  const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
+  const css = readFileSync(new URL('../mio/about/sky-blue.css', import.meta.url));
+  const version = createHash('sha256').update(css).digest('hex').slice(0, 12);
+  assert(html.includes(`href="sky-blue.css?v=${version}"`));
+});
 
 test('Mio reveal is reversible, stationary, and keeps long content readable', () => {
   let top = 980, height = 1800;
