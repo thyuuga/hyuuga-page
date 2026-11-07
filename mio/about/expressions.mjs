@@ -32,7 +32,7 @@ export function initExpressionGallery() {
 
   function sync() {
     const active = ready && !switching && visible && pageActive &&
-      !document.hidden && !reduced.matches;
+      !stage.closest('[hidden]') && !document.hidden && !reduced.matches;
     if (active) blink.start(); else blink.stop();
     sprite.dataset.breathing = String(active);
   }
@@ -93,7 +93,7 @@ export function initExpressionGallery() {
       clearTransition();
       sync();
     };
-    if (initial || reduced.matches || document.hidden || !pageActive || !visible) {
+    if (initial || reduced.matches || document.hidden || !pageActive || !visible || stage.closest('[hidden]')) {
       finishSwitch();
     } else {
       sprite.classList.add('is-fading');
@@ -102,7 +102,8 @@ export function initExpressionGallery() {
   }
 
   function refresh() {
-    if (document.hidden || !pageActive || reduced.matches || !visible) finishSwitch?.();
+    if (document.hidden || !pageActive || reduced.matches || !visible || stage.closest('[hidden]')) finishSwitch?.();
+    updateFrame();
     sync();
   }
   function hide() { pageActive = false; refresh(); }
@@ -121,6 +122,7 @@ export function initExpressionGallery() {
   reduced.addEventListener('change', refresh);
   window.addEventListener('pagehide', hide);
   window.addEventListener('pageshow', show);
+  window.addEventListener('mio:modechange', refresh);
   void select(current, true);
 
   return () => {
@@ -135,6 +137,7 @@ export function initExpressionGallery() {
     reduced.removeEventListener('change', refresh);
     window.removeEventListener('pagehide', hide);
     window.removeEventListener('pageshow', show);
+    window.removeEventListener('mio:modechange', refresh);
   };
 }
 

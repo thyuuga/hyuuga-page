@@ -50,11 +50,11 @@ Mio 介绍页的六种表情由 `mio/about/expressions.mjs` 管理，使用 `ass
 
 Mio 介绍页的背景资源位于 [`asset/mio/sky-blue/`](asset/mio/sky-blue/README.md)，保留上一级原始 PNG 并使用 WebP。桌面 Hero 使用完整天空圆环背景，≤900px 改为无圆环底图和独立圆环，旧 `sky-window.svg` 不再引用。背景保持静态，仅背景容器拥有渐变和裁切，不影响人物与正文。页面不加载共享的深色 `style.css`。`script.js` 继续按滚动位置计算内容边界，在视口边缘的 10% 高度内淡入淡出，主要阅读区域保持完整显示。房间缩略图支持悬停、聚焦、点击，手机端可在组件内横向滚动。
 
-立绘构图由 `mio/about/framing.mjs` 根据实测人物边界计算，让六种表情共享人物高度、水平中心和脚底基准；窗口变化时重新适配，睁闭眼共用同一定位。更换图片后需同步复核该文件的边界数据，不能仅按整张图片尺寸缩放。 当前下层表情演示通过 `.expression-viewport` 与 `.expression-composition` 在这套定位之外统一放大并裁切下方：桌面 1.65 倍，≤800px 为 1.5 倍。不要对单个表情加偏移，也不要改动 `.expression-motion` 的呼吸 transform；原图和底层全身构图仍保留。
+立绘构图由 `mio/about/framing.mjs` 根据实测人物边界计算，让六种表情共享人物高度、水平中心和脚底基准；窗口变化时重新适配，睁闭眼共用同一定位。更换图片后需同步复核该文件的边界数据，不能仅按整张图片尺寸缩放。 当前互动模式的表情演示通过 `.expression-viewport` 与 `.expression-composition` 在这套定位之外统一放大并裁切下方：桌面 1.65 倍，≤800px 为 1.5 倍。不要对单个表情加偏移，也不要改动 `.expression-motion` 的呼吸 transform；原图和底层全身构图仍保留。
 
-Mio 展示区宽度使用 `clamp(1280px, 90vw, 1680px)`，左右至少留 24px（最窄屏 18px），正文独立限制行宽。按 CSS 计算，1440px 视口下展示区为 1296px，1920px 下为 1680px；这是布局规则推算，非浏览器实测。房间区上层使用独立宣传图 `asset/mio/mio-room-daylight.png` 与局部渐变阅读区，下层保留 `#atmosphere-main-image` 和八个缩略图；产品预览在 ≥1200px 时四列、平板两列、手机单列，点击截图可在新标签页查看当前语言的原图。
+Mio 展示区宽度使用 `clamp(1280px, 90vw, 1680px)`，左右至少留 24px（最窄屏 18px），正文独立限制行宽。按 CSS 计算，1440px 视口下展示区为 1296px，1920px 下为 1680px；这是布局规则推算，非浏览器实测。房间区默认使用独立宣传图 `asset/mio/mio-room-daylight.png` 与局部渐变阅读区；切换至「时间的流转」后，在同一展示框内显示 `#atmosphere-main-image` 和八个缩略图；产品预览在 ≥1200px 时四列、平板两列、手机单列，点击截图可在新标签页查看当前语言的原图。
 
-人物区上层使用 `asset/mio/mio-character-transparent.png`，仅作静态宣传展示；下层 `.expression-demo` 保留原来的 `.expression-stage`、六组睁闭眼素材和控制按钮。宣传图使用 `.room-feature-image` / `.presence-promo-image`，不要添加旧演示的 ID、`data-atmosphere-src` 或 `data-expression-src`，也不要把新人物放进 `.expression-sprite` / `.expression-motion`。原有场景、表情、眨眼时序和定位逻辑不变。
+人物区默认使用 `asset/mio/mio-character-transparent.png`，仅作静态宣传展示；切换至「看看表情」后，同一背景中的 `.expression-demo` 显示原来的 `.expression-stage`、六组睁闭眼素材和控制按钮。宣传图使用 `.room-feature-image` / `.presence-promo-image`，不要添加旧演示的 ID、`data-atmosphere-src` 或 `data-expression-src`，也不要把新人物放进 `.expression-sprite` / `.expression-motion`。原有场景、表情、眨眼时序和定位逻辑不变。`mio/about/modes.mjs` 只管理模式状态：使用 ARIA tabs、方向键 / Home / End、`hidden` 与 `inert`；隐藏互动模式时暂停房间轮播和立绘眨眼、呼吸，再次显示保留所选场景与表情。桌面共用展示尺寸，手机房间模式允许缩略图增加少量高度以保证图片完整；模式淡入遵循减少动态效果设置。
 
 首页「探索作品」的 `#work` 锚点位于 Mio 区块顶边。`home-v2.css` 使用同一个 `--anchor-clearance` 变量，让 Mio 锚点的负 `scroll-margin-top` 抵消全局 `scroll-padding-top`，使深绿色背景与视口顶部对齐；其他锚点保留原有间距。导航栏处于正常文档流中，无需额外扣除导航高度。
 
@@ -66,9 +66,10 @@ node --test tests/*.test.mjs
 git diff --check
 ```
 
-前两条需要 Node.js，分别检查共享脚本语法和 Mio 的眨眼时序、表情切换、暂停清理、加载失败回退、滚动可逆性、房间快速切换及三语言资源。视觉修改仍需通过本地浏览器验证：
+前两条需要 Node.js，分别检查共享脚本语法和 Mio 的眨眼时序、表情切换、暂停清理、加载失败回退、滚动可逆性、房间快速切换、模式键盘操作、隐藏模式暂停恢复及三语言资源。视觉修改仍需通过本地浏览器验证：
 
 - 中英日切换、刷新后语言保留、连续切换，以及减少动态效果模式。
+- Mio 房间和人物区默认只显示一套主视觉；检查两种模式、方向键切换、全部场景与六种表情，以及来回切换后状态保留。
 - 1920×1080、1440×900、1366×768、390×844 下的换行、溢出和可读性。
 - 原生滚动、动画反向恢复、导航和联系链接；修改共享文件时检查相关子页面。
 - 调整滚动相关 CSS 后，同时验证点击「探索作品」和直接访问 `/#work`，确认滚动结束后 Mio 顶边贴齐视口顶部，没有米白缝隙或超滚动。

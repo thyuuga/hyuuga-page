@@ -149,21 +149,33 @@ html:lang(zh) #concept h2, html:lang(ja) #concept h2 { max-width: 8em; font-size
 #concept .project-copy { max-width: 58ch; font-size: 1.125rem; }
 #concept .project-copy p { font-size: inherit; }
 
-/* Promotional bedroom and the existing interactive room are independent layers. */
+/* One visual at a time. Inactive panels retain their geometry, not focus or animation. */
+.showcase-modes { display: flex; flex-wrap: wrap; gap: 6px; width: fit-content; max-width: 100%; margin: 0 0 20px; padding: 5px; border: 1px solid var(--line); border-radius: 24px; background: #edf4f7; }
+.showcase-modes button { min-height: 42px; padding: 9px 20px; border: 0; border-radius: 20px; color: var(--muted); background: transparent; font: inherit; font-size: .9rem; line-height: 1.5; cursor: pointer; }
+.showcase-modes button[aria-selected="true"] { color: #fffefa; background: var(--accent); }
+.showcase-modes button:focus-visible, .mode-panel:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.mode-panels { display: grid; grid-template-rows: minmax(0, 1fr); min-width: 0; }
+.mode-panel { grid-area: 1 / 1; min-width: 0; min-height: 0; }
+.mode-panel[hidden] { display: block; visibility: hidden; pointer-events: none; }
+.mode-panel[hidden] * { visibility: hidden !important; }
+.mode-panel:not([hidden]) { animation: mode-appear 240ms ease-out both; }
+@keyframes mode-appear { from { opacity: 0; } to { opacity: 1; } }
 .atmosphere-section { background: #f1f5f4; }
 .atmosphere-section .section-grid { grid-template-columns: 1fr; gap: 0; }
-.room-feature { position: relative; isolation: isolate; display: grid; align-items: center; aspect-ratio: 1023 / 585; border-radius: 18px; overflow: hidden; background: var(--surface); }
+.room-showcase { position: relative; isolation: isolate; border-radius: 18px; overflow: hidden; background: var(--surface); }
+.room-modes { aspect-ratio: 1023 / 585; min-height: 460px; }
+.room-feature { position: relative; isolation: isolate; overflow: hidden; }
 .room-feature-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
 .room-feature::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #faf9f6f5, #faf9f6eb 20%, #faf9f6c2 37%, #faf9f633 58%, transparent 70%); }
-.room-feature .room-feature-content { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; }
-.room-demo-layout { margin-top: 32px; }
-.demo-title { margin: 0; color: var(--text); font-size: 1.15rem; font-weight: 500; line-height: 1.6; }
+.room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
+[data-mode="room-live"] .room-feature-content { visibility: hidden; }
+.room-demo-layout { padding: clamp(12px, 1.5vw, 24px); }
 .atmosphere-copy { align-self: center; display: grid; gap: 24px; padding: clamp(28px, 3.4vw, 56px); min-width: 0; }
 .atmosphere-copy h2 { max-width: 13em; font-size: clamp(2rem, 2.5vw, 3rem); line-height: 1.25; }
 html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: clamp(1.85rem, 2.2vw, 2.65rem); line-height: 1.5; }
 .atmosphere-text { display: grid; gap: 12px; color: var(--muted); font-size: 1rem; line-height: 1.85; }
-.atmosphere-gallery { grid-column: 1 / -1; display: grid; gap: 16px; min-width: 0; width: 100%; max-width: 1040px; margin-inline: auto; }
-.atmosphere-fragment { position: relative; width: 100%; aspect-ratio: 1672 / 941; overflow: hidden; border-radius: 12px; background: #dfe7e8; }
+.atmosphere-gallery { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 12px; min-width: 0; width: 100%; height: 100%; }
+.atmosphere-fragment { position: relative; width: 100%; min-height: 0; overflow: hidden; border-radius: 12px; background: #e8eef0; }
 .atmosphere-fragment img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: 1; transition: opacity 240ms ease; }
 .atmosphere-fragment img.is-fading { opacity: .18; }
 .atmosphere-strip { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 14px; }
@@ -179,11 +191,12 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 .presence-feature { position: relative; isolation: isolate; border-radius: 18px; background: #edf5ff; }
 .presence-feature .character-backdrop { border-radius: inherit; }
 .presence-feature .expression-heading { padding: clamp(24px, 3vw, 48px); }
-.presence-portrait { align-self: end; width: min(100%, 700px); aspect-ratio: 735 / 840; overflow: hidden; margin-inline: auto; }
+.presence-modes { width: min(100%, 700px); aspect-ratio: 735 / 840; align-self: end; margin-inline: auto; overflow: hidden; border-radius: 0 18px 18px 0; }
+.presence-portrait { overflow: hidden; }
 .presence-promo-image { width: 100%; height: auto; }
-.expression-section .expression-demo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 960px; margin: 32px auto 0; padding-top: 28px; border-top: 1px solid var(--line); }
-.expression-demo-copy { display: grid; gap: 16px; }
-.expression-demo-copy p { max-width: 38ch; color: var(--muted); font-size: 1rem; line-height: 1.8; }
+.expression-demo, .expression-demo[hidden] { display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+.expression-demo-copy { grid-row: 2; display: grid; gap: 8px; padding: 12px clamp(16px, 2vw, 28px) 20px; background: #edf5ffb3; }
+.expression-demo-copy p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .character-backdrop img { object-position: center bottom; }
 .character-backdrop::after {
   background:
@@ -195,15 +208,14 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 .expression-heading > p { max-width: 40ch; font-size: .73rem; line-height: 1.8; color: var(--faint); letter-spacing: .06em; text-transform: uppercase; }
 .expression-copy { display: grid; gap: 16px; margin-top: 12px; }
 .expression-copy span { font-size: .9rem; color: var(--faint); }
-.expression-panel { min-width: 0; align-self: end; }
+.expression-panel { grid-row: 1; min-width: 0; min-height: 0; }
 /* One common close-up outside both the normalized stage and breathing node.
    Cropping is intentional below the hands; source images stay unmodified. */
 .expression-viewport {
   --portrait-zoom: 1.65;
   position: relative;
-  width: min(100%, 400px);
-  height: auto;
-  aspect-ratio: 1 / 1.1;
+  width: 100%;
+  height: 100%;
   margin-inline: auto;
   overflow: hidden;
 }
@@ -288,14 +300,14 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   .site-header { gap: 22px; }
   .nav-links { gap: 8px 16px; }
   .system-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .atmosphere-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .atmosphere-strip { display: flex; gap: 12px; overflow-x: auto; padding: 5px 5px 10px; scrollbar-width: thin; }
+  .atmosphere-strip figure { flex: 0 0 104px; }
 }
 @media (max-width: 900px) {
-  .room-feature { display: flex; flex-direction: column; aspect-ratio: auto; }
+  .room-showcase .room-feature-content { position: static; display: block; visibility: visible; pointer-events: auto; }
+  .room-showcase .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
   .room-feature::before { display: none; }
-  .room-feature .room-feature-content { display: block; width: 100%; }
-  .room-feature-image { position: static; z-index: auto; width: 100%; height: auto; }
-  .room-feature .atmosphere-copy { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+  .room-modes { min-height: 400px; }
 
   .project-hero { grid-template-columns: 1fr; min-height: 0; padding-block: 44px 48px; gap: 28px; }
   .hero-copy { max-width: 38rem; }
@@ -306,8 +318,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 @media (max-width: 800px) {
   .presence-feature .section-grid { grid-template-columns: 1fr; }
   .expression-heading { max-width: 42rem; }
-  .expression-section .expression-demo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-  .presence-portrait { width: min(100%, 520px); }
+  .presence-modes { width: min(100%, 520px); border-radius: 0; }
   .expression-viewport { --portrait-zoom: 1.5; }
   .character-backdrop img { object-position: 62% bottom; }
 }
@@ -336,12 +347,19 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   #concept h2 { font-size: clamp(2.2rem, 8.5vw, 3rem); }
   html:lang(zh) #concept h2, html:lang(ja) #concept h2 { font-size: clamp(2rem, 7.5vw, 2.7rem); }
   #concept .project-copy { font-size: 1.0625rem; }
-  .room-feature, .presence-feature { border-radius: 12px; }
-  .room-feature .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  .room-showcase, .presence-feature { border-radius: 12px; }
+  .room-showcase .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+  /* On phones keep both room images complete; only the short thumbnail strip
+     adds height in live mode, rather than reserving a large empty promo area. */
+  .room-modes { aspect-ratio: auto; min-height: 0; }
+  .room-modes .mode-panel[hidden] { display: none; }
+  .room-feature { aspect-ratio: 1023 / 585; }
+  .atmosphere-fragment { aspect-ratio: 1672 / 941; }
+  .atmosphere-gallery { grid-template-rows: auto auto; }
+  .showcase-modes { gap: 3px; padding: 4px; }
+  .showcase-modes button { padding-inline: 13px; font-size: .85rem; }
   .presence-feature .section-grid { gap: 12px; }
   .presence-feature .expression-heading { padding: 24px; }
-  .expression-section .expression-demo { grid-template-columns: 1fr; gap: 24px; }
-  .room-demo-layout, .expression-section .expression-demo { margin-top: 28px; }
   .atmosphere-copy h2 { font-size: 2rem; }
   html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: 1.85rem; }
   .atmosphere-strip { display: flex; gap: 12px; overflow-x: auto; padding: 5px 5px 10px; scrollbar-width: thin; }

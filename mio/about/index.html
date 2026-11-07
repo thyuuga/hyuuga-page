@@ -99,13 +99,17 @@
 
         <section
           class="section project-section atmosphere-section"
-          id="atmosphere"
+          id="atmosphere" data-mode-switcher
           aria-labelledby="atmosphere-title"
         >
           <div class="section-kicker" data-i18n="mio.atmosphere.kicker">
             02 / Atmosphere
           </div>
-          <div class="room-feature">
+          <div class="showcase-modes" role="tablist" aria-labelledby="atmosphere-title">
+            <button type="button" id="room-intro-tab" role="tab" aria-selected="true" aria-controls="room-intro" tabindex="0" data-i18n="mio.atmosphere.introMode">Mio’s room</button>
+            <button type="button" id="room-live-tab" role="tab" aria-selected="false" aria-controls="room-live" tabindex="-1" data-i18n="mio.atmosphere.liveMode">Passing time</button>
+          </div>
+          <div class="room-showcase">
             <div class="section-grid room-feature-content">
               <div class="atmosphere-copy">
                 <h2 id="atmosphere-title" data-i18n="mio.atmosphere.title">
@@ -122,149 +126,152 @@
                 </div>
               </div>
             </div>
-            <img class="room-feature-image" src="../../asset/mio/mio-room-daylight.png"
-              width="1023" height="585" alt="A sunlit bedroom with a large window and blue bedding"
-              data-i18n-alt="mio.atmosphere.visualAlt" loading="lazy" decoding="async" />
-          </div>
-          <div class="section-grid room-demo-layout">
-            <div class="atmosphere-gallery" role="group" aria-labelledby="room-demo-title">
-              <h3 id="room-demo-title" class="demo-title" data-i18n="mio.atmosphere.demoTitle">Time &amp; weather demo</h3>
-              <div class="atmosphere-fragment">
-                <img loading="lazy" decoding="async" width="1672" height="941"
-                  id="atmosphere-main-image"
-                  src="../../asset/room_daytime_spring_sunny.png"
-                  alt="Spring daytime room"
-                />
+            <div class="mode-panels room-modes">
+              <div class="room-feature mode-panel" id="room-intro" role="tabpanel" aria-labelledby="room-intro-tab" tabindex="0">
+                <img class="room-feature-image" src="../../asset/mio/mio-room-daylight.png"
+                  width="1023" height="585" alt="A sunlit bedroom with a large window and blue bedding"
+                  data-i18n-alt="mio.atmosphere.visualAlt" loading="lazy" decoding="async" />
               </div>
-              <div class="atmosphere-strip" aria-label="Atmosphere fragments">
-                <figure class="is-active">
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_daytime_spring_sunny.png"
-                    data-atmosphere-alt="Spring daytime room"
-                    aria-pressed="true"
-                  >
+              <div class="room-demo-layout mode-panel" id="room-live" role="tabpanel" aria-labelledby="room-live-tab" tabindex="0" hidden inert>
+                <div class="atmosphere-gallery" role="group" aria-labelledby="room-live-tab">
+                  <div class="atmosphere-fragment">
                     <img loading="lazy" decoding="async" width="1672" height="941"
+                      id="atmosphere-main-image"
                       src="../../asset/room_daytime_spring_sunny.png"
                       alt="Spring daytime room"
                     />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.springDay">
-                    Spring / Day
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_daytime_spring_rainy.png"
-                    data-atmosphere-alt="Spring rainy room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_daytime_spring_rainy.png"
-                      alt="Spring rainy room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.springRain">
-                    Spring / Rain
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_dawn_spring_rainy.png"
-                    data-atmosphere-alt="Spring rainy dawn room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_dawn_spring_rainy.png"
-                      alt="Spring rainy dawn room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.dawnRain">
-                    Dawn / Rain
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_daytime_summer_sunny.png"
-                    data-atmosphere-alt="Summer sunny room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_daytime_summer_sunny.png"
-                      alt="Summer sunny room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.summerDay">
-                    Summer / Day
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_daytime_summer_rainy.png"
-                    data-atmosphere-alt="Summer rainy room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_daytime_summer_rainy.png"
-                      alt="Summer rainy room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.summerRain">
-                    Summer / Rain
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_sunset_fall_sunny.png"
-                    data-atmosphere-alt="Fall sunset room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_sunset_fall_sunny.png"
-                      alt="Fall sunset room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.fallSunset">
-                    Fall / Sunset
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_daytime_winter_sunny.png"
-                    data-atmosphere-alt="Winter sunny room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_daytime_winter_sunny.png"
-                      alt="Winter sunny room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.winterDay">
-                    Winter / Day
-                  </figcaption>
-                </figure>
-                <figure>
-                  <button
-                    type="button"
-                    data-atmosphere-src="../../asset/room_night_spring.png"
-                    data-atmosphere-alt="Spring night room"
-                    aria-pressed="false"
-                  >
-                    <img loading="lazy" decoding="async" width="1672" height="941"
-                      src="../../asset/room_night_spring.png"
-                      alt="Spring night room"
-                    />
-                  </button>
-                  <figcaption data-i18n="mio.atmosphere.night">
-                    Night / Spring
-                  </figcaption>
-                </figure>
+                  </div>
+                  <div class="atmosphere-strip" aria-label="Atmosphere fragments">
+                    <figure class="is-active">
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_daytime_spring_sunny.png"
+                        data-atmosphere-alt="Spring daytime room"
+                        aria-pressed="true"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_daytime_spring_sunny.png"
+                          alt="Spring daytime room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.springDay">
+                        Spring / Day
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_daytime_spring_rainy.png"
+                        data-atmosphere-alt="Spring rainy room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_daytime_spring_rainy.png"
+                          alt="Spring rainy room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.springRain">
+                        Spring / Rain
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_dawn_spring_rainy.png"
+                        data-atmosphere-alt="Spring rainy dawn room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_dawn_spring_rainy.png"
+                          alt="Spring rainy dawn room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.dawnRain">
+                        Dawn / Rain
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_daytime_summer_sunny.png"
+                        data-atmosphere-alt="Summer sunny room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_daytime_summer_sunny.png"
+                          alt="Summer sunny room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.summerDay">
+                        Summer / Day
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_daytime_summer_rainy.png"
+                        data-atmosphere-alt="Summer rainy room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_daytime_summer_rainy.png"
+                          alt="Summer rainy room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.summerRain">
+                        Summer / Rain
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_sunset_fall_sunny.png"
+                        data-atmosphere-alt="Fall sunset room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_sunset_fall_sunny.png"
+                          alt="Fall sunset room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.fallSunset">
+                        Fall / Sunset
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_daytime_winter_sunny.png"
+                        data-atmosphere-alt="Winter sunny room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_daytime_winter_sunny.png"
+                          alt="Winter sunny room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.winterDay">
+                        Winter / Day
+                      </figcaption>
+                    </figure>
+                    <figure>
+                      <button
+                        type="button"
+                        data-atmosphere-src="../../asset/room_night_spring.png"
+                        data-atmosphere-alt="Spring night room"
+                        aria-pressed="false"
+                      >
+                        <img loading="lazy" decoding="async" width="1672" height="941"
+                          src="../../asset/room_night_spring.png"
+                          alt="Spring night room"
+                        />
+                      </button>
+                      <figcaption data-i18n="mio.atmosphere.night">
+                        Night / Spring
+                      </figcaption>
+                    </figure>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -272,11 +279,15 @@
 
         <section
           class="section project-section expression-section"
-          id="presence"
+          id="presence" data-mode-switcher
           aria-labelledby="presence-title"
         >
           <div class="section-kicker" data-i18n="mio.presence.kicker">
             03 / Presence
+          </div>
+          <div class="showcase-modes" role="tablist" aria-labelledby="presence-title">
+            <button type="button" id="presence-intro-tab" role="tab" aria-selected="true" aria-controls="presence-intro" tabindex="0" data-i18n="mio.presence.introMode">Meet Mio</button>
+            <button type="button" id="presence-live-tab" role="tab" aria-selected="false" aria-controls="presence-live" tabindex="-1" data-i18n="mio.presence.liveMode">Explore expressions</button>
           </div>
           <div class="presence-feature">
             <div class="section-art character-backdrop" aria-hidden="true">
@@ -301,105 +312,106 @@
                   </span>
                 </div>
               </div>
-              <div class="presence-portrait">
-                <img class="presence-promo-image" src="../../asset/mio/mio-character-transparent.png"
-                  width="735" height="876" alt="Mio smiling in a light dress"
-                  data-i18n-alt="mio.presence.visualAlt" loading="lazy" decoding="async" />
-              </div>
-            </div>
-          </div>
-          <div class="section-grid expression-demo" role="group" aria-labelledby="expression-demo-title">
-            <div class="expression-demo-copy">
-              <h3 id="expression-demo-title" class="demo-title" data-i18n="mio.presence.demoTitle">Expression demo</h3>
-              <p data-i18n="mio.presence.demoHint">Choose an expression to see the subtle changes.</p>
-              <div class="expression-strip" aria-label="Mio expressions">
-                <button
-                  type="button"
-                  class="is-active"
-                  data-expression="normal"
-                  data-expression-src="../../asset/mio_illustration_live_normal_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_normal_closed.png"
-                  data-expression-width="941" data-expression-height="1672"
-                  data-expression-alt="Mio calm expression"
-                  aria-pressed="true"
-                  data-i18n="mio.presence.normal"
-                >
-                  Calm
-                </button>
-                <button
-                  type="button"
-                  data-expression="joy"
-                  data-expression-src="../../asset/mio_illustration_live_joy_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_joy_closed.png"
-                  data-expression-width="1024" data-expression-height="1536"
-                  data-expression-alt="Mio joyful expression"
-                  aria-pressed="false"
-                  data-i18n="mio.presence.joy"
-                >
-                  Quiet Joy
-                </button>
-                <button
-                  type="button"
-                  data-expression="shy"
-                  data-expression-src="../../asset/mio_illustration_live_shy_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_shy_closed.png"
-                  data-expression-width="941" data-expression-height="1672"
-                  data-expression-alt="Mio shy expression"
-                  aria-pressed="false"
-                  data-i18n="mio.presence.shy"
-                >
-                  Shy
-                </button>
-                <button
-                  type="button"
-                  data-expression="proud"
-                  data-expression-src="../../asset/mio_illustration_live_proud_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_proud_closed.png"
-                  data-expression-width="941" data-expression-height="1672"
-                  data-expression-alt="Mio proud expression"
-                  aria-pressed="false"
-                  data-i18n="mio.presence.proud"
-                >
-                  Slight Pride
-                </button>
-                <button
-                  type="button"
-                  data-expression="sad"
-                  data-expression-src="../../asset/mio_illustration_live_sad_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_sad_closed.png"
-                  data-expression-width="941" data-expression-height="1672"
-                  data-expression-alt="Mio sad expression"
-                  aria-pressed="false"
-                  data-i18n="mio.presence.sad"
-                >
-                  Sad
-                </button>
-                <button
-                  type="button"
-                  data-expression="angry"
-                  data-expression-src="../../asset/mio_illustration_live_angry_open.png"
-                  data-expression-closed="../../asset/mio_illustration_live_angry_closed.png"
-                  data-expression-width="1024" data-expression-height="1536"
-                  data-expression-alt="Mio frustrated expression"
-                  aria-pressed="false"
-                  data-i18n="mio.presence.frustrated"
-                >
-                  Frustrated
-                </button>
-              </div>
-            </div>
-            <div class="expression-panel">
-              <div class="expression-viewport">
-                <div class="expression-composition">
-                  <div class="expression-stage">
-                    <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
-                      <div class="expression-motion">
-                        <img id="expression-main-image" class="expression-open"
-                          src="../../asset/mio_illustration_live_normal_open.png"
-                          width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
-                        <img class="expression-closed"
-                          src="../../asset/mio_illustration_live_normal_closed.png"
-                          width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+              <div class="mode-panels presence-modes">
+                <div class="presence-portrait mode-panel" id="presence-intro" role="tabpanel" aria-labelledby="presence-intro-tab" tabindex="0">
+                  <img class="presence-promo-image" src="../../asset/mio/mio-character-transparent.png"
+                    width="735" height="876" alt="Mio smiling in a light dress"
+                    data-i18n-alt="mio.presence.visualAlt" loading="lazy" decoding="async" />
+                </div>
+                <div class="expression-demo mode-panel" id="presence-live" role="tabpanel" aria-labelledby="presence-live-tab" tabindex="0" hidden inert>
+                  <div class="expression-demo-copy">
+                    <p data-i18n="mio.presence.demoHint">Choose an expression to see the subtle changes.</p>
+                    <div class="expression-strip" aria-label="Mio expressions">
+                      <button
+                        type="button"
+                        class="is-active"
+                        data-expression="normal"
+                        data-expression-src="../../asset/mio_illustration_live_normal_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_normal_closed.png"
+                        data-expression-width="941" data-expression-height="1672"
+                        data-expression-alt="Mio calm expression"
+                        aria-pressed="true"
+                        data-i18n="mio.presence.normal"
+                      >
+                        Calm
+                      </button>
+                      <button
+                        type="button"
+                        data-expression="joy"
+                        data-expression-src="../../asset/mio_illustration_live_joy_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_joy_closed.png"
+                        data-expression-width="1024" data-expression-height="1536"
+                        data-expression-alt="Mio joyful expression"
+                        aria-pressed="false"
+                        data-i18n="mio.presence.joy"
+                      >
+                        Quiet Joy
+                      </button>
+                      <button
+                        type="button"
+                        data-expression="shy"
+                        data-expression-src="../../asset/mio_illustration_live_shy_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_shy_closed.png"
+                        data-expression-width="941" data-expression-height="1672"
+                        data-expression-alt="Mio shy expression"
+                        aria-pressed="false"
+                        data-i18n="mio.presence.shy"
+                      >
+                        Shy
+                      </button>
+                      <button
+                        type="button"
+                        data-expression="proud"
+                        data-expression-src="../../asset/mio_illustration_live_proud_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_proud_closed.png"
+                        data-expression-width="941" data-expression-height="1672"
+                        data-expression-alt="Mio proud expression"
+                        aria-pressed="false"
+                        data-i18n="mio.presence.proud"
+                      >
+                        Slight Pride
+                      </button>
+                      <button
+                        type="button"
+                        data-expression="sad"
+                        data-expression-src="../../asset/mio_illustration_live_sad_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_sad_closed.png"
+                        data-expression-width="941" data-expression-height="1672"
+                        data-expression-alt="Mio sad expression"
+                        aria-pressed="false"
+                        data-i18n="mio.presence.sad"
+                      >
+                        Sad
+                      </button>
+                      <button
+                        type="button"
+                        data-expression="angry"
+                        data-expression-src="../../asset/mio_illustration_live_angry_open.png"
+                        data-expression-closed="../../asset/mio_illustration_live_angry_closed.png"
+                        data-expression-width="1024" data-expression-height="1536"
+                        data-expression-alt="Mio frustrated expression"
+                        aria-pressed="false"
+                        data-i18n="mio.presence.frustrated"
+                      >
+                        Frustrated
+                      </button>
+                    </div>
+                  </div>
+                  <div class="expression-panel">
+                    <div class="expression-viewport">
+                      <div class="expression-composition">
+                        <div class="expression-stage">
+                          <div class="expression-sprite" data-eyes="open" data-breathing="false" role="img" aria-label="Mio calm expression">
+                            <div class="expression-motion">
+                              <img id="expression-main-image" class="expression-open"
+                                src="../../asset/mio_illustration_live_normal_open.png"
+                                width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                              <img class="expression-closed"
+                                src="../../asset/mio_illustration_live_normal_closed.png"
+                                width="941" height="1672" alt="" aria-hidden="true" decoding="async" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -584,6 +596,7 @@
     </div>
 
     <script src="../../script.js"></script>
+    <script type="module" src="./modes.mjs"></script>
     <script type="module" src="./expressions.mjs"></script>
   </body>
 </html>

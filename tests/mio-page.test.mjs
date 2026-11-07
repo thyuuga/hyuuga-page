@@ -81,6 +81,48 @@ test('rapid room selections keep the last choice, including returning to the cur
   assert(!image.classList.contains('is-fading'));
 });
 
+test('all eight room scenes still switch and autoplay pauses in intro mode without resetting selection', () => {
+  const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
+  const sources = [...html.matchAll(/data-atmosphere-src="([^"]+)"/g)].map(match => match[1]);
+  const jobs = new Map(), intervals = new Map(), listeners = {}; let id = 0;
+  const panel = { hidden: true }, attrs = { src: sources[0] };
+  const image = { classList: classList(), getAttribute: key => attrs[key], setAttribute: (key, value) => attrs[key] = value };
+  const gallery = { closest: () => panel.hidden ? panel : null, addEventListener: () => {} };
+  const root = { contains: element => element === gallery };
+  const buttons = sources.map((source, i) => {
+    const values = { 'aria-pressed': String(i === 0) }, events = {};
+    return { dataset: { atmosphereSrc: source }, events,
+      setAttribute: (key, value) => values[key] = String(value), getAttribute: key => values[key],
+      closest: () => ({ classList: classList() }), addEventListener: (name, fn) => events[name] = fn };
+  });
+  vm.runInNewContext(roomCode, {
+    atmosphereMainImage: image, atmosphereButtons: buttons, atmosphereGallery: gallery,
+    document: { body: { classList: { contains: () => true } } },
+    reduceMotionQuery: { matches: false, addEventListener: () => {} },
+    window: { addEventListener: (name, fn) => listeners[name] = fn,
+      clearTimeout: id => jobs.delete(id), setTimeout: fn => (jobs.set(++id, fn), id),
+      setInterval: fn => (intervals.set(++id, fn), id), clearInterval: id => intervals.delete(id),
+      matchMedia: () => ({ matches: false }) },
+  });
+  const changeMode = hidden => { panel.hidden = hidden; listeners['mio:modechange']({ detail: { root } }); };
+  const flush = () => { for (const fn of jobs.values()) fn(); jobs.clear(); };
+  assert.equal(intervals.size, 0);
+  changeMode(false); assert.equal(intervals.size, 1);
+  for (const button of buttons) {
+    button.events.click(); flush();
+    assert.equal(attrs.src, button.dataset.atmosphereSrc);
+    assert.equal(button.getAttribute('aria-pressed'), 'true');
+  }
+  changeMode(true); assert.equal(intervals.size, 0);
+  assert.equal(attrs.src, sources[7]);
+  changeMode(false); assert.equal(intervals.size, 1);
+  assert.equal(attrs.src, sources[7]);
+  intervals.values().next().value(); flush();
+  assert.equal(attrs.src, sources[0]); // The original five-second rotation resumes.
+  buttons[3].events.click(); changeMode(true); flush();
+  assert.equal(attrs.src, sources[3]); assert.equal(intervals.size, 0);
+});
+
 test('every Mio text key and localized preview image is present in all three languages', () => {
   const dictionary = script.slice(script.indexOf('const translations ='), script.indexOf('const languageButtons ='));
   const translations = vm.runInNewContext(`${dictionary}\ntranslations;`);
@@ -124,6 +166,18 @@ test('promotional visuals are outside both live galleries; all original controls
   const hasAncestor = (node, name) => node.parents.some(parent => hasClass(parent, name));
   const ids = nodes.filter(node => node.attrs.id).map(node => node.attrs.id);
   assert.equal(ids.length, new Set(ids).size);
+  for (const prefix of ['room', 'presence']) {
+    const intro = nodes.find(node => node.attrs.id === `${prefix}-intro`);
+    const live = nodes.find(node => node.attrs.id === `${prefix}-live`);
+    assert.equal(intro.parents.at(-1), live.parents.at(-1)); // A single shared frame.
+    for (const panel of [intro, live]) {
+      const tab = nodes.find(node => node.attrs.id === panel.attrs['aria-labelledby']);
+      assert.equal(tab.attrs.role, 'tab');
+      assert.equal(tab.attrs['aria-controls'], panel.attrs.id);
+      assert.equal(tab.attrs['aria-selected'], String(panel === intro));
+    }
+    assert.match(html, new RegExp(`id="${prefix}-live"[^>]* hidden inert`));
+  }
   for (const name of ['room-feature-image', 'presence-promo-image']) {
     const [image, ...duplicates] = nodes.filter(node => hasClass(node, name));
     assert(image); assert.equal(duplicates.length, 0);

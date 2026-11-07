@@ -59,7 +59,10 @@ class Target {
 }
 
 function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false } = {}) {
-  const time = clock(), sprite = new Target(), open = {}, closed = {}, stage = { clientWidth: 258, clientHeight: 558 };
+  const panel = { hidden: false };
+  const time = clock(), sprite = new Target(), open = {}, closed = {}, stage = {
+    clientWidth: 258, clientHeight: 558, closest: () => panel.hidden ? panel : null,
+  };
   sprite.style = { setProperty(name, value) { this[name] = value; } };
   const pending = [], motion = new Target(), doc = new Target(), win = new Target();
   motion.matches = reduced; doc.hidden = false;
@@ -101,7 +104,7 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
       if (descriptor) Object.defineProperty(globalThis, key, descriptor); else delete globalThis[key];
     }
   });
-  return { time, sprite, open, closed, doc, win, motion, observer, pending, dispose,
+  return { time, sprite, open, closed, doc, win, motion, observer, pending, dispose, panel,
     click: name => buttons[expressions.indexOf(name)].emit('click') };
 }
 
@@ -128,6 +131,22 @@ test('all six pairs switch together; visibility, reduced motion and cleanup stop
   g.win.emit('pagehide'); assert.equal(g.time.jobs.size, 0);
   g.win.emit('pageshow'); assert.equal(g.time.jobs.size, 1);
   g.dispose(); assert.equal(g.time.jobs.size, 0); assert(g.observer.disconnected);
+});
+
+test('hidden mode stops blink and breathing immediately, retaining the selected expression', async t => {
+  const g = gallery(t); await tick(); g.observer.visible(true);
+  g.click('joy'); await tick(); g.time.next([140, 140]);
+  g.time.next(MIO_IDLE.wait); assert.equal(g.sprite.dataset.eyes, 'closed');
+  g.panel.hidden = true; g.win.emit('mio:modechange');
+  assert.equal(g.sprite.dataset.eyes, 'open');
+  assert.equal(g.sprite.dataset.breathing, 'false');
+  assert.equal(g.time.jobs.size, 0);
+  assert.equal(g.open.src, 'joy_open.png');
+  g.panel.hidden = false; g.win.emit('mio:modechange');
+  assert.equal(g.open.src, 'joy_open.png');
+  assert.equal(g.closed.src, 'joy_closed.png');
+  assert.equal(g.sprite.dataset.breathing, 'true');
+  assert.equal(g.time.jobs.size, 1);
 });
 
 test('six portraits share body height, center and foot baseline at desktop and mobile sizes', () => {
