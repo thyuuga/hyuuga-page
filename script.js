@@ -1100,30 +1100,55 @@ if (revealSections.length && !reduceMotionQuery.matches) {
   setRevealState();
 }
 
-let atmosphereSwapTimer;
-const setAtmosphereImage = (button) => {
-  if (!atmosphereMainImage || !button) {
-    return;
-  }
+let atmosphereSwapRevision = 0;
+let atmospherePendingSource = null;
+let atmosphereFadeAnimation = null;
+const atmospherePreviousImage = atmosphereGallery?.querySelector(".atmosphere-previous-image");
 
+const finishAtmosphereFade = () => {
+  if (atmospherePreviousImage) atmospherePreviousImage.hidden = true;
+  atmosphereFadeAnimation?.cancel();
+  atmosphereFadeAnimation = null;
+};
+
+const setAtmosphereImage = async (button) => {
+  if (!atmosphereMainImage || !button) return;
   const nextSource = button.dataset.atmosphereSrc;
-  if (!nextSource) {
-    return;
-  }
+  if (!nextSource || nextSource === atmospherePendingSource) return;
+  const revision = ++atmosphereSwapRevision;
+  atmospherePendingSource = nextSource;
 
-  window.clearTimeout(atmosphereSwapTimer);
-  if (atmosphereMainImage.getAttribute("src") === nextSource) {
-    atmosphereMainImage.classList.remove("is-fading");
-  } else {
-    atmosphereMainImage.classList.add("is-fading");
-    atmosphereSwapTimer = window.setTimeout(() => {
-      atmosphereMainImage.setAttribute("src", nextSource);
-      atmosphereMainImage.setAttribute(
-        "alt",
-        button.dataset.atmosphereAlt || "Mio room atmosphere",
-      );
-      atmosphereMainImage.classList.remove("is-fading");
-    }, reduceMotionQuery.matches ? 0 : 180);
+  const previousSource = atmosphereMainImage.getAttribute("src");
+  if (previousSource !== nextSource) {
+    // Keep the current scene fully visible until the replacement can be painted.
+    const nextImage = new Image();
+    nextImage.src = nextSource;
+    try {
+      await nextImage.decode();
+    } catch {
+      if (revision === atmosphereSwapRevision) atmospherePendingSource = null;
+      return; // A failed request must not blank the room or change its selection.
+    }
+    if (revision !== atmosphereSwapRevision) return;
+  }
+  atmospherePendingSource = null;
+  finishAtmosphereFade();
+  atmosphereMainImage.setAttribute("src", nextSource);
+  atmosphereMainImage.setAttribute("alt", button.dataset.atmosphereAlt || "Mio room atmosphere");
+
+  if (previousSource !== nextSource && atmospherePreviousImage?.animate &&
+      !reduceMotionQuery.matches && !atmosphereGallery.closest("[hidden]")) {
+    // The old scene fades OVER an opaque new scene, never over a pale backplate.
+    atmospherePreviousImage.setAttribute("src", previousSource);
+    atmospherePreviousImage.hidden = false;
+    const animation = atmospherePreviousImage.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 240, easing: "ease-out", fill: "forwards" },
+    );
+    atmosphereFadeAnimation = animation;
+    animation.finished.then(() => {
+      if (atmosphereFadeAnimation === animation) finishAtmosphereFade();
+    }).catch(() => {}); // Rapid selections intentionally cancel the previous fade.
   }
 
   atmosphereButtons.forEach((item) => {
@@ -1166,7 +1191,10 @@ const startAtmosphereAutoPlay = () => {
   }, 5000);
 };
 
-reduceMotionQuery.addEventListener("change", startAtmosphereAutoPlay);
+reduceMotionQuery.addEventListener("change", () => {
+  if (reduceMotionQuery.matches) finishAtmosphereFade();
+  startAtmosphereAutoPlay();
+});
 
 atmosphereButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -1185,7 +1213,10 @@ atmosphereButtons.forEach((button) => {
 
 if (atmosphereGallery) {
   window.addEventListener("mio:modechange", (event) => {
-    if (event.detail.root.contains(atmosphereGallery)) startAtmosphereAutoPlay();
+    if (event.detail.root.contains(atmosphereGallery)) {
+      if (atmosphereGallery.closest("[hidden]")) finishAtmosphereFade();
+      startAtmosphereAutoPlay();
+    }
   });
   atmosphereGallery.addEventListener("mouseenter", stopAtmosphereAutoPlay);
   atmosphereGallery.addEventListener("mouseleave", startAtmosphereAutoPlay);

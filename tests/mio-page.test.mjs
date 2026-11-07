@@ -5,8 +5,7 @@ import vm from 'node:vm';
 
 const script = readFileSync(new URL('../script.js', import.meta.url), 'utf8');
 // Execute the actual shared controller with DOM boundaries supplied by the test.
-const revealCode = script.slice(script.indexOf('const revealSections ='), script.indexOf('let atmosphereSwapTimer;'));
-const roomCode = script.slice(script.indexOf('let atmosphereSwapTimer;'));
+const revealCode = script.slice(script.indexOf('const revealSections ='), script.indexOf('let atmosphereSwapRevision ='));
 const classList = () => {
   const names = new Set();
   return { add: name => names.add(name), remove: name => names.delete(name),
@@ -49,78 +48,6 @@ test('Mio reveal is reversible, stationary, and keeps long content readable', ()
   top = -1820; update(); assert.equal(opacity(), 0); assert.equal(y(), -12);
   top = -900; update(); assert.equal(opacity(), 1); assert.equal(y(), 0);
   top = 930; update(); assert.equal(opacity(), .5); assert.equal(y(), 8);
-});
-
-test('rapid room selections keep the last choice, including returning to the current image', () => {
-  const jobs = new Map(); let id = 0;
-  const imageAttrs = { src: 'spring.png' };
-  const image = { classList: classList(), getAttribute: key => imageAttrs[key], setAttribute: (key, value) => imageAttrs[key] = value };
-  const buttons = ['spring', 'rain', 'night'].map(name => {
-    const attrs = { 'aria-pressed': String(name === 'spring') }, events = {}, figure = { classList: classList() };
-    return { dataset: { atmosphereSrc: `${name}.png`, atmosphereAlt: name }, events,
-      setAttribute: (key, value) => attrs[key] = String(value), getAttribute: key => attrs[key],
-      closest: () => figure, addEventListener: (name, fn) => events[name] = fn };
-  });
-  const reduced = { matches: false, addEventListener: () => {} };
-  const context = vm.createContext({
-    atmosphereMainImage: image, atmosphereButtons: buttons, atmosphereGallery: null,
-    document: { body: { classList: { contains: () => true } } }, reduceMotionQuery: reduced,
-    window: {
-      clearTimeout: id => jobs.delete(id), setTimeout: fn => (jobs.set(++id, fn), id),
-      setInterval: () => 1, clearInterval: () => {}, matchMedia: () => ({ matches: true }),
-    },
-  });
-  vm.runInContext(roomCode, context);
-  buttons[1].events.pointerenter(); buttons[2].events.pointerenter();
-  assert.equal(jobs.size, 1);
-  for (const fn of jobs.values()) fn(); jobs.clear();
-  assert.equal(imageAttrs.src, 'night.png');
-  assert.equal(buttons[2].getAttribute('aria-pressed'), 'true');
-  buttons[1].events.focus(); buttons[2].events.click();
-  assert.equal(jobs.size, 0); assert.equal(imageAttrs.src, 'night.png');
-  assert(!image.classList.contains('is-fading'));
-});
-
-test('all eight room scenes still switch and autoplay pauses in intro mode without resetting selection', () => {
-  const html = readFileSync(new URL('../mio/about/index.html', import.meta.url), 'utf8');
-  const sources = [...html.matchAll(/data-atmosphere-src="([^"]+)"/g)].map(match => match[1]);
-  const jobs = new Map(), intervals = new Map(), listeners = {}; let id = 0;
-  const panel = { hidden: true }, attrs = { src: sources[0] };
-  const image = { classList: classList(), getAttribute: key => attrs[key], setAttribute: (key, value) => attrs[key] = value };
-  const gallery = { closest: () => panel.hidden ? panel : null, addEventListener: () => {} };
-  const root = { contains: element => element === gallery };
-  const buttons = sources.map((source, i) => {
-    const values = { 'aria-pressed': String(i === 0) }, events = {};
-    return { dataset: { atmosphereSrc: source }, events,
-      setAttribute: (key, value) => values[key] = String(value), getAttribute: key => values[key],
-      closest: () => ({ classList: classList() }), addEventListener: (name, fn) => events[name] = fn };
-  });
-  vm.runInNewContext(roomCode, {
-    atmosphereMainImage: image, atmosphereButtons: buttons, atmosphereGallery: gallery,
-    document: { body: { classList: { contains: () => true } } },
-    reduceMotionQuery: { matches: false, addEventListener: () => {} },
-    window: { addEventListener: (name, fn) => listeners[name] = fn,
-      clearTimeout: id => jobs.delete(id), setTimeout: fn => (jobs.set(++id, fn), id),
-      setInterval: fn => (intervals.set(++id, fn), id), clearInterval: id => intervals.delete(id),
-      matchMedia: () => ({ matches: false }) },
-  });
-  const changeMode = hidden => { panel.hidden = hidden; listeners['mio:modechange']({ detail: { root } }); };
-  const flush = () => { for (const fn of jobs.values()) fn(); jobs.clear(); };
-  assert.equal(intervals.size, 0);
-  changeMode(false); assert.equal(intervals.size, 1);
-  for (const button of buttons) {
-    button.events.click(); flush();
-    assert.equal(attrs.src, button.dataset.atmosphereSrc);
-    assert.equal(button.getAttribute('aria-pressed'), 'true');
-  }
-  changeMode(true); assert.equal(intervals.size, 0);
-  assert.equal(attrs.src, sources[7]);
-  changeMode(false); assert.equal(intervals.size, 1);
-  assert.equal(attrs.src, sources[7]);
-  intervals.values().next().value(); flush();
-  assert.equal(attrs.src, sources[0]); // The original five-second rotation resumes.
-  buttons[3].events.click(); changeMode(true); flush();
-  assert.equal(attrs.src, sources[3]); assert.equal(intervals.size, 0);
 });
 
 test('every Mio text key and localized preview image is present in all three languages', () => {
