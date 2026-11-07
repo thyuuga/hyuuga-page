@@ -168,12 +168,25 @@ html:lang(zh) #concept h2, html:lang(ja) #concept h2 { max-width: 8em; font-size
 .room-showcase { position: relative; width: 100%; isolation: isolate; background: var(--bg); }
 /* A normal full-width block owns the dimensions. Both panels are direct layers,
    independent of implicit Grid tracks, image intrinsic widths and control sizes. */
-.room-scene-stage { position: relative; width: 100%; aspect-ratio: 1023 / 585; min-height: 560px; max-height: 960px; }
+.room-scene-stage { --room-edge-fade: clamp(24px, 3vw, 48px); position: relative; width: 100%; aspect-ratio: 1023 / 585; min-height: 560px; max-height: 960px; }
 .room-scene-mode { position: absolute; inset: 0; width: 100%; height: 100%; }
 .room-feature { isolation: isolate; overflow: hidden; }
 .room-feature-image { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 65% center; }
 .room-feature::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(90deg, #faf9f6f5, #faf9f6eb 20%, #faf9f6c2 37%, #faf9f633 58%, transparent 70%); }
-.room-feature::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--bg), transparent clamp(40px, 6vw, 96px), transparent calc(100% - clamp(40px, 6vw, 96px)), var(--bg)); }
+/* Identical, narrow edge fades above either scene's image layers. The middle
+   has no overlay; the separate thumbnail controls stay outside this effect. */
+.room-feature::after, .atmosphere-fragment::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to bottom, var(--bg), #faf9f699 35%, #faf9f626 70%, transparent),
+    linear-gradient(to top, var(--bg), #faf9f699 35%, #faf9f626 70%, transparent);
+  background-size: 100% var(--room-edge-fade);
+  background-position: top, bottom;
+  background-repeat: no-repeat;
+}
 .room-showcase .room-feature-content { position: absolute; inset: 0; z-index: 1; width: var(--room-content-width); margin-inline: auto; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 0; pointer-events: none; }
 [data-mode="room-live"] .room-feature-content { visibility: hidden; }
 /* Scene transitions belong to image layers, never the panel or its controls. */
@@ -362,9 +375,8 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   .room-showcase .atmosphere-copy { grid-template-columns: 1fr; gap: 20px; padding-block: 24px; }
   /* The same scene height in both modes; a modest crop keeps room context
      above the compact thumbnail strip instead of producing a tall portrait crop. */
-  .room-scene-stage { aspect-ratio: 3 / 2; min-height: 0; }
+  .room-scene-stage { --room-edge-fade: clamp(12px, 4vw, 18px); aspect-ratio: 3 / 2; min-height: 0; }
   .room-feature-image, .atmosphere-fragment img { object-position: 60% center; }
-  .room-feature::after { background: linear-gradient(180deg, var(--bg), transparent 24px, transparent calc(100% - 24px), var(--bg)); }
   .showcase-modes { gap: 3px; padding: 4px; }
   .showcase-modes button { padding-inline: 13px; font-size: .85rem; }
   .presence-feature .section-grid { gap: 12px; }
