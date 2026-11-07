@@ -210,7 +210,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
 .atmosphere-strip {
   position: absolute;
   z-index: 1;
-  bottom: 24px;
+  bottom: 40px;
   inset-inline: 0;
   width: min(1040px, var(--room-content-width));
   margin-inline: auto;
@@ -220,15 +220,15 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   padding: 12px 14px;
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: 16px;
-  background: rgba(25, 34, 45, .86);
-  box-shadow: 0 8px 24px rgba(8, 16, 24, .14);
+  background: rgba(28, 38, 52, .72);
+  box-shadow: 0 6px 18px rgba(8, 16, 24, .09);
   scrollbar-color: #8ca5b7 transparent;
 }
-@supports ((backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px))) {
+@supports ((backdrop-filter: blur(16px)) or (-webkit-backdrop-filter: blur(16px))) {
   .atmosphere-strip {
-    background: rgba(25, 34, 45, .72);
-    -webkit-backdrop-filter: blur(18px) saturate(1.1);
-    backdrop-filter: blur(18px) saturate(1.1);
+    background: rgba(28, 38, 52, .68);
+    -webkit-backdrop-filter: blur(16px) saturate(1.15);
+    backdrop-filter: blur(16px) saturate(1.15);
   }
 }
 .atmosphere-strip figure { min-width: 0; }
@@ -417,7 +417,7 @@ html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size
   .presence-feature .expression-heading { padding-block: 24px; }
   .atmosphere-copy h2 { font-size: 2rem; }
   html:lang(zh) .atmosphere-copy h2, html:lang(ja) .atmosphere-copy h2 { font-size: 1.85rem; }
-  .atmosphere-strip { bottom: 20px; display: flex; gap: 8px; overflow-x: auto; padding: 8px; scrollbar-width: thin; }
+  .atmosphere-strip { bottom: 36px; display: flex; gap: 8px; overflow-x: auto; padding: 8px; scrollbar-width: thin; }
   .atmosphere-strip figure { flex: 0 0 84px; }
   .atmosphere-strip figcaption { margin-top: 4px; font-size: .7rem; }
   .expression-strip { gap: 8px; }
