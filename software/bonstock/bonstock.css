@@ -1,0 +1,4 @@
+/* Keep the shared editorial layout; only the BonStock hero adds an app entry. */
+.bonstock-hero-access { margin-top: 32px; }
+.bonstock-page .private-zone-summary > *,
+.bonstock-page .private-zone-essay > * { min-width: 0; }

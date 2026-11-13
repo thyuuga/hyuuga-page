@@ -23,8 +23,10 @@ python3 -m http.server 8000 --bind 127.0.0.1
 | [script.js](script.js) | 三语言字典、语言切换及页面交互；各页面共用 |
 | [cursors.css](cursors.css) | 自定义鼠标指针 |
 | [mio/about/](mio/about/) | Mio 介绍页，独立使用本目录 `sky-blue.css`（暖白／天空蓝） |
-| [software/](software/) | Thy Recorder、Private Zone、Memo Pad 介绍页及各自样式 |
+| [software/](software/) | Thy Recorder、BonStock、Private Zone、Memo Pad 介绍页及各自样式 |
 | [asset/](asset/) | 图片、Logo、Favicon、指针、纸张纹理与字体资源 |
+
+BonStock 介绍页位于 `/software/bonstock/`，复用 Private Zone 的产品页样式，展示图使用 `asset/bonstock/bon_stock_image.png`。首页先进入介绍页，再通过「打开应用」访问 `https://stock.thyuuga.com/`。
 
 ## 修改文案与字体
 
