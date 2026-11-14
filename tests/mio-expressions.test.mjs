@@ -79,9 +79,9 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
   const pending = [], motion = new Target(), doc = new Target(), win = new Target();
   motion.matches = reduced; doc.hidden = false;
   const buttons = expressions.map(name => {
-    const b = new Target(), wide = ['joy', 'proud', 'angry'].includes(name);
+    const b = new Target(), frame = EXPRESSION_FRAMES[name];
     b.dataset = { expression: name, expressionSrc: `${name}_open.png`, expressionClosed: `${name}_closed.png`,
-      expressionWidth: String(wide ? 1024 : 941), expressionHeight: String(wide ? 1536 : 1672), expressionAlt: name };
+      expressionWidth: String(frame.width), expressionHeight: String(frame.height), expressionAlt: name };
     b.classList.toggle('is-active', name === 'normal'); return b;
   });
   sprite.querySelector = s => s === '.expression-open' ? open : closed;
@@ -98,8 +98,8 @@ function gallery(t, { reduced = false, fail = '', mismatch = '', delayed = false
     },
     Image: class {
       decode() {
-        const wide = /joy|proud|angry/.test(this.src);
-        this.naturalWidth = wide ? 1024 : 941; this.naturalHeight = wide ? 1536 : 1672;
+        const frame = EXPRESSION_FRAMES[this.src.split('_')[0]];
+        this.naturalWidth = frame.width; this.naturalHeight = frame.height;
         if (mismatch && this.src.includes(mismatch)) this.naturalWidth++;
         if (fail && this.src.includes(fail)) return Promise.reject(new Error('load failed'));
         if (delayed) return new Promise(resolve => pending.push({ src: this.src, resolve }));
@@ -225,6 +225,6 @@ test('HTML points to twelve real PNGs with matching pair dimensions', () => {
     const declared = ['width', 'height'].map(axis => Number(button.match(new RegExp(`data-expression-${axis}="(\\d+)"`))[1]));
     assert.deepEqual(declared, sizes[0]);
     assert.deepEqual([EXPRESSION_FRAMES[expression].width, EXPRESSION_FRAMES[expression].height], sizes[0]);
-    assert.deepEqual(sizes[0], ['joy', 'proud', 'angry'].includes(expression) ? [1024, 1536] : [941, 1672]);
+    assert.deepEqual(sizes[0], expression === 'proud' ? [948, 1659] : ['joy', 'angry'].includes(expression) ? [1024, 1536] : [941, 1672]);
   }
 });

@@ -4,7 +4,7 @@ export const EXPRESSION_FRAMES = Object.freeze({
   normal: { width: 941, height: 1672, left: 184, top: 6, right: 831, bottom: 1642 },
   joy: { width: 1024, height: 1536, left: 157, top: 9, right: 873, bottom: 1534 },
   shy: { width: 941, height: 1672, left: 157, top: 34, right: 786, bottom: 1632 },
-  proud: { width: 1024, height: 1536, left: 189, top: 10, right: 803, bottom: 1503 },
+  proud: { width: 948, height: 1659, left: 81, top: 10, right: 858, bottom: 1655 },
   sad: { width: 941, height: 1672, left: 158, top: 34, right: 782, bottom: 1632 },
   angry: { width: 1024, height: 1536, left: 152, top: 8, right: 886, bottom: 1531 },
 });
